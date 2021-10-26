@@ -1,14 +1,14 @@
 import React from 'react';
 import s from './MyPosts.module.css'
 import Post from './Post/Post';
+import {PostsType} from '../Profile';
 
-const MyPosts = () => {
-    let posts = [
-        {id: 1, message: 'hi, how are you?', likesCount: 12},
-        {id: 2, message: 'It\'s my first post!', likesCount: 11},
-    ]
+type MyPostsPropsType = {
+    posts: PostsType[]
+}
 
-    let postsElements = posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>);
+const MyPosts = (props:MyPostsPropsType) => {
+    let postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>);
 
     return (
         <div className={s.postsBlock}>
