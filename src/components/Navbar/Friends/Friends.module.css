@@ -1,0 +1,22 @@
+.friendsTitle {
+    color: white;
+    font-weight: bold;
+    font-size: 27px;
+    margin-top: 20px;
+}
+
+.friendsLine img {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    border: 2px solid;
+}
+
+.friendsLine {
+    display: grid;
+    grid-template-columns: 55px 55px 55px;
+    color: black;
+    font-size: 12px;
+    text-align: center;
+    margin-left: -2px;
+}

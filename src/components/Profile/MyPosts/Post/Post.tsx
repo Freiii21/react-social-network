@@ -10,10 +10,15 @@ type PostPropsType = {
 const Post = (props: PostPropsType) => {
     return (
         <div className={s.item}>
-            <img src="https://i.pinimg.com/originals/f5/27/41/f52741fb62bf1d821948a49204406bdc.jpg"/>
-            {props.message}
+            <div className={s.messageBlock}>
+                <img src="https://i.pinimg.com/originals/f5/27/41/f52741fb62bf1d821948a49204406bdc.jpg"/>
+                <span>{props.message}</span>
+            </div>
             <div>
-                <span>likes {props.likesCount}</span>
+                <span className={s.likes}>
+                    <img src="https://android-soft.org/uploads/posts/2014-06/android-soft_241_likesvk-logo.png"/>
+                    {props.likesCount}
+                </span>
             </div>
         </div>
     )

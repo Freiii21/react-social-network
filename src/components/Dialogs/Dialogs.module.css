@@ -8,14 +8,53 @@
     color: white;
 }
 
-.dialogsItems .active {
-    color: gold;
+.dialog {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.dialog img {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    margin-right: 5px;
+}
+
+.dialog a {
+    text-decoration: none;
+    color: black;
+}
+
+.dialog a.activeLink {
+    color: orange;
 }
 
 .messages {
     padding: 10px;
+    margin-right: 150px;
+    margin-left: 150px;
 }
 
-.messages .message {
+.message img {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.me {
     color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-weight: bold;
+}
+
+.you {
+    color: chartreuse;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
 }
