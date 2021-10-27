@@ -40,7 +40,6 @@ let messages:MessagesType[] = [
     {id:3, message: "Yo"},
 ];
 
-
 ReactDOM.render( <App posts={posts} dialogs={dialogs} messages={messages}/>,  document.getElementById('root')
 );
 
