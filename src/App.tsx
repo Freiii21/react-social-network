@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import './App.css';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
@@ -16,7 +16,6 @@ export type AppPropsType = {
 
 const App = (props:AppPropsType) => {
     return (
-        <BrowserRouter>
             <div className="app-wrapper">
                 <Header/>
                 <Navbar state={props.state.sidebar}/>
@@ -29,7 +28,6 @@ const App = (props:AppPropsType) => {
                     <Route path='/settings' component={Settings}/>
                 </div>
             </div>
-        </BrowserRouter>
     );
 }
 

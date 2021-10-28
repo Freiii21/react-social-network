@@ -60,9 +60,10 @@ let state:StateType = {
     },
     sidebar: {
         friends: [
-            {id: 1, name: "Dimych", avatar: "https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/19/UP2538-CUSA05620_00-AV00000000000186/image?w=320&h=320&bg_color=000000&opacity=100&_version=00_09_000"},
-            {id: 2, name: "Andrey", avatar: "https://st4.depositphotos.com/9449108/25247/i/1600/depositphotos_252470774-stock-photo-samurai-stands-circled-in-an.jpg"},
-            {id: 3, name: "Sveta", avatar: "https://st.depositphotos.com/3335611/4577/i/950/depositphotos_45773093-stock-photo-samurai-standing-with-sword-pose.jpg"},
+            {id: 1, name: "Keanu", avatar: "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/dc1c5a98-300a-486e-ad41-e3c5d1a53e25/220x330"},
+            {id: 2, name: "Scarlett", avatar: "https://img.kupigolos.ru/hero/5cd15729c58f3.jpg?p=bh&s=9f84b0791d5bcd96b0c37b9beace4cba"},
+            {id: 3, name: "Johnny", avatar: "https://pbs.twimg.com/profile_images/3520621764/ae559e6e30a3bc4c0ddb42316f93d316_400x400.jpeg"},
+            {id: 4, name: "Rachel", avatar: "https://factik.ru/wp-content/uploads/2017/07/JenniferAnistonHWoFFeb2012-e1500727232695.jpg"},
         ]
     },
 }
