@@ -3,7 +3,7 @@
     display: grid;
     width: 1200px;
     height: 800px;
-    background-color: lightseagreen;
+    background-color: powderblue;
     padding: 1px;
     border-radius: 5px;
 
@@ -17,7 +17,8 @@
 
 .app-wrapper-content {
     grid-area: c;
-    background-color: #999999;
+    /*background-color: honeydew;*/
+    background-color: lightgray;
     margin: 1px;
     border-radius: 5px;
 }

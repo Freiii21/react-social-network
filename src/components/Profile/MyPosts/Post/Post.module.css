@@ -1,6 +1,7 @@
 .item {
-    color: greenyellow;
+    color: black;
     margin-bottom: 15px;
+    font-weight: bold;
 }
 
 .item .messageBlock {
@@ -19,7 +20,7 @@
 }
 
 .likes {
-    color: lavender;
+    color: black;
     font-size: 12px;
     font-weight: bold;
     display: flex;

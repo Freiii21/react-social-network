@@ -16,7 +16,7 @@
 .friendsLine {
     display: grid;
     grid-template-columns: 55px 55px 55px;
-    color: black;
+    color: white;
     font-size: 12px;
     text-align: center;
     margin-left: -2px;
