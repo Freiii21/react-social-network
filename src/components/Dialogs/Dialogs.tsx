@@ -29,7 +29,7 @@ export const Dialogs = (props:DialogsPropsType) => {
                 <div>{messagesElements}</div>
                 <div className={s.answerField}>
                     <div>
-                        <textarea className={s.inputField} placeholder={"Type a message"} ref={textField}></textarea>
+                        <textarea className={s.inputField} placeholder={"Type a message..."} ref={textField}></textarea>
                     </div>
                     <div><button className={s.sendMessage} onClick={sendMessage}>Send</button></div>
                 </div>
