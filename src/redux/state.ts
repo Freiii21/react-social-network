@@ -78,6 +78,17 @@ export let addPost = (postMessage: string) => {
     };
     state.profilePage.posts.push(newPost);
     rerenderEntireTree(state);
-}
+};
+
+export let sendMessage = (message: string) => {
+    let newMessage:MessagesType = {
+        id:99,
+        message: message,
+        owner: "me",
+        avatar: "https://trashbox.ru/ifiles/220798_004e6a_img_20140503_122504.jpg_min1/avatarki.-1.jpg",
+    };
+    state.messagesPage.messages.push(newMessage);
+    rerenderEntireTree(state);
+};
 
 export default state;

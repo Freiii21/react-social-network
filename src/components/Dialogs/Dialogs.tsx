@@ -7,6 +7,7 @@ import {MessagesPageType} from '../../redux/state';
 
 type DialogsPropsType = {
     state: MessagesPageType
+    sendMessage: (message: string) => void
 }
 
 export const Dialogs = (props:DialogsPropsType) => {
@@ -16,8 +17,10 @@ export const Dialogs = (props:DialogsPropsType) => {
     let textField = React.createRef<HTMLTextAreaElement>();
 
     const sendMessage = () => {
-        let message = textField.current?.value;
-        alert(message);
+        if(textField.current){
+            props.sendMessage(textField.current.value);
+            textField.current.value = '';
+        }
     }
 
     return (
