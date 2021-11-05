@@ -17,6 +17,7 @@ const MyPosts = (props:MyPostsPropsType) => {
         // props.addPost(newPostElement.current ? newPostElement.current.value : "-----");
         if (newPostElement.current){
             props.addPost(newPostElement.current.value);
+            newPostElement.current.value = '';
         }
     }
 
