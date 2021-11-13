@@ -12,6 +12,7 @@ export type DialogsType = {
 }
 export type ProfilePageType = {
     posts: PostsType[]
+    newPostText: string
 }
 export type MessagesType  = {
     id: number
@@ -43,6 +44,7 @@ let state:StateType = {
             {id: 1, message: 'Hi, how are you?', likesCount: 12},
             {id: 2, message: 'It\'s my first post!', likesCount: 11},
         ],
+        newPostText: "it-kamasutra",
     },
     messagesPage: {
         dialogs:[
@@ -55,9 +57,9 @@ let state:StateType = {
         ],
         messages:[
             {id:1, message: "hi", owner: "me", avatar: "https://trashbox.ru/ifiles/220798_004e6a_img_20140503_122504.jpg_min1/avatarki.-1.jpg"},
-            {id:2, message: "Yo", owner: "you", avatar: "https://www.meme-arsenal.com/memes/be50e6ba99654b5455027dcc82beb5b3.jpg"},
+            {id:2, message: "Yo", owner: "you", avatar: "http://sun9-39.userapi.com/c1266/g1580685/a_122350b3.jpg"},
             {id:3, message: "How is your it-kamasutra?", owner: "me", avatar: "https://trashbox.ru/ifiles/220798_004e6a_img_20140503_122504.jpg_min1/avatarki.-1.jpg"},
-            {id:4, message: "Good enough, dude!", owner: "you", avatar: "https://www.meme-arsenal.com/memes/be50e6ba99654b5455027dcc82beb5b3.jpg"},
+            {id:4, message: "Good enough, dude!", owner: "you", avatar: "http://sun9-39.userapi.com/c1266/g1580685/a_122350b3.jpg"},
         ],
     },
     sidebar: {
@@ -66,17 +68,24 @@ let state:StateType = {
             {id: 2, name: "Scarlett", avatar: "https://img.kupigolos.ru/hero/5cd15729c58f3.jpg?p=bh&s=9f84b0791d5bcd96b0c37b9beace4cba"},
             {id: 3, name: "Johnny", avatar: "https://pbs.twimg.com/profile_images/3520621764/ae559e6e30a3bc4c0ddb42316f93d316_400x400.jpeg"},
             {id: 4, name: "Rachel", avatar: "https://factik.ru/wp-content/uploads/2017/07/JenniferAnistonHWoFFeb2012-e1500727232695.jpg"},
+            {id: 5, name: "Ross", avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHW5sNHO2sBkPooIHI2nmtUmZX6W2doVpxbw&usqp=CAU"},
         ]
     },
 }
 
-export let addPost = (postMessage: string) => {
+export let addPost = () => {
     let newPost:PostsType = {
         id: 5,
-        message: postMessage,
+        message: state.profilePage.newPostText,
         likesCount: 0,
     };
     state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText = '';
+    rerenderEntireTree(state);
+};
+
+export let updateNewPostText = (newText: string) => {
+    state.profilePage.newPostText = newText;
     rerenderEntireTree(state);
 };
 

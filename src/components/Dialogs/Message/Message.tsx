@@ -11,9 +11,9 @@ export const Message = (props: MessagePropsType) => {
     return (
         <div className={s.message}>
             <div className={s[props.owner]}>
-                {props.owner !== "me" ? <img src={props.avatar}/> : false}
+                {props.owner !== "me" ? <img src={props.avatar} alt='ava'/> : false}
                 {props.message}
-                {props.owner === "me" ? <img src={props.avatar}/> : false}
+                {props.owner === "me" ? <img src={props.avatar} alt='ava'/> : false}
             </div>
         </div>
     )
