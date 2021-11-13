@@ -99,7 +99,7 @@ export const sendMessage = (message: string) => {
 };
 
 let rerenderEntireTree = (state: StateType) => {
-    console.log("State changed");
+    console.log("State has changed");
 }
 
 export const subscribe = (observer: (state: StateType) => void) => {
