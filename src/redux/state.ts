@@ -37,13 +37,27 @@ export type StateType = {
 }
 export type StoreType = {
     _state: StateType
-    getState: () => StateType
     _callSubscriber: (_state: StateType) => void
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
-    sendMessage: (message: string) => void
+    getState: () => StateType
     subscribe: (observer: (state: StateType) => void) => void
+    dispatch: (action: ActionsTypes) => void
 }
+
+type AddPostActionType = {
+    type: 'ADD-POST'
+}
+
+type UpdateNewPostTextActionType = {
+    type: 'UPDATE-NEW-POST-TEXT'
+    newText: string
+}
+
+type SendMessageActionType = {
+    type: 'SEND-MESSAGE'
+    message: string
+}
+
+export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType | SendMessageActionType
 
 let store: StoreType = {
     _state: {
@@ -85,40 +99,42 @@ let store: StoreType = {
             ]
         },
     },
-    getState() {
-        return this._state;
-    },
     _callSubscriber(_state: StateType) {
         console.log('State has changed. ');
     },
-    addPost() {
-        debugger;
-        let newPost: PostsType = {
-            id: 5,
-            message: this._state.profilePage.newPostText,
-            likesCount: 0,
-        };
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = '';
-        this._callSubscriber(this._state);
-    },
-    updateNewPostText(newText: string) {
-        this._state.profilePage.newPostText = newText;
-        this._callSubscriber(this._state);
-    },
-    sendMessage(message: string) {
-        let newMessage: MessagesType = {
-            id: 99,
-            message: message,
-            owner: 'me',
-            avatar: '/images/Redux/State/messages/me.jpg',
-        };
-        this._state.messagesPage.messages.push(newMessage);
-        this._callSubscriber(this._state);
+
+    getState() {
+        return this._state;
     },
     subscribe(observer) {
         this._callSubscriber = observer;
+    },
+
+    dispatch(action) {
+        if(action.type === 'ADD-POST'){
+            let newPost: PostsType = {
+                id: 5,
+                message: this._state.profilePage.newPostText,
+                likesCount: 0,
+            };
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newPostText = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT'){
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber(this._state);
+        } else if (action.type === 'SEND-MESSAGE'){
+            let newMessage: MessagesType = {
+                id: 99,
+                message: action.message,
+                owner: 'me',
+                avatar: '/images/Redux/State/messages/me.jpg',
+            };
+            this._state.messagesPage.messages.push(newMessage);
+            this._callSubscriber(this._state);
+        }
     }
+
 }
 
 export default store;

@@ -2,12 +2,11 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import {Message} from './Message/Message'
 import {DialogItem} from './DialogItem/DialogItem';
-import {MessagesPageType} from '../../redux/state';
-
+import {ActionsTypes, MessagesPageType} from '../../redux/state';
 
 type DialogsPropsType = {
     state: MessagesPageType
-    sendMessage: (message: string) => void
+    dispatch: (action: ActionsTypes) => void
 }
 
 export const Dialogs = (props:DialogsPropsType) => {
@@ -18,7 +17,7 @@ export const Dialogs = (props:DialogsPropsType) => {
 
     const sendMessage = () => {
         if(textField.current){
-            props.sendMessage(textField.current.value);
+            props.dispatch({type:'SEND-MESSAGE', message: textField.current.value});
             textField.current.value = '';
         }
     }
