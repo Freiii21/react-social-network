@@ -6,7 +6,7 @@ const ProfileInfo = () => {
         <div>
             <div className={s.image}>
                 <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/New_York_Midtown_Skyline_at_night_-_Jan_2006_edit1.jpg/700px-New_York_Midtown_Skyline_at_night_-_Jan_2006_edit1.jpg"/>
+                    src="/images/Profile/ProfileInfo/image.jpg"/>
             </div>
             <div className={s.descriptionBlock}>
                 ava+desc
