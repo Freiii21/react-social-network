@@ -43,20 +43,20 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-type AddPostActionType = {
-    type: 'ADD-POST'
-}
+//method #1
+type AddPostActionType = ReturnType<typeof addPostActionCreator>
 
+//method #2
 type UpdateNewPostTextActionType = {
     type: 'UPDATE-NEW-POST-TEXT'
     newText: string
 }
-
 type SendMessageActionType = {
     type: 'SEND-MESSAGE'
     message: string
 }
 
+//here we can use ReturnType<typeof addPostActionCreator> instead of AddPostActionType
 export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType | SendMessageActionType
 
 let store: StoreType = {
@@ -134,7 +134,28 @@ let store: StoreType = {
             this._callSubscriber(this._state);
         }
     }
+}
 
+//method #1 (without return type because it has been created above as: ReturnType<typeof addPostActionCreator>)
+export const addPostActionCreator = () => {
+    return {
+        type:'ADD-POST'
+    } as const //important addition that says using ADD-POST as a fixed value not as any string
+}
+
+//method #2 (with return type that created above as: UpdateNewPostTextActionType)
+export const updateNewPostTextActionCreator = (text:string):UpdateNewPostTextActionType => {
+    return {
+        type:'UPDATE-NEW-POST-TEXT',
+        newText:text
+    }
+}
+
+export const sendMessageActionCreator = (text:string):SendMessageActionType => {
+    return {
+        type:'SEND-MESSAGE',
+        message:text
+    }
 }
 
 export default store;
