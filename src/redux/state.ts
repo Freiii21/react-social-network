@@ -21,6 +21,7 @@ export type MessagesType = {
 export type MessagesPageType = {
     dialogs: DialogsType[]
     messages: MessagesType[]
+    newMessageText: string
 }
 export type FriendsType = {
     id: number
@@ -45,19 +46,19 @@ export type StoreType = {
 
 //method #1
 type AddPostActionType = ReturnType<typeof addPostActionCreator>
+type UpdateNewPostTextActionType = ReturnType<typeof updateNewPostTextActionCreator>
 
 //method #2
-type UpdateNewPostTextActionType = {
-    type: 'UPDATE-NEW-POST-TEXT'
-    newText: string
-}
 type SendMessageActionType = {
     type: 'SEND-MESSAGE'
-    message: string
+}
+type UpdateNewMessageTextActionType = {
+    type: 'UPDATE-NEW-MESSAGE-TEXT'
+    newText: string
 }
 
 //here we can use ReturnType<typeof addPostActionCreator> instead of AddPostActionType
-export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType | SendMessageActionType
+export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType | SendMessageActionType | UpdateNewMessageTextActionType
 
 let store: StoreType = {
     _state: {
@@ -66,7 +67,7 @@ let store: StoreType = {
                 {id: 1, message: 'Hi, how are you?', likesCount: 12},
                 {id: 2, message: 'It\'s my first post!', likesCount: 11},
             ],
-            newPostText: 'it-kamasutra',
+            newPostText: 'default text from state...',
         },
         messagesPage: {
             dialogs: [
@@ -80,14 +81,10 @@ let store: StoreType = {
             messages: [
                 {id: 1, message: 'hi', owner: 'me', avatar: '/images/Redux/State/messages/me.jpg'},
                 {id: 2, message: 'Yo', owner: 'you', avatar: '/images/Redux/State/messages/you.jpg'},
-                {
-                    id: 3,
-                    message: 'How is your it-kamasutra?',
-                    owner: 'me',
-                    avatar: '/images/Redux/State/messages/me.jpg'
-                },
+                {id: 3, message: 'How is your it-kamasutra?', owner: 'me', avatar: '/images/Redux/State/messages/me.jpg'},
                 {id: 4, message: 'Good enough, dude!', owner: 'you', avatar: '/images/Redux/State/messages/you.jpg'},
             ],
+            newMessageText: 'default text from state...',
         },
         sidebar: {
             friends: [
@@ -126,11 +123,15 @@ let store: StoreType = {
         } else if (action.type === 'SEND-MESSAGE'){
             let newMessage: MessagesType = {
                 id: 99,
-                message: action.message,
+                message: this._state.messagesPage.newMessageText,
                 owner: 'me',
                 avatar: '/images/Redux/State/messages/me.jpg',
             };
             this._state.messagesPage.messages.push(newMessage);
+            this._state.messagesPage.newMessageText = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+            this._state.messagesPage.newMessageText = action.newText;
             this._callSubscriber(this._state);
         }
     }
@@ -141,21 +142,27 @@ export const addPostActionCreator = () => {
     return {
         type:'ADD-POST'
     } as const //important addition that says using ADD-POST as a fixed value not as any string
-}
+};
 
-//method #2 (with return type that created above as: UpdateNewPostTextActionType)
-export const updateNewPostTextActionCreator = (text:string):UpdateNewPostTextActionType => {
+export const updateNewPostTextActionCreator = (text:string) => {
     return {
         type:'UPDATE-NEW-POST-TEXT',
         newText:text
-    }
-}
+    } as const
+};
 
-export const sendMessageActionCreator = (text:string):SendMessageActionType => {
+//method #2 (with return type that created above as: SendMessageActionType)
+export const sendMessageActionCreator = ():SendMessageActionType => {
     return {
-        type:'SEND-MESSAGE',
-        message:text
+        type:'SEND-MESSAGE'
     }
-}
+};
+
+export const updateNewMessageTextActionCreator = (text: string): UpdateNewMessageTextActionType => {
+        return {
+            type: 'UPDATE-NEW-MESSAGE-TEXT',
+            newText: text
+        }
+    };
 
 export default store;
