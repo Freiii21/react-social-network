@@ -1,3 +1,7 @@
+import profileReducer, {AddPostActionType, UpdateNewPostTextActionType} from './profile-reducer';
+import messagesReducer, { SendMessageActionType, UpdateNewMessageTextActionType } from './messages-reducer';
+import sidebarReducer from './sidebar-reducer';
+
 export type PostsType = {
     id: number
     message: string
@@ -44,20 +48,6 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-//method #1
-type AddPostActionType = ReturnType<typeof addPostActionCreator>
-type UpdateNewPostTextActionType = ReturnType<typeof updateNewPostTextActionCreator>
-
-//method #2
-type SendMessageActionType = {
-    type: 'SEND-MESSAGE'
-}
-type UpdateNewMessageTextActionType = {
-    type: 'UPDATE-NEW-MESSAGE-TEXT'
-    newText: string
-}
-
-//here we can use ReturnType<typeof addPostActionCreator> instead of AddPostActionType
 export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType | SendMessageActionType | UpdateNewMessageTextActionType
 
 let store: StoreType = {
@@ -108,61 +98,12 @@ let store: StoreType = {
     },
 
     dispatch(action) {
-        if(action.type === 'ADD-POST'){
-            let newPost: PostsType = {
-                id: 5,
-                message: this._state.profilePage.newPostText,
-                likesCount: 0,
-            };
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = '';
-            this._callSubscriber(this._state);
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT'){
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber(this._state);
-        } else if (action.type === 'SEND-MESSAGE'){
-            let newMessage: MessagesType = {
-                id: 99,
-                message: this._state.messagesPage.newMessageText,
-                owner: 'me',
-                avatar: '/images/Redux/State/messages/me.jpg',
-            };
-            this._state.messagesPage.messages.push(newMessage);
-            this._state.messagesPage.newMessageText = '';
-            this._callSubscriber(this._state);
-        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-            this._state.messagesPage.newMessageText = action.newText;
-            this._callSubscriber(this._state);
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.messagesPage = messagesReducer(this._state.messagesPage, action);
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+
+        this._callSubscriber(this._state);
     }
 }
-
-//method #1 (without return type because it has been created above as: ReturnType<typeof addPostActionCreator>)
-export const addPostActionCreator = () => {
-    return {
-        type:'ADD-POST'
-    } as const //important addition that says using ADD-POST as a fixed value not as any string
-};
-
-export const updateNewPostTextActionCreator = (text:string) => {
-    return {
-        type:'UPDATE-NEW-POST-TEXT',
-        newText:text
-    } as const
-};
-
-//method #2 (with return type that created above as: SendMessageActionType)
-export const sendMessageActionCreator = ():SendMessageActionType => {
-    return {
-        type:'SEND-MESSAGE'
-    }
-};
-
-export const updateNewMessageTextActionCreator = (text: string): UpdateNewMessageTextActionType => {
-        return {
-            type: 'UPDATE-NEW-MESSAGE-TEXT',
-            newText: text
-        }
-    };
 
 export default store;
