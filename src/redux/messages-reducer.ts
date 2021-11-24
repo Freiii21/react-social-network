@@ -1,6 +1,24 @@
-import {ActionsTypes, MessagesPageType, MessagesType} from './state';
+import {ActionsTypes, MessagesPageType, MessagesType} from './store';
 
-const messagesReducer = (state:MessagesPageType,action: ActionsTypes) => {
+let initialState = {
+    dialogs: [
+        {id: 1, name: 'Dimych', avatar: '/images/Redux/State/dialogs/Dimych.jpg'},
+        {id: 2, name: 'Andrey', avatar: '/images/Redux/State/dialogs/Andrey.jpg'},
+        {id: 3, name: 'Sveta', avatar: '/images/Redux/State/dialogs/Sveta.jpg'},
+        {id: 4, name: 'Sasha', avatar: '/images/Redux/State/dialogs/Sasha.jpg'},
+        {id: 5, name: 'Viktor', avatar: '/images/Redux/State/dialogs/Viktor.jpg'},
+        {id: 6, name: 'Valera', avatar: '/images/Redux/State/dialogs/Valera.jpg'},
+    ],
+    messages: [
+        {id: 1, message: 'hi', owner: 'me', avatar: '/images/Redux/State/messages/me.jpg'},
+        {id: 2, message: 'Yo', owner: 'you', avatar: '/images/Redux/State/messages/you.jpg'},
+        {id: 3, message: 'How is your it-kamasutra?', owner: 'me', avatar: '/images/Redux/State/messages/me.jpg'},
+        {id: 4, message: 'Good enough, dude!', owner: 'you', avatar: '/images/Redux/State/messages/you.jpg'},
+    ],
+    newMessageText: 'default text from state...',
+}
+
+const messagesReducer = (state:MessagesPageType = initialState,action: ActionsTypes) => {
 
     switch (action.type) {
         case 'SEND-MESSAGE':

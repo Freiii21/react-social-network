@@ -8,7 +8,7 @@ import {Dialogs} from './components/Dialogs/Dialogs';
 import {Settings} from './components/Settings/Settings';
 import {Music} from './components/Music/Music';
 import {News} from './components/News/News';
-import {ActionsTypes, StateType} from './redux/state';
+import {ActionsTypes, StateType} from './redux/store';
 
 export type AppPropsType = {
     state: StateType
