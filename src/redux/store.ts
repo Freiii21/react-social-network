@@ -1,5 +1,5 @@
 import profileReducer, {AddPostActionType, UpdateNewPostTextActionType} from './profile-reducer';
-import messagesReducer, { SendMessageActionType, UpdateNewMessageTextActionType } from './messages-reducer';
+import dialogsReducer, { SendMessageActionType, UpdateNewMessageTextActionType } from './dialogs-reducer';
 import sidebarReducer from './sidebar-reducer';
 
 export type PostsType = {
@@ -7,14 +7,14 @@ export type PostsType = {
     message: string
     likesCount: number
 }
+export type ProfilePageType = {
+    posts: PostsType[]
+    newPostText: string
+}
 export type DialogsType = {
     id: number
     name: string
     avatar: string
-}
-export type ProfilePageType = {
-    posts: PostsType[]
-    newPostText: string
 }
 export type MessagesType = {
     id: number
@@ -22,7 +22,7 @@ export type MessagesType = {
     owner: string
     avatar: string
 }
-export type MessagesPageType = {
+export type DialogsPageType = {
     dialogs: DialogsType[]
     messages: MessagesType[]
     newMessageText: string
@@ -37,7 +37,7 @@ export type SidebarType = {
 }
 export type StateType = {
     profilePage: ProfilePageType
-    messagesPage: MessagesPageType
+    dialogsPage: DialogsPageType
     sidebar: SidebarType
 }
 export type StoreType = {
@@ -57,9 +57,9 @@ let store: StoreType = {
                 {id: 1, message: 'Hi, how are you?', likesCount: 12},
                 {id: 2, message: 'It\'s my first post!', likesCount: 11},
             ],
-            newPostText: 'default text from state...',
+            newPostText: '',
         },
-        messagesPage: {
+        dialogsPage: {
             dialogs: [
                 {id: 1, name: 'Dimych', avatar: '/images/Redux/State/dialogs/Dimych.jpg'},
                 {id: 2, name: 'Andrey', avatar: '/images/Redux/State/dialogs/Andrey.jpg'},
@@ -74,7 +74,7 @@ let store: StoreType = {
                 {id: 3, message: 'How is your it-kamasutra?', owner: 'me', avatar: '/images/Redux/State/messages/me.jpg'},
                 {id: 4, message: 'Good enough, dude!', owner: 'you', avatar: '/images/Redux/State/messages/you.jpg'},
             ],
-            newMessageText: 'default text from state...',
+            newMessageText: '',
         },
         sidebar: {
             friends: [
@@ -99,7 +99,7 @@ let store: StoreType = {
 
     dispatch(action) {
         this._state.profilePage = profileReducer(this._state.profilePage, action);
-        this._state.messagesPage = messagesReducer(this._state.messagesPage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
         this._state.sidebar = sidebarReducer(this._state.sidebar, action);
 
         this._callSubscriber(this._state);

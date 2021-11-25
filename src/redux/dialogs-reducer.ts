@@ -1,4 +1,4 @@
-import {ActionsTypes, MessagesPageType, MessagesType} from './store';
+import {ActionsTypes, DialogsPageType, MessagesType} from './store';
 
 let initialState = {
     dialogs: [
@@ -15,10 +15,10 @@ let initialState = {
         {id: 3, message: 'How is your it-kamasutra?', owner: 'me', avatar: '/images/Redux/State/messages/me.jpg'},
         {id: 4, message: 'Good enough, dude!', owner: 'you', avatar: '/images/Redux/State/messages/you.jpg'},
     ],
-    newMessageText: 'default text from state...',
+    newMessageText: '',
 }
 
-const messagesReducer = (state:MessagesPageType = initialState,action: ActionsTypes) => {
+const dialogsReducer = (state:DialogsPageType = initialState, action: ActionsTypes) => {
 
     switch (action.type) {
         case 'SEND-MESSAGE':
@@ -61,4 +61,4 @@ export const updateNewMessageTextActionCreator = (text: string): UpdateNewMessag
     }
 };
 
-export default messagesReducer;
+export default dialogsReducer;

@@ -10,9 +10,15 @@ import {Music} from './components/Music/Music';
 import {News} from './components/News/News';
 import {ActionsTypes, StateType} from './redux/store';
 
+export type StoreType = {
+    getState: () => StateType
+    dispatch: (action: ActionsTypes) => void
+}
+
 export type AppPropsType = {
     state: StateType
     dispatch: (action: ActionsTypes) => void
+    store: StoreType
 }
 
 const App = (props: AppPropsType) => {
@@ -21,15 +27,10 @@ const App = (props: AppPropsType) => {
             <Header/>
             <Navbar state={props.state.sidebar}/>
             <div className="app-wrapper-content">
-                {/*<Route path='/profile' component={Profile}/>*/}
-                <Route path="/profile" render={() => <Profile
-                    profilePage={props.state.profilePage}
-                    dispatch={props.dispatch}
-                />
-                }/>
+                <Route path="/profile" render={() => <Profile store={props.store}/>}/>
                 <Route path="/dialogs"
                        render={() => <Dialogs
-                           state={props.state.messagesPage}
+                           state={props.state.dialogsPage}
                            dispatch={props.dispatch}
                        />}/>
                 <Route path="/news" component={News}/>
