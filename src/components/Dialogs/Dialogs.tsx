@@ -2,26 +2,27 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import {Message} from './Message/Message'
 import {DialogItem} from './DialogItem/DialogItem';
-import {ActionsTypes, DialogsPageType} from '../../redux/store';
-import {sendMessageActionCreator, updateNewMessageTextActionCreator} from '../../redux/dialogs-reducer';
+import {DialogsPageType} from '../../redux/store';
 
 type DialogsPropsType = {
-    state: DialogsPageType
-    dispatch: (action: ActionsTypes) => void
+    updateNewMessageBody: (text:string) => void
+    sendMessage: () => void
+    dialogsPage: DialogsPageType
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
-    const dialogsElements = props.state.dialogs.map(d => <DialogItem name={d.name} id={d.id} avatar={d.avatar}/>);
-    const messagesElements = props.state.messages.map(m => <Message message={m.message} owner={m.owner}
+
+    const dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id} avatar={d.avatar}/>);
+    const messagesElements = props.dialogsPage.messages.map(m => <Message message={m.message} owner={m.owner}
                                                                     avatar={m.avatar}/>);
     let textField = React.createRef<HTMLTextAreaElement>();
 
-    const sendMessage = () => props.dispatch(sendMessageActionCreator())
+    const sendMessage = () => props.sendMessage();
 
     const omMessageChange = () => {
         if (textField.current) {
             const text = textField.current.value
-            props.dispatch(updateNewMessageTextActionCreator(text));
+            props.updateNewMessageBody(text);
             textField.current.value = '';
         }
     }
@@ -39,7 +40,7 @@ export const Dialogs = (props: DialogsPropsType) => {
                                   placeholder={'Type a message...'}
                                   ref={textField}
                                   onChange={omMessageChange}
-                                  value={props.state.newMessageText}></textarea>
+                                  value={props.dialogsPage.newMessageText}></textarea>
                     </div>
                     <div>
                         <button className={s.sendMessage} onClick={sendMessage}>Send</button>
