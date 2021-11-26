@@ -1,7 +1,7 @@
 import React from 'react';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
-import {StoreType} from '../../App';
+import {NewStoreType} from '../../App';
 
 type ProfilePropsType = {
     // store: StoreType

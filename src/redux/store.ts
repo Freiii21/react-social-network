@@ -40,7 +40,7 @@ export type StateType = {
     dialogsPage: DialogsPageType
     sidebar: SidebarType
 }
-export type StoreType = {
+export type OldStoreType = {
     _state: StateType
     _callSubscriber: (_state: StateType) => void
     getState: () => StateType
@@ -50,7 +50,7 @@ export type StoreType = {
 
 export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType | SendMessageActionType | UpdateNewMessageTextActionType
 
-let store: StoreType = {
+let store: OldStoreType = {
     _state: {
         profilePage: {
             posts: [
