@@ -2,7 +2,8 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import {Message} from './Message/Message'
 import {DialogItem} from './DialogItem/DialogItem';
-import {DialogsPageType} from '../../redux/store';
+import {DialogsPageType} from '../../redux/dialogs-reducer';
+
 
 type DialogsPropsType = {
     updateNewMessageBody: (text:string) => void

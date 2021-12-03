@@ -6,14 +6,13 @@ import Profile from './components/Profile/Profile';
 import {Settings} from './components/Settings/Settings';
 import {Music} from './components/Music/Music';
 import {News} from './components/News/News';
-import {ActionsTypes, StateType} from './redux/store';
 import {DialogsContainer} from './components/Dialogs/DialogsContainer';
-import NavbarContainer from './components/Navbar/NavbarContainer';
+import {NavbarContainer} from './components/Navbar/NavbarContainer';
 
-export type NewStoreType = {
-    getState: () => StateType
-    dispatch: (action: ActionsTypes) => void
-}
+// export type NewStoreType = {
+//     getState: () => StateType
+//     dispatch: (action: ActionsTypes) => void
+// }
 
 export type AppPropsType = {
     // store: StoreType

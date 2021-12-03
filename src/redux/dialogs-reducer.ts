@@ -1,6 +1,12 @@
-import {ActionsTypes, DialogsPageType, MessagesType} from './store';
+import {ActionsTypes, DialogsType, MessagesType} from './store';
 
-let initialState = {
+export type DialogsPageType = {
+    dialogs: DialogsType[]
+    messages: MessagesType[]
+    newMessageText: string
+}
+
+let initialState:DialogsPageType = {
     dialogs: [
         {id: 1, name: 'Dimych', avatar: '/images/Redux/State/dialogs/Dimych.jpg'},
         {id: 2, name: 'Andrey', avatar: '/images/Redux/State/dialogs/Andrey.jpg'},
@@ -18,8 +24,7 @@ let initialState = {
     newMessageText: '',
 }
 
-const dialogsReducer = (state:DialogsPageType = initialState, action: ActionsTypes) => {
-
+const dialogsReducer = (state:DialogsPageType = initialState, action: ActionsTypes):DialogsPageType => {
     switch (action.type) {
         case 'SEND-MESSAGE':
             let newMessage: MessagesType = {

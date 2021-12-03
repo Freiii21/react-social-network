@@ -22,7 +22,7 @@ export type MessagesType = {
     owner: string
     avatar: string
 }
-export type DialogsPageType = {
+type DialogsPageType = {
     dialogs: DialogsType[]
     messages: MessagesType[]
     newMessageText: string
@@ -35,12 +35,12 @@ export type FriendsType = {
 export type SidebarType = {
     friends: FriendsType[]
 }
-export type StateType = {
+type StateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
     sidebar: SidebarType
 }
-export type OldStoreType = {
+type OldStoreType = {
     _state: StateType
     _callSubscriber: (_state: StateType) => void
     getState: () => StateType

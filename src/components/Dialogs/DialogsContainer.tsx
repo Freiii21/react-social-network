@@ -1,36 +1,53 @@
 import React from 'react';
 import {sendMessageActionCreator, updateNewMessageTextActionCreator} from '../../redux/dialogs-reducer';
-import {NewStoreType} from '../../App';
 import {Dialogs} from './Dialogs';
-import StoreContext from '../../StoreContext';
+import {connect} from 'react-redux';
+import {ActionsTypes} from '../../redux/store';
+import {AppStateType} from '../../redux/redux-store';
 
-type DialogsContainerPropsType = {
-    // store: StoreType
-}
+// type DialogsContainerPropsType = {
+//     store: StoreType
+// }
+// export const DialogsContainer = (props: DialogsContainerPropsType) => {
+//     // const state = props.store.getState().dialogsPage;
+//
+//     // const onSendMessage = () => props.store.dispatch(sendMessageActionCreator())
+//     // const omMessageChange = (text: string) => {
+//     //     props.store.dispatch(updateNewMessageTextActionCreator(text));
+//     // }
+//     return (
+//         <StoreContext.Consumer>
+//             {
+//                 (store) => {
+//                     const onSendMessage = () => store.dispatch(sendMessageActionCreator())
+//                     const omMessageChange = (text: string) => {
+//                         store.dispatch(updateNewMessageTextActionCreator(text));
+//                     }
+//                     return (
+//                         <Dialogs updateNewMessageBody={omMessageChange}
+//                                  sendMessage={onSendMessage}
+//                                  dialogsPage={store.getState().dialogsPage}/>
+//                     )
+//                 }
+//             }
+//         </StoreContext.Consumer>
+//     )
+// }
 
-export const DialogsContainer = (props: DialogsContainerPropsType) => {
-    // const state = props.store.getState().dialogsPage;
+const mapStateToProps = (state:AppStateType) => {
+    return {
+        dialogsPage: state.dialogsPage
+    }
+};
+const mapDispatchToProps = (dispatch: (action: ActionsTypes) => void) => {
+    return {
+        updateNewMessageBody: (text: string) => {
+            dispatch(updateNewMessageTextActionCreator(text));
+        },
+        sendMessage: () => {
+            dispatch(sendMessageActionCreator())
+        }
+    }
+};
 
-    // const onSendMessage = () => props.store.dispatch(sendMessageActionCreator())
-    // const omMessageChange = (text: string) => {
-    //     props.store.dispatch(updateNewMessageTextActionCreator(text));
-    // }
-    return (
-        <StoreContext.Consumer>
-            {
-                (store) => {
-                    const state = store.getState().dialogsPage;
-                    const onSendMessage = () => store.dispatch(sendMessageActionCreator())
-                    const omMessageChange = (text: string) => {
-                        store.dispatch(updateNewMessageTextActionCreator(text));
-                    }
-                    return (
-                        <Dialogs updateNewMessageBody={omMessageChange}
-                                 sendMessage={onSendMessage}
-                                 dialogsPage={state}/>
-                    )
-                }
-            }
-        </StoreContext.Consumer>
-    )
-}
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
