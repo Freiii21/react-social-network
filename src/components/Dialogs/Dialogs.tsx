@@ -5,8 +5,8 @@ import {DialogItem} from './DialogItem/DialogItem';
 import {DialogsPropsType} from './DialogsContainer';
 
 export const Dialogs = (props: DialogsPropsType) => {
-    const dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id} avatar={d.avatar}/>);
-    const messagesElements = props.dialogsPage.messages.map(m => <Message message={m.message} owner={m.owner}
+    const dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id} avatar={d.avatar}/>);
+    const messagesElements = props.dialogsPage.messages.map(m => <Message message={m.message} key={m.id} owner={m.owner}
                                                                     avatar={m.avatar}/>);
     let textField = React.createRef<HTMLTextAreaElement>();
 
@@ -32,7 +32,7 @@ export const Dialogs = (props: DialogsPropsType) => {
                                   placeholder={'Type a message...'}
                                   ref={textField}
                                   onChange={omMessageChange}
-                                  value={props.dialogsPage.newMessageText}></textarea>
+                                  value={props.dialogsPage.newMessageText}/>
                     </div>
                     <div>
                         <button className={s.sendMessage} onClick={sendMessage}>Send</button>

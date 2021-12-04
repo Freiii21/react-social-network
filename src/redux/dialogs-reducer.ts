@@ -40,16 +40,17 @@ const dialogsReducer = (state:InitialStateDialogsPageType = initialState, action
                 owner: 'me',
                 avatar: '/images/Redux/State/messages/me.jpg',
             };
-            const stateCopy = {...state};
-            stateCopy.messages = [...state.messages];
-            stateCopy.messages.push(newMessage);
-            stateCopy.newMessageText = '';
-            return stateCopy;
+            return {
+                ...state,
+                messages: [...state.messages, newMessage],
+                newMessageText: ''
+            };
         }
         case 'UPDATE-NEW-MESSAGE-TEXT':{
-            const stateCopy = {...state};
-            stateCopy.newMessageText = action.newText;
-            return stateCopy;
+            return {
+                ...state,
+                newMessageText: action.newText
+            };
         }
         default:
             return state;
