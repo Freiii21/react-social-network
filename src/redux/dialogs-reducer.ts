@@ -1,12 +1,18 @@
-import {ActionsTypes, DialogsType, MessagesType} from './store';
+import {ActionsTypes} from './store';
 
-export type DialogsPageType = {
-    dialogs: DialogsType[]
-    messages: MessagesType[]
-    newMessageText: string
+export type DialogsType = {
+    id: number
+    name: string
+    avatar: string
+}
+export type MessagesType = {
+    id: number
+    message: string
+    owner: string
+    avatar: string
 }
 
-let initialState:DialogsPageType = {
+let initialState = {
     dialogs: [
         {id: 1, name: 'Dimych', avatar: '/images/Redux/State/dialogs/Dimych.jpg'},
         {id: 2, name: 'Andrey', avatar: '/images/Redux/State/dialogs/Andrey.jpg'},
@@ -14,17 +20,18 @@ let initialState:DialogsPageType = {
         {id: 4, name: 'Sasha', avatar: '/images/Redux/State/dialogs/Sasha.jpg'},
         {id: 5, name: 'Viktor', avatar: '/images/Redux/State/dialogs/Viktor.jpg'},
         {id: 6, name: 'Valera', avatar: '/images/Redux/State/dialogs/Valera.jpg'},
-    ],
+    ] as Array<DialogsType>,
     messages: [
         {id: 1, message: 'hi', owner: 'me', avatar: '/images/Redux/State/messages/me.jpg'},
         {id: 2, message: 'Yo', owner: 'you', avatar: '/images/Redux/State/messages/you.jpg'},
         {id: 3, message: 'How is your it-kamasutra?', owner: 'me', avatar: '/images/Redux/State/messages/me.jpg'},
         {id: 4, message: 'Good enough, dude!', owner: 'you', avatar: '/images/Redux/State/messages/you.jpg'},
-    ],
+    ] as Array<MessagesType>,
     newMessageText: '',
 }
+export type InitialStateDialogsPageType = typeof initialState;
 
-const dialogsReducer = (state:DialogsPageType = initialState, action: ActionsTypes):DialogsPageType => {
+const dialogsReducer = (state:InitialStateDialogsPageType = initialState, action: ActionsTypes):InitialStateDialogsPageType => {
     switch (action.type) {
         case 'SEND-MESSAGE':
             let newMessage: MessagesType = {

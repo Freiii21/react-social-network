@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Navbar from './Navbar';
 import {AppStateType} from '../../redux/redux-store';
+import {InitialStateSidebarType} from '../../redux/sidebar-reducer';
 
 // type NavbarContainerPropsType = {
 //     // store: NewStoreType
@@ -22,8 +23,13 @@ import {AppStateType} from '../../redux/redux-store';
 //         </StoreContext.Consumer>
 //     )
 // }
+type MapStateToPropsType = {
+    state: InitialStateSidebarType
+}
+type MapDispatchToPropsType = {}
+export type NavbarPropsType = MapStateToPropsType & MapDispatchToPropsType;
 
-const mapStateToProps = (state:AppStateType) => {
+const mapStateToProps = (state:AppStateType):MapStateToPropsType => {
     return {
         state: state.sidebar
     }

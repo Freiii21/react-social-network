@@ -2,24 +2,15 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import {Message} from './Message/Message'
 import {DialogItem} from './DialogItem/DialogItem';
-import {DialogsPageType} from '../../redux/dialogs-reducer';
-
-
-type DialogsPropsType = {
-    updateNewMessageBody: (text:string) => void
-    sendMessage: () => void
-    dialogsPage: DialogsPageType
-}
+import {DialogsPropsType} from './DialogsContainer';
 
 export const Dialogs = (props: DialogsPropsType) => {
-
     const dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id} avatar={d.avatar}/>);
     const messagesElements = props.dialogsPage.messages.map(m => <Message message={m.message} owner={m.owner}
                                                                     avatar={m.avatar}/>);
     let textField = React.createRef<HTMLTextAreaElement>();
 
     const sendMessage = () => props.sendMessage();
-
     const omMessageChange = () => {
         if (textField.current) {
             const text = textField.current.value

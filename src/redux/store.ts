@@ -2,21 +2,23 @@ import profileReducer, {AddPostActionType, UpdateNewPostTextActionType} from './
 import dialogsReducer, { SendMessageActionType, UpdateNewMessageTextActionType } from './dialogs-reducer';
 import sidebarReducer from './sidebar-reducer';
 
-export type PostsType = {
+export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType | SendMessageActionType | UpdateNewMessageTextActionType
+
+type PostsType = {
     id: number
     message: string
     likesCount: number
 }
-export type ProfilePageType = {
+type ProfilePageType = {
     posts: PostsType[]
     newPostText: string
 }
-export type DialogsType = {
+type DialogsType = {
     id: number
     name: string
     avatar: string
 }
-export type MessagesType = {
+type MessagesType = {
     id: number
     message: string
     owner: string
@@ -27,12 +29,12 @@ type DialogsPageType = {
     messages: MessagesType[]
     newMessageText: string
 }
-export type FriendsType = {
+type FriendsType = {
     id: number
     name: string
     avatar: string
 }
-export type SidebarType = {
+type SidebarType = {
     friends: FriendsType[]
 }
 type StateType = {
@@ -40,7 +42,7 @@ type StateType = {
     dialogsPage: DialogsPageType
     sidebar: SidebarType
 }
-type OldStoreType = {
+type StoreType = {
     _state: StateType
     _callSubscriber: (_state: StateType) => void
     getState: () => StateType
@@ -48,9 +50,8 @@ type OldStoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType | SendMessageActionType | UpdateNewMessageTextActionType
 
-let store: OldStoreType = {
+const store: StoreType = {
     _state: {
         profilePage: {
             posts: [
@@ -105,5 +106,3 @@ let store: OldStoreType = {
         this._callSubscriber(this._state);
     }
 }
-
-export default store;
