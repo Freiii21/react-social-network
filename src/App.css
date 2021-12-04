@@ -6,18 +6,15 @@
     background-color: powderblue;
     padding: 1px;
     border-radius: 5px;
-
     grid-template-areas:
     "h h"
     "n c";
-
     grid-template-rows: 60px 1fr;
     grid-template-columns: 2fr 10fr;
 }
 
 .app-wrapper-content {
     grid-area: c;
-    /*background-color: honeydew;*/
     background-color: lightgray;
     margin: 1px;
     border-radius: 5px;

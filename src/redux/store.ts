@@ -1,8 +1,7 @@
-import profileReducer, {AddPostActionType, UpdateNewPostTextActionType} from './profile-reducer';
-import dialogsReducer, { SendMessageActionType, UpdateNewMessageTextActionType } from './dialogs-reducer';
+import {ActionsTypes} from './redux-store';
+import profileReducer from './profile-reducer';
+import dialogsReducer from './dialogs-reducer';
 import sidebarReducer from './sidebar-reducer';
-
-export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType | SendMessageActionType | UpdateNewMessageTextActionType
 
 type PostsType = {
     id: number
