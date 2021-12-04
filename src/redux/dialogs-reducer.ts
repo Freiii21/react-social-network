@@ -33,19 +33,24 @@ export type InitialStateDialogsPageType = typeof initialState;
 
 const dialogsReducer = (state:InitialStateDialogsPageType = initialState, action: ActionsTypes):InitialStateDialogsPageType => {
     switch (action.type) {
-        case 'SEND-MESSAGE':
+        case 'SEND-MESSAGE': {
             let newMessage: MessagesType = {
                 id: 99,
                 message: state.newMessageText,
                 owner: 'me',
                 avatar: '/images/Redux/State/messages/me.jpg',
             };
-            state.messages.push(newMessage);
-            state.newMessageText = '';
-            return state;
-        case 'UPDATE-NEW-MESSAGE-TEXT':
-            state.newMessageText = action.newText;
-            return state;
+            const stateCopy = {...state};
+            stateCopy.messages = [...state.messages];
+            stateCopy.messages.push(newMessage);
+            stateCopy.newMessageText = '';
+            return stateCopy;
+        }
+        case 'UPDATE-NEW-MESSAGE-TEXT':{
+            const stateCopy = {...state};
+            stateCopy.newMessageText = action.newText;
+            return stateCopy;
+        }
         default:
             return state;
     }
