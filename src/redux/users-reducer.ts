@@ -1,4 +1,7 @@
 import {ActionsTypes} from './redux-store';
+import user1 from './../assets/users/user1.jpg'
+import user2 from './../assets/users/user2.jpg'
+import user3 from './../assets/users/user3.jpg'
 
 type UserLocationType = {
     city: string
@@ -6,6 +9,7 @@ type UserLocationType = {
 }
 export type UserType = {
     id: number
+    photo: string
     followed: boolean
     fullName: string
     status: string
@@ -17,8 +21,9 @@ export type InitialStateUsersType = {
 
 const initialState: InitialStateUsersType = {
     users: [
-        {
+       /* {
             id: 1,
+            photo: user1,
             followed: false,
             fullName: 'Dmitry',
             status: 'I`m a boss',
@@ -26,6 +31,7 @@ const initialState: InitialStateUsersType = {
         },
         {
             id: 2,
+            photo: user2,
             followed: true,
             fullName: 'Sasha',
             status: 'I`m a boss too',
@@ -33,11 +39,12 @@ const initialState: InitialStateUsersType = {
         },
         {
             id: 3,
+            photo: user3,
             followed: false,
             fullName: 'Andrew',
             status: 'I`m not a boss...',
             location: {city: 'Toronto', country: 'Canada'}
-        },
+        },*/
     ]
 }
 
@@ -54,6 +61,10 @@ const usersReducer = (state: InitialStateUsersType = initialState, action: Actio
                 users: state.users.map(u => u.id === action.userId ? ({...u, followed: false}) : u)
             };
         case 'SET-USERS':
+            return {
+                ...state,
+                users: [...state.users, ...action.users]
+            }
         default:
             return state;
     }

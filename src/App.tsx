@@ -8,7 +8,8 @@ import {Music} from './components/Music/Music';
 import {News} from './components/News/News';
 import {DialogsContainer} from './components/Dialogs/DialogsContainer';
 import {NavbarContainer} from './components/Navbar/NavbarContainer';
-import {Users} from './components/Users/Users';
+import {UsersContainer} from './components/Users/UsersContainer';
+
 
 const App = () => {
     return (
@@ -21,7 +22,7 @@ const App = () => {
                 <Route path="/news" component={News}/>
                 <Route path="/music" component={Music}/>
                 <Route path="/settings" component={Settings}/>
-                <Route path="/users" component={Users}/>
+                <Route path="/users" render={() => <UsersContainer />}/>
             </div>
         </div>
     );
