@@ -2,16 +2,22 @@ import {ActionsTypes} from './redux-store';
 import user1 from './../assets/users/user1.jpg'
 import user2 from './../assets/users/user2.jpg'
 import user3 from './../assets/users/user3.jpg'
+import {stringify} from 'querystring';
 
 type UserLocationType = {
     city: string
     country: string
 }
+
+type PhotosType = {
+    small: string
+    large: string
+}
 export type UserType = {
     id: number
-    photo: string
+    photos: PhotosType
     followed: boolean
-    fullName: string
+    name: string
     status: string
     location: UserLocationType
 }
