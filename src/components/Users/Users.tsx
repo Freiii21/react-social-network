@@ -7,42 +7,17 @@ import user3 from './../../assets/users/user3.jpg'
 import axios from 'axios';
 
 export const Users = (props: UsersPropsType) => {
-    if(props.users.length === 0) {
-
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-            props.setUsers(response.data.items)
-        })
-
-/*        props.setUsers([
-            {
-                id: 1,
-                photo: user1,
-                followed: false,
-                fullName: 'Dmitry',
-                status: 'I`m a boss',
-                location: {city: 'Minsk', country: 'Belarus'}
-            },
-            {
-                id: 2,
-                photo: user2,
-                followed: true,
-                fullName: 'Sasha',
-                status: 'I`m a boss too',
-                location: {city: 'Moscow', country: 'Russia'}
-            },
-            {
-                id: 3,
-                photo: user3,
-                followed: false,
-                fullName: 'Andrew',
-                status: 'I`m not a boss...',
-                location: {city: 'Toronto', country: 'Canada'}
-            },
-        ])*/
+    const getUsers = () => {
+        if (props.users.length === 0) {
+            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+                props.setUsers(response.data.items)
+            })
+        }
     }
 
     return (
         <div>
+            <button onClick={getUsers}>Get Users</button>
             {props.users.map(u => <div key={u.id}>
                 <span>
                     <div>
@@ -70,10 +45,10 @@ export const Users = (props: UsersPropsType) => {
                     </span>
                     <span>
                         <div>
-                            {"u.location.country"}
+                            {'u.location.country'}
                         </div>
                         <div>
-                            {"u.location.city"}
+                            {'u.location.city'}
                         </div>
                     </span>
                 </span>
