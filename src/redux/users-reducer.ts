@@ -23,6 +23,9 @@ export type UserType = {
 }
 export type InitialStateUsersType = {
     users: UserType[]
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 };
 
 const initialState: InitialStateUsersType = {
@@ -34,24 +37,11 @@ const initialState: InitialStateUsersType = {
             fullName: 'Dmitry',
             status: 'I`m a boss',
             location: {city: 'Minsk', country: 'Belarus'}
-        },
-        {
-            id: 2,
-            photo: user2,
-            followed: true,
-            fullName: 'Sasha',
-            status: 'I`m a boss too',
-            location: {city: 'Moscow', country: 'Russia'}
-        },
-        {
-            id: 3,
-            photo: user3,
-            followed: false,
-            fullName: 'Andrew',
-            status: 'I`m not a boss...',
-            location: {city: 'Toronto', country: 'Canada'}
         },*/
-    ]
+    ],
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 1,
 }
 
 const usersReducer = (state: InitialStateUsersType = initialState, action: ActionsTypes): InitialStateUsersType => {
@@ -69,7 +59,17 @@ const usersReducer = (state: InitialStateUsersType = initialState, action: Actio
         case 'SET-USERS':
             return {
                 ...state,
-                users: [...state.users, ...action.users]
+                users: action.users
+            }
+        case 'SET-CURRENT-PAGE':
+            return {
+                ...state,
+                currentPage: action.currentPage
+            }
+        case 'SET-TOTAL-USERS-COUNT':
+            return {
+                ...state,
+                totalUsersCount: action.totalUsersCount
             }
         default:
             return state;
@@ -89,6 +89,15 @@ export type SetUsersAC = {
     type: 'SET-USERS'
     users: UserType[]
 }
+export type SetCurrentPageAC = {
+    type: 'SET-CURRENT-PAGE'
+    currentPage: number
+}
+export type SetTotalUsersCountAC = {
+    type: 'SET-TOTAL-USERS-COUNT'
+    totalUsersCount: number
+}
+
 
 
 export const followAC = (userId: number):FollowAT => {
@@ -107,6 +116,18 @@ export const setUsersAC = (users: UserType[]):SetUsersAC => {
     return {
         type: 'SET-USERS',
         users
+    }
+};
+export const setCurrentPageAC = (currentPage: number):SetCurrentPageAC => {
+    return {
+        type: 'SET-CURRENT-PAGE',
+        currentPage
+    }
+};
+export const SetTotalUsersCountAC = (totalUsersCount: number):SetTotalUsersCountAC => {
+    return {
+        type: 'SET-TOTAL-USERS-COUNT',
+        totalUsersCount
     }
 };
 
