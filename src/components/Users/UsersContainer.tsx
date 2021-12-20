@@ -1,9 +1,7 @@
 import React from 'react';
-import s from './users.module.css';
 import { connect } from 'react-redux';
 import {AppStateType} from '../../redux/redux-store';
 import {Dispatch} from 'redux';
-import preloader from '../../assets/preloader.svg';
 import {
     followAC,
     setCurrentPageAC, setIsFetchingAC,
@@ -100,4 +98,5 @@ const mapDispatchToProps = (dispatch: Dispatch):MapDispatchToPropsType => {
         },
     }
 }
+
 export const UsersContainer = connect(mapStateToProps,mapDispatchToProps)(UsersAPIComponent)

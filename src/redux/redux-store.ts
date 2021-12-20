@@ -1,5 +1,5 @@
 import {combineReducers, createStore } from "redux";
-import profileReducer, {AddPostActionType, UpdateNewPostTextActionType} from './profile-reducer';
+import profileReducer, {AddPostActionType, AddUserProfileAT, UpdateNewPostTextActionType} from './profile-reducer';
 import dialogsReducer, {SendMessageActionType, UpdateNewMessageTextActionType} from './dialogs-reducer';
 import sidebarReducer from './sidebar-reducer';
 import usersReducer, {
@@ -22,6 +22,11 @@ export type AppStateType = ReturnType<typeof rootReducer>;
 
 export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType
     | SendMessageActionType | UpdateNewMessageTextActionType | FollowAT | UnfollowAT | SetUsersAT
-    | SetCurrentPageAT | SetTotalUsersCountAT | SetIsFetchingAT
+    | SetCurrentPageAT | SetTotalUsersCountAT | SetIsFetchingAT | AddUserProfileAT
 
 export const store = createStore(rootReducer);
+
+//@ts-ignore
+window.store = store;
+
+//we can what contain the store in Console, just type "store.getState()"

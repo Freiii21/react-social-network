@@ -50,7 +50,7 @@ type StoreType = {
 }
 
 
-const store: StoreType = {
+/*const store: StoreType = {
     _state: {
         profilePage: {
             posts: [
@@ -104,4 +104,4 @@ const store: StoreType = {
 
         this._callSubscriber(this._state);
     }
-}
+}*/

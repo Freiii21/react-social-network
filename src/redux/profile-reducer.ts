@@ -5,9 +5,33 @@ export type PostType = {
     message: string
     likesCount: number
 }
+type ContactsType = {
+    facebook: string
+    website: null
+    vk: string
+    twitter: string
+    instagram: string
+    youtube: null
+    github: string
+    mainLink: null
+}
+
+export type ProfileType = {
+    aboutMe: string
+    contacts: ContactsType
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    userId: number
+    photos: {
+        small: string
+        large: string
+    }
+}
 export type InitialStateProfilePageType = {
     posts: PostType[]
     newPostText: string
+    profile: ProfileType | null
 }
 const initialState:InitialStateProfilePageType = {
     posts: [
@@ -15,13 +39,14 @@ const initialState:InitialStateProfilePageType = {
         {id: 2, message: 'It\'s my first post!', likesCount: 11},
     ],
     newPostText: '',
+    profile: null
 }
 
 
 const profileReducer = (state:InitialStateProfilePageType = initialState,action: ActionsTypes):InitialStateProfilePageType => {
 
     switch (action.type) {
-        case 'ADD-POST': {
+        case 'ADD_POST': {
             let newPost: PostType = {
                 id: 5,
                 message: state.newPostText,
@@ -34,10 +59,16 @@ const profileReducer = (state:InitialStateProfilePageType = initialState,action:
             };
 
         }
-        case 'UPDATE-NEW-POST-TEXT': {
+        case 'UPDATE_NEW_POST_TEXT': {
             return {
                 ...state,
                 newPostText: action.newText
+            };
+        }
+        case 'SET_USER_PROFILE': {
+            return {
+                ...state,
+                profile: action.profile
             };
         }
         default:
@@ -45,21 +76,34 @@ const profileReducer = (state:InitialStateProfilePageType = initialState,action:
     }
 }
 
-//method #1
-export type AddPostActionType = ReturnType<typeof addPostActionCreator>
-export type UpdateNewPostTextActionType = ReturnType<typeof updateNewPostTextActionCreator>
+export type AddPostActionType = {
+    type:'ADD_POST'
+}
+export type UpdateNewPostTextActionType = {
+    type:'UPDATE_NEW_POST_TEXT',
+    newText: string
+}
+export type AddUserProfileAT = {
+    type:'SET_USER_PROFILE',
+    profile: ProfileType | null
+}
 
-//method #1 (without return type because it has been created above as: ReturnType<typeof addPostActionCreator>)
-export const addPostActionCreator = () => {
+export const addPostActionCreator = ():AddPostActionType => {
     return {
-        type:'ADD-POST'
-    } as const //important addition that says using ADD-POST as a fixed value not as any string
+        type:'ADD_POST'
+    }
 };
-export const updateNewPostTextActionCreator = (text:string) => {
+export const updateNewPostTextActionCreator = (text:string):UpdateNewPostTextActionType => {
     return {
-        type:'UPDATE-NEW-POST-TEXT',
+        type:'UPDATE_NEW_POST_TEXT',
         newText:text
-    } as const
+    }
+};
+export const setUserProfile = (profile:ProfileType | null):AddUserProfileAT => {
+    return {
+        type:'SET_USER_PROFILE',
+        profile
+    }
 };
 
 export default profileReducer;
