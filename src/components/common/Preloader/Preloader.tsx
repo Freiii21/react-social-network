@@ -9,7 +9,8 @@ export const Preloader = (props:PreloaderPropsType) => {
         <div>
             <img src={preloader}
                  alt="spinner"
-                 className={s.spinner}/>
+                 className={s.spinner}
+            />
         </div>
     )
 }

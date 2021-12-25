@@ -17,7 +17,9 @@ const ProfileInfo = (props:ProfileInfoPropsType) => {
         <div>
             <div className={s.image}>
                 <img
-                    src="/images/Profile/ProfileInfo/image.jpg"/>
+                    src="/images/Profile/ProfileInfo/image.jpg"
+                    alt=""
+                />
             </div>
             <div className={s.descriptionBlock}>
                 <img src={props.profile.photos.small ? props.profile.photos.small : defaultUserPhoto}/><br/>

@@ -10,12 +10,12 @@ const Post = (props: PostPropsType) => {
     return (
         <div className={s.item}>
             <div className={s.messageBlock}>
-                <img src="/images/Profile/MyPosts/Post/ava.jpg"/>
+                <img src="/images/Profile/MyPosts/Post/ava.jpg" alt=""/>
                 <span>{props.message}</span>
             </div>
             <div>
                 <span className={s.likes}>
-                    <img src="/images/Profile/MyPosts/Post/like.png"/>
+                    <img src="/images/Profile/MyPosts/Post/like.png" alt=""/>
                     {props.likesCount}
                 </span>
             </div>

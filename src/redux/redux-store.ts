@@ -10,19 +10,21 @@ import usersReducer, {
     SetUsersAT,
     UnfollowAT
 } from './users-reducer';
+import {authReducer, SetUserDataAT} from './auth-reducer';
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer,
-    usersPage: usersReducer
+    usersPage: usersReducer,
+    auth: authReducer
 });
 
 export type AppStateType = ReturnType<typeof rootReducer>;
 
 export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType
     | SendMessageActionType | UpdateNewMessageTextActionType | FollowAT | UnfollowAT | SetUsersAT
-    | SetCurrentPageAT | SetTotalUsersCountAT | SetIsFetchingAT | AddUserProfileAT
+    | SetCurrentPageAT | SetTotalUsersCountAT | SetIsFetchingAT | AddUserProfileAT | SetUserDataAT
 
 export const store = createStore(rootReducer);
 
