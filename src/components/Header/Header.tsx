@@ -1,6 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import s from './Header.module.css';
+import logo from './../../assets/header/logo.png'
 
 type HeaderPropsType = {
     isAuth: boolean
@@ -10,7 +11,7 @@ type HeaderPropsType = {
 const Header = (props: HeaderPropsType) => {
     return (
         <header className={s.header}>
-            <img src="/images/Header/logo.png" alt="logo"/>
+            <img src={logo} alt="logo"/>
             <div className={s.loginBlock}>
                 {props.isAuth ?
                     <div className={s.username}>Hello, {props.login}</div>
