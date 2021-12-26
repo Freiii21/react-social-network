@@ -35,7 +35,7 @@ const initialState: InitialStateUsersType = {
             location: {city: 'Minsk', country: 'Belarus'}
         },*/
     ],
-    pageSize: 5,
+    pageSize: 3,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: true,
