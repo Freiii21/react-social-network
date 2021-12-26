@@ -22,6 +22,7 @@ export type InitialStateUsersType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    followingInProgress: Array<number>
 };
 
 const initialState: InitialStateUsersType = {
@@ -39,6 +40,7 @@ const initialState: InitialStateUsersType = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: true,
+    followingInProgress: [],
 }
 
 const usersReducer = (state: InitialStateUsersType = initialState, action: ActionsTypes): InitialStateUsersType => {
@@ -73,6 +75,13 @@ const usersReducer = (state: InitialStateUsersType = initialState, action: Actio
                 ...state,
                 isFetching: action.isFetching
             }
+        case 'TOGGLE_IS_FOLLOWING_PROGRESS':
+            return {
+                ...state,
+                followingInProgress: action.isFetching
+                    ? [...state.followingInProgress, action.userId]
+                    : state.followingInProgress.filter(id => id !== action.userId)
+            }
         default:
             return state;
     }
@@ -99,11 +108,15 @@ export type SetTotalUsersCountAT = {
     type: 'SET_TOTAL_USERS_COUNT'
     totalUsersCount: number
 }
-export type SetIsFetchingAT = {
+export type ToggleIsFetchingAT = {
     type: 'TOGGLE_IS_FETCHING'
     isFetching: boolean
 }
-
+export type ToggleFollowingProgressAT = {
+    type: 'TOGGLE_IS_FOLLOWING_PROGRESS'
+    isFetching: boolean
+    userId: number
+}
 
 
 export const followAC = (userId: number):FollowAT => {
@@ -136,10 +149,18 @@ export const setTotalUsersCountAC = (totalUsersCount: number):SetTotalUsersCount
         totalUsersCount
     }
 };
-export const setIsFetchingAC = (isFetching: boolean):SetIsFetchingAT => {
+export const toggleIsFetchingAC = (isFetching: boolean):ToggleIsFetchingAT => {
     return {
         type: 'TOGGLE_IS_FETCHING',
         isFetching
+    }
+};
+
+export const toggleFollowingProgressAC = (isFetching: boolean, userId: number):ToggleFollowingProgressAT => {
+    return {
+        type: 'TOGGLE_IS_FOLLOWING_PROGRESS',
+        isFetching,
+        userId
     }
 };
 

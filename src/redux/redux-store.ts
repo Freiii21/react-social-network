@@ -5,10 +5,10 @@ import sidebarReducer from './sidebar-reducer';
 import usersReducer, {
     FollowAT,
     SetCurrentPageAT,
-    SetIsFetchingAT,
+    ToggleIsFetchingAT,
     SetTotalUsersCountAT,
     SetUsersAT,
-    UnfollowAT
+    UnfollowAT, ToggleFollowingProgressAT
 } from './users-reducer';
 import {authReducer, SetUserDataAT} from './auth-reducer';
 
@@ -24,7 +24,8 @@ export type AppStateType = ReturnType<typeof rootReducer>;
 
 export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType
     | SendMessageActionType | UpdateNewMessageTextActionType | FollowAT | UnfollowAT | SetUsersAT
-    | SetCurrentPageAT | SetTotalUsersCountAT | SetIsFetchingAT | AddUserProfileAT | SetUserDataAT
+    | SetCurrentPageAT | SetTotalUsersCountAT | ToggleIsFetchingAT | AddUserProfileAT | SetUserDataAT
+    | ToggleFollowingProgressAT
 
 export const store = createStore(rootReducer);
 
