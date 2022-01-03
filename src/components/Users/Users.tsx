@@ -3,7 +3,6 @@ import s from './users.module.css';
 import user1 from '../../assets/users/user1.jpg';
 import {UserType} from '../../redux/users-reducer';
 import { NavLink } from 'react-router-dom';
-import {usersAPI} from '../../api/api';
 
 export type UsersPropsType2 = {
     totalUsersCount: number
@@ -11,15 +10,10 @@ export type UsersPropsType2 = {
     currentPage: number
     onPageChanged: (pageNumber: number) => void
     users: UserType[]
-    followAC: (userId: number) => void
-    unfollowAC: (userId: number) => void
-    toggleFollowingProgressAC: (isFetching: boolean, userId: number) => void
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
+    toggleFollowingProgress: (isFetching: boolean, userId: number) => void
     followingInProgress: Array<number>
-
-
-
-    // setCurrentPage: (currentPage: number) => void
-    // getUsers: (currentPage:number, pageSize:number) => void
 }
 
 export const Users = (props: UsersPropsType2) => {
@@ -49,10 +43,10 @@ export const Users = (props: UsersPropsType2) => {
                     <div>
                         {u.followed ?
                             <button disabled={props.followingInProgress.some(id => id === u.id)}
-                                    onClick={() => {props.unfollowAC(u.id);
+                                    onClick={() => {props.unfollow(u.id);
                             }}>Unfollow</button>
                             : <button disabled={props.followingInProgress.some(id => id === u.id)}
-                                      onClick={() => {props.followAC(u.id);
+                                      onClick={() => {props.follow(u.id);
                             }}>Follow</button>
                         }
                     </div>

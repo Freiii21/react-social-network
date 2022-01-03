@@ -131,31 +131,31 @@ export const unfollowSuccess = (userId: number):UnfollowAT => {
         userId
     }
 };
-export const setUsersAC = (users: UserType[]):SetUsersAT => {
+export const setUsers = (users: UserType[]):SetUsersAT => {
     return {
         type: 'SET_USERS',
         users
     }
 };
-export const setCurrentPageAC = (currentPage: number):SetCurrentPageAT => {
+export const setCurrentPage = (currentPage: number):SetCurrentPageAT => {
     return {
         type: 'SET_CURRENT_PAGE',
         currentPage
     }
 };
-export const setTotalUsersCountAC = (totalUsersCount: number):SetTotalUsersCountAT => {
+export const setTotalUsersCount = (totalUsersCount: number):SetTotalUsersCountAT => {
     return {
         type: 'SET_TOTAL_USERS_COUNT',
         totalUsersCount
     }
 };
-export const toggleIsFetchingAC = (isFetching: boolean):ToggleIsFetchingAT => {
+export const toggleIsFetching = (isFetching: boolean):ToggleIsFetchingAT => {
     return {
         type: 'TOGGLE_IS_FETCHING',
         isFetching
     }
 };
-export const toggleFollowingProgressAC = (isFetching: boolean, userId: number):ToggleFollowingProgressAT => {
+export const toggleFollowingProgress = (isFetching: boolean, userId: number):ToggleFollowingProgressAT => {
     return {
         type: 'TOGGLE_IS_FOLLOWING_PROGRESS',
         isFetching,
@@ -165,38 +165,36 @@ export const toggleFollowingProgressAC = (isFetching: boolean, userId: number):T
 
 export const getUsers = (currentPage:number, pageSize:number) => {
     return (dispatch:Dispatch) => {
-        dispatch(toggleIsFetchingAC(true));
-        dispatch(setCurrentPageAC(currentPage));
+        dispatch(toggleIsFetching(true));
+        dispatch(setCurrentPage(currentPage));
         usersAPI.getUsers(currentPage, pageSize).then(data => {
-            dispatch(toggleIsFetchingAC(false));
-            dispatch(setUsersAC(data.items));
-            dispatch(setTotalUsersCountAC(data.totalCount));
+            dispatch(toggleIsFetching(false));
+            dispatch(setUsers(data.items));
+            dispatch(setTotalUsersCount(data.totalCount));
         })
     }
 }
-
 export const follow = (userId: number) => {
     return (dispatch:Dispatch) => {
-        dispatch(toggleFollowingProgressAC(true, userId));
+        dispatch(toggleFollowingProgress(true, userId));
         usersAPI.followUser(userId)
             .then(data => {
                 if (data.resultCode === 0){
                     dispatch(followSuccess(userId));
                 }
-                dispatch(toggleFollowingProgressAC(false, userId));
+                dispatch(toggleFollowingProgress(false, userId));
             });
     }
 }
-
 export const unfollow = (userId: number) => {
     return (dispatch:Dispatch) => {
-        dispatch(toggleFollowingProgressAC(true, userId));
+        dispatch(toggleFollowingProgress(true, userId));
         usersAPI.unfollowUser(userId)
             .then(data => {
                 if (data.resultCode === 0){
                     dispatch(unfollowSuccess(userId));
                 }
-                dispatch(toggleFollowingProgressAC(false, userId));
+                dispatch(toggleFollowingProgress(false, userId));
             });
     }
 }
