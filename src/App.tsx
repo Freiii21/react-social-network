@@ -6,9 +6,9 @@ import {Music} from './components/Music/Music';
 import {News} from './components/News/News';
 import {DialogsContainer} from './components/Dialogs/DialogsContainer';
 import {NavbarContainer} from './components/Navbar/NavbarContainer';
-import {UsersContainer} from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
+import UsersContainer from './components/Users/UsersContainer';
 
 
 const App = () => {

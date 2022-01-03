@@ -1,4 +1,4 @@
-import {combineReducers, createStore } from "redux";
+import {applyMiddleware, combineReducers, createStore } from "redux";
 import profileReducer, {AddPostActionType, AddUserProfileAT, UpdateNewPostTextActionType} from './profile-reducer';
 import dialogsReducer, {SendMessageActionType, UpdateNewMessageTextActionType} from './dialogs-reducer';
 import sidebarReducer from './sidebar-reducer';
@@ -11,6 +11,7 @@ import usersReducer, {
     UnfollowAT, ToggleFollowingProgressAT
 } from './users-reducer';
 import {authReducer, SetUserDataAT} from './auth-reducer';
+import thunkMiddleware from 'redux-thunk'
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,
@@ -27,7 +28,7 @@ export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType
     | SetCurrentPageAT | SetTotalUsersCountAT | ToggleIsFetchingAT | AddUserProfileAT | SetUserDataAT
     | ToggleFollowingProgressAT
 
-export const store = createStore(rootReducer);
+export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 //@ts-ignore
 window.store = store;
