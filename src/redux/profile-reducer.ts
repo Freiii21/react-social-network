@@ -1,4 +1,6 @@
 import { ActionsTypes } from "./redux-store";
+import {Dispatch} from 'redux';
+import {usersAPI} from '../api/api';
 
 export type PostType = {
     id: number
@@ -105,5 +107,14 @@ export const setUserProfile = (profile:ProfileType | null):AddUserProfileAT => {
         profile
     }
 };
+
+export const getUserProfile = (userId:number) => {
+    return (dispatch:Dispatch) => {
+        usersAPI.getUserProfile(+userId)
+            .then(data => {
+                dispatch(setUserProfile(data));
+            })
+    }
+}
 
 export default profileReducer;

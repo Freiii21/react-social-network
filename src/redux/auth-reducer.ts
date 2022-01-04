@@ -1,4 +1,6 @@
 import {ActionsTypes} from './redux-store';
+import {Dispatch} from 'redux';
+import {usersAPI} from '../api/api';
 
 export type AuthType = {
     userId: number | null
@@ -6,7 +8,6 @@ export type AuthType = {
     email: string | null
     isAuth: boolean
 };
-
 const initialState:AuthType = {
     userId: null,
     login: null,
@@ -44,5 +45,17 @@ export const setAuthUserData = (userId:number, email:string, login:string):SetUs
             email,
             login
         }
+    }
+}
+
+export const authUser = () => {
+    return (dispatch:Dispatch) => {
+        usersAPI.authUser()
+            .then(data => {
+                if (data.resultCode === 0){
+                    const {id, email, login} = data.data;
+                    dispatch(setAuthUserData(id, email, login));
+                }
+            })
     }
 }
