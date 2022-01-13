@@ -8,8 +8,6 @@ import {Dialogs} from './Dialogs';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/redux-store';
 import { Dispatch } from 'redux';
-import {Redirect} from 'react-router-dom';
-import {ProfilePropsType2} from '../Profile/ProfileContainer';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
 type MapStateToPropsType = {
