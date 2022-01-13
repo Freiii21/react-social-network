@@ -9,6 +9,7 @@ import {
     toggleFollowingProgress, unfollow, UserType
 } from '../../redux/users-reducer';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
+import {compose} from 'redux';
 
 type MapStateToPropsType = {
     users:UserType[]
@@ -64,7 +65,16 @@ const mapStateToProps = (state:AppStateType):MapStateToPropsType => {
     }
 }
 
+export default compose (
+    connect<MapStateToPropsType, MapDispatchToPropsType, {},AppStateType >(mapStateToProps,{
+        follow, unfollow, setCurrentPage,
+        toggleFollowingProgress, getUsers
+    }),
+    withAuthRedirect
+)(UsersContainer)
+
+/*
 export default withAuthRedirect(connect<MapStateToPropsType, MapDispatchToPropsType, {},AppStateType >(mapStateToProps,{
     follow, unfollow, setCurrentPage,
     toggleFollowingProgress, getUsers
-})(UsersContainer))
+})(UsersContainer))*/
