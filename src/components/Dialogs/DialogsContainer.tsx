@@ -35,7 +35,7 @@ const mapDispatchToProps = (dispatch: Dispatch):MapDispatchToPropsType => {
     }
 };
 
-export default compose(
+export default compose<React.ComponentType>(
     connect(mapStateToProps, mapDispatchToProps),
     withAuthRedirect
 )(Dialogs)
