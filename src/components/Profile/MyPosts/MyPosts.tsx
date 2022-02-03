@@ -2,34 +2,24 @@ import React from 'react';
 import s from './MyPosts.module.css'
 import Post from './Post/Post';
 import {MyPostsPropsType} from './MyPostsContainer';
+import {Field, InjectedFormProps, reduxForm} from 'redux-form';
+
+type PostsFormDataType = {
+    newPostBody: string
+}
 
 const MyPosts = (props: MyPostsPropsType) => {
     let postsElements = props.posts.map(p => <Post message={p.message} key={p.id} likesCount={p.likesCount}/>);
-    let newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    let onAddPost = () => {
-        props.addPost();
-    };
-    let onPostChange = () => {
-        if (newPostElement.current) {
-            const text = newPostElement.current.value;
-            props.updateNewPostText(text);
-        }
+    const addNewPost = (values: PostsFormDataType) => {
+        props.addPost(values.newPostBody);
     }
 
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
             <div>
-                <div>
-                    <textarea onChange={onPostChange}
-                              ref={newPostElement}
-                              placeholder={'Type a post...'}
-                              value={props.newPostText}/>
-                </div>
-                <div>
-                    <button onClick={onAddPost}>Add post</button>
-                </div>
+                <AddPostFormRedux onSubmit={addNewPost}/>
             </div>
             <div className={s.posts}>
                 {postsElements}
@@ -37,5 +27,20 @@ const MyPosts = (props: MyPostsPropsType) => {
         </div>
     )
 }
+
+const addPostForm = (props: InjectedFormProps<PostsFormDataType>) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div>
+                <Field component="textarea" name="newPostBody" placeholder="Type a post..." />
+            </div>
+            <div>
+                <button>Add post</button>
+            </div>
+        </form>
+    )
+}
+
+const AddPostFormRedux = reduxForm<PostsFormDataType>({form: "ProfileAddPostForm"})(addPostForm);
 
 export default MyPosts;

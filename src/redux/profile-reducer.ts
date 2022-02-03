@@ -32,7 +32,6 @@ export type ProfileType = {
 }
 export type InitialStateProfilePageType = {
     posts: PostType[]
-    newPostText: string
     profile: ProfileType | null
     status: string
 }
@@ -41,7 +40,6 @@ const initialState:InitialStateProfilePageType = {
         {id: 1, message: 'Hi, how are you?', likesCount: 12},
         {id: 2, message: 'It\'s my first post!', likesCount: 11},
     ],
-    newPostText: '',
     profile: null,
     status: ""
 }
@@ -53,21 +51,14 @@ const profileReducer = (state:InitialStateProfilePageType = initialState,action:
         case 'ADD_POST': {
             let newPost: PostType = {
                 id: 5,
-                message: state.newPostText,
+                message: action.newPostBody,
                 likesCount: 0,
             };
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-                newPostText: ''
             };
 
-        }
-        case 'UPDATE_NEW_POST_TEXT': {
-            return {
-                ...state,
-                newPostText: action.newText
-            };
         }
         case 'SET_USER_PROFILE': {
             return {
@@ -88,10 +79,7 @@ const profileReducer = (state:InitialStateProfilePageType = initialState,action:
 
 export type AddPostActionType = {
     type:'ADD_POST'
-}
-export type UpdateNewPostTextActionType = {
-    type:'UPDATE_NEW_POST_TEXT',
-    newText: string
+    newPostBody: string
 }
 export type AddUserProfileAT = {
     type:'SET_USER_PROFILE',
@@ -102,15 +90,10 @@ export type SetStatusAT = {
     status: string
 }
 
-export const addPostActionCreator = ():AddPostActionType => {
+export const addPostActionCreator = (newPostBody: string):AddPostActionType => {
     return {
-        type:'ADD_POST'
-    }
-};
-export const updateNewPostTextActionCreator = (text:string):UpdateNewPostTextActionType => {
-    return {
-        type:'UPDATE_NEW_POST_TEXT',
-        newText:text
+        type:'ADD_POST',
+        newPostBody
     }
 };
 export const setUserProfile = (profile:ProfileType | null):AddUserProfileAT => {

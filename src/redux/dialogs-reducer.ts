@@ -14,7 +14,6 @@ export type MessageType = {
 export type InitialStateDialogsPageType = {
     dialogs: DialogType[]
     messages: MessageType[]
-    newMessageText: string
 }
 
 let initialState:InitialStateDialogsPageType = {
@@ -31,8 +30,7 @@ let initialState:InitialStateDialogsPageType = {
         {id: 2, message: 'Yo', owner: 'you', avatar: '/images/Redux/State/messages/you.jpg'},
         {id: 3, message: 'How is your it-kamasutra?', owner: 'me', avatar: '/images/Redux/State/messages/me.jpg'},
         {id: 4, message: 'Good enough, dude!', owner: 'you', avatar: '/images/Redux/State/messages/you.jpg'},
-    ],
-    newMessageText: '',
+    ]
 }
 
 
@@ -41,20 +39,13 @@ const dialogsReducer = (state:InitialStateDialogsPageType = initialState, action
         case 'SEND-MESSAGE': {
             let newMessage: MessageType = {
                 id: 99,
-                message: state.newMessageText,
+                message: action.newMessageBody,
                 owner: 'me',
                 avatar: '/images/Redux/State/messages/me.jpg',
             };
             return {
                 ...state,
                 messages: [...state.messages, newMessage],
-                newMessageText: ''
-            };
-        }
-        case 'UPDATE-NEW-MESSAGE-TEXT':{
-            return {
-                ...state,
-                newMessageText: action.newText
             };
         }
         default:
@@ -62,25 +53,15 @@ const dialogsReducer = (state:InitialStateDialogsPageType = initialState, action
     }
 }
 
-//method #2
 export type SendMessageActionType = {
-    type: 'SEND-MESSAGE'
-}
-export type UpdateNewMessageTextActionType = {
-    type: 'UPDATE-NEW-MESSAGE-TEXT'
-    newText: string
+    type: 'SEND-MESSAGE',
+    newMessageBody: string
 }
 
-//method #2 (with return type that created above as: SendMessageActionType)
-export const sendMessageActionCreator = ():SendMessageActionType => {
+export const sendMessageActionCreator = (newMessageBody: string):SendMessageActionType => {
     return {
-        type:'SEND-MESSAGE'
-    }
-};
-export const updateNewMessageTextActionCreator = (text: string): UpdateNewMessageTextActionType => {
-    return {
-        type: 'UPDATE-NEW-MESSAGE-TEXT',
-        newText: text
+        type:'SEND-MESSAGE',
+        newMessageBody
     }
 };
 

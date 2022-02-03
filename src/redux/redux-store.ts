@@ -2,10 +2,9 @@ import {applyMiddleware, combineReducers, createStore } from "redux";
 import profileReducer, {
     AddPostActionType,
     AddUserProfileAT,
-    SetStatusAT,
-    UpdateNewPostTextActionType
+    SetStatusAT
 } from './profile-reducer';
-import dialogsReducer, {SendMessageActionType, UpdateNewMessageTextActionType} from './dialogs-reducer';
+import dialogsReducer, {SendMessageActionType} from './dialogs-reducer';
 import sidebarReducer from './sidebar-reducer';
 import usersReducer, {
     FollowAT,
@@ -30,8 +29,8 @@ let rootReducer = combineReducers({
 
 export type AppStateType = ReturnType<typeof rootReducer>;
 
-export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType
-    | SendMessageActionType | UpdateNewMessageTextActionType | FollowAT | UnfollowAT | SetUsersAT
+export type ActionsTypes = AddPostActionType
+    | SendMessageActionType | FollowAT | UnfollowAT | SetUsersAT
     | SetCurrentPageAT | SetTotalUsersCountAT | ToggleIsFetchingAT | AddUserProfileAT | SetUserDataAT
     | ToggleFollowingProgressAT | SetStatusAT
 
