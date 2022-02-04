@@ -39,7 +39,8 @@ const addPostForm = (props: InjectedFormProps<PostsFormDataType>) => {
                 <Field component={Textarea}
                        name="newPostBody"
                        placeholder="Type a post..."
-                       validate={[required, maxLength10]}/>
+                       validate={[required, maxLength10]}
+                />
             </div>
             <div>
                 <button>Add post</button>
