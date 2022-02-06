@@ -6,6 +6,7 @@ import logo from './../../assets/header/logo.png'
 type HeaderPropsType = {
     isAuth: boolean
     login: string | null
+    logout: () => void
 }
 
 const Header = (props: HeaderPropsType) => {
@@ -14,9 +15,14 @@ const Header = (props: HeaderPropsType) => {
             <img src={logo} alt="logo"/>
             <div className={s.loginBlock}>
                 {props.isAuth ?
-                    <div className={s.username}>Hello, {props.login}</div>
+                    <div className={s.authorizedUser}>
+                        <div className={s.username}>Hello, {props.login}</div>
+                        <div className={s.logout}>
+                            <span onClick={props.logout}>Sign out</span>
+                        </div>
+                    </div>
                     : <div className={s.login}>
-                        <NavLink to={'/login'}>Login</NavLink>
+                        <NavLink to={'/login'}>Sign in</NavLink>
                       </div>
                 }
             </div>

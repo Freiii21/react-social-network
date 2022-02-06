@@ -15,7 +15,7 @@ import usersReducer, {
     UnfollowAT, ToggleFollowingProgressAT
 } from './users-reducer';
 import {authReducer, SetUserDataAT} from './auth-reducer';
-import thunkMiddleware from 'redux-thunk'
+import thunkMiddleware, {ThunkAction} from 'redux-thunk'
 import { reducer as formReducer} from 'redux-form'
 
 let rootReducer = combineReducers({
@@ -33,6 +33,8 @@ export type ActionsTypes = AddPostActionType
     | SendMessageActionType | FollowAT | UnfollowAT | SetUsersAT
     | SetCurrentPageAT | SetTotalUsersCountAT | ToggleIsFetchingAT | AddUserProfileAT | SetUserDataAT
     | ToggleFollowingProgressAT | SetStatusAT
+
+export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, ActionsTypes>
 
 export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
