@@ -8,12 +8,14 @@
 }
 
 .formSummaryError {
-    padding: 5px 0;
-    margin: 5px 0;
+    /*padding: 5px 0;*/
+    /*border: 2px solid red;*/
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
 }
 .formSummaryError span {
-    padding: 5px;
-    border: 2px solid red;
+    /*padding: 5px;*/
     color: red;
     font-weight: bold;
 }

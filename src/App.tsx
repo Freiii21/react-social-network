@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route} from 'react-router-dom';
+import {Redirect, Route} from 'react-router-dom';
 import './App.css';
 import {Settings} from './components/Settings/Settings';
 import {Music} from './components/Music/Music';
@@ -10,13 +10,25 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import Login from './components/Login/Login';
+import { useSelector } from 'react-redux';
+import {AppStateType} from './redux/redux-store';
 
 
 const App = () => {
+    const isAuth = useSelector<AppStateType, boolean>(store => store.auth.isAuth);
+    const appWrapperClass = isAuth ? "app-wrapper" : `${"app-wrapper"} ${"withoutNavbar"}`;
     return (
-        <div className="app-wrapper">
+        <div className={appWrapperClass}>
+            {/*my own part*/}
+            {isAuth
+                ? <Redirect to="/profile/:userId?"/>
+                : <Redirect to="/login"/>
+            }
+            {/*my own part*/}
+
             <HeaderContainer/>
-            <NavbarContainer />
+            {isAuth && <NavbarContainer />}
+            {/*<NavbarContainer />*/}
             <div className="app-wrapper-content">
                 <Route path="/profile/:userId?" render={() => <ProfileContainer />}/>
                 <Route path="/dialogs" render={() => <Dialogs />}/>

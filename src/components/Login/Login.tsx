@@ -6,7 +6,9 @@ import {connect} from 'react-redux';
 import {login} from '../../redux/auth-reducer';
 import {Redirect} from 'react-router-dom';
 import {AppStateType} from '../../redux/redux-store';
-import s from './../common/FormsControls/FormsControls.module.css'
+import sExt from './../common/FormsControls/FormsControls.module.css'
+import s from './Login.module.css'
+
 
 type FormDataType = {
     email: string
@@ -17,12 +19,19 @@ type FormDataType = {
 
 const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={props.handleSubmit} className={s.form}>
+            {props.error && <div className={sExt.formSummaryError}>
+                <span>
+                    {props.error}
+                </span>
+            </div>
+            }
             <div>
                 <Field placeholder={'Email'}
                        component={Input}
                        name={'email'}
                        validate={[required]}
+                       className={s.input}
                 />
             </div>
             <div>
@@ -31,17 +40,17 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
                        name={'password'}
                        type={'password'}
                        validate={[required]}
+                       className={s.input}
                 />
             </div>
-            <div>
-                <Field type={'checkbox'} component={Input} name={'rememberMe'}/> remember me
+            <div className={s.checkboxField}>
+                <Field type={'checkbox'}
+                       component={Input}
+                       name={'rememberMe'}
+                       className={s.checkbox}
+                />
+                <span>remember me</span>
             </div>
-            {props.error && <div className={s.formSummaryError}>
-                <span>
-                    {props.error}
-                </span>
-            </div>
-            }
             <div>
                 <button>Login</button>
             </div>
@@ -61,8 +70,8 @@ const Login = (props: LoginPropsType) => {
     }
 
     return (
-        <div>
-            <h1>Login</h1>
+        <div className={s.common}>
+            <h1>Authentication</h1>
             <LoginReduxForm onSubmit={onSubmit}/>
         </div>
     )

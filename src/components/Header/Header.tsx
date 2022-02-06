@@ -21,9 +21,10 @@ const Header = (props: HeaderPropsType) => {
                             <span onClick={props.logout}>Sign out</span>
                         </div>
                     </div>
-                    : <div className={s.login}>
-                        <NavLink to={'/login'}>Sign in</NavLink>
-                      </div>
+                    : <></>
+                    // <div className={s.login}>
+                    //     <NavLink to={'/login'}>Sign in</NavLink>
+                    //   </div>
                 }
             </div>
         </header>

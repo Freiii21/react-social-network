@@ -12,6 +12,11 @@
     grid-template-rows: 60px 1fr;
     grid-template-columns: 2fr 10fr;
 }
+.withoutNavbar {
+    grid-template-areas:
+    "h h"
+    "c c";
+}
 
 .app-wrapper-content {
     grid-area: c;
