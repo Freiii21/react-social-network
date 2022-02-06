@@ -34,6 +34,7 @@ export type ActionsTypes = AddPostActionType
     | SetCurrentPageAT | SetTotalUsersCountAT | ToggleIsFetchingAT | AddUserProfileAT | SetUserDataAT
     | ToggleFollowingProgressAT | SetStatusAT
 
+
 export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, ActionsTypes>
 
 export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));

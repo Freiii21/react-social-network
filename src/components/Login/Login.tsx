@@ -2,17 +2,17 @@ import React from 'react';
 import {InjectedFormProps, reduxForm, Field} from 'redux-form';
 import {Input} from '../common/FormsControls/FormsControls';
 import {required} from '../../utils/validators/validators';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {login} from '../../redux/auth-reducer';
 import {Redirect} from 'react-router-dom';
 import {AppStateType} from '../../redux/redux-store';
+import s from './../common/FormsControls/FormsControls.module.css'
 
 type FormDataType = {
     email: string
     password: string
     rememberMe: boolean
 }
-
 
 
 const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
@@ -29,13 +29,19 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
                 <Field placeholder={'Password'}
                        component={Input}
                        name={'password'}
-                       type={"password"}
+                       type={'password'}
                        validate={[required]}
                 />
             </div>
             <div>
                 <Field type={'checkbox'} component={Input} name={'rememberMe'}/> remember me
             </div>
+            {props.error && <div className={s.formSummaryError}>
+                <span>
+                    {props.error}
+                </span>
+            </div>
+            }
             <div>
                 <button>Login</button>
             </div>
@@ -50,8 +56,8 @@ const Login = (props: LoginPropsType) => {
         props.login(formData.email, formData.password, formData.rememberMe)
     }
 
-    if(props.isAuth){
-        return <Redirect to={"/profile"}/>
+    if (props.isAuth) {
+        return <Redirect to={'/profile'}/>
     }
 
     return (
@@ -70,7 +76,7 @@ type MapDispatchToPropsType = {
 }
 type LoginPropsType = MapStateToPropsType & MapDispatchToPropsType;
 
-const mapStateToProps = (state: AppStateType):MapStateToPropsType => ({
+const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     isAuth: state.auth.isAuth,
 });
 
