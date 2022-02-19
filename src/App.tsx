@@ -38,7 +38,7 @@ const App = () => {
             <HeaderContainer/>
             {isAuth && <NavbarContainer />}
             <div className="app-wrapper-content">
-                <Route path="/profile/:userId?" render={() => <ProfileContainer />}/>
+                <Route exact path={["/profile/:userId?","/"]} render={() => <ProfileContainer />}/>
                 <Route path="/dialogs" render={() => <Dialogs />}/>
                 <Route path="/news" component={News}/>
                 <Route path="/music" component={Music}/>
