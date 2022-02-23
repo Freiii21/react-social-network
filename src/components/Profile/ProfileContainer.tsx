@@ -29,7 +29,6 @@ function withRouter(Component) {
 class ProfileContainer extends React.Component<ProfilePropsType2> {
     componentDidMount() {
         let userId;
-        debugger;
         if(this.props.router.params.userId){
             userId = this.props.router.params.userId;
         } else if (this.props.authorizedUserId){

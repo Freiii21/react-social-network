@@ -20,7 +20,7 @@ const App = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(initializeApp())
-    }, [])
+    }, [dispatch])
 
     const initialized = useSelector<AppStateType, boolean>(store => store.app.initialized);
     const isAuth = useSelector<AppStateType, boolean>(store => store.auth.isAuth);
@@ -41,7 +41,8 @@ const App = () => {
             <div className="app-wrapper-content">
                 <Routes>
                     <Route path="/" element={<ProfileContainer/>}/>
-                    <Route path="/profile/:userId?" element={<ProfileContainer/>}/>
+                    <Route path="/profile" element={<ProfileContainer/>}/>
+                    <Route path="/profile/:userId" element={<ProfileContainer/>}/>
                     <Route path="/dialogs" element={<Dialogs/>}/>
                     <Route path="/news" element={<News/>}/>
                     <Route path="/music" element={<Music/>}/>
