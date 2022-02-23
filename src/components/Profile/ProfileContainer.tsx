@@ -3,18 +3,39 @@ import Profile from './Profile';
 import {connect} from 'react-redux';
 import {getStatus, getUserProfile, ProfileType, setUserProfile, updateStatus} from '../../redux/profile-reducer';
 import {AppStateType} from '../../redux/redux-store';
-import {RouteComponentProps, withRouter} from 'react-router-dom';
+// import {RouteComponentProps, withRouter} from 'react-router-dom';
+import {useLocation,useNavigate,useParams} from "react-router-dom";
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 
+//@ts-ignore
+function withRouter(Component) {
+    //@ts-ignore
+    function ComponentWithRouterProp(props) {
+        let location = useLocation();
+        let navigate = useNavigate();
+        let params = useParams();
+        return (
+            <Component
+                {...props}
+                router={{ location, navigate, params }}
+            />
+        );
+    }
+
+    return ComponentWithRouterProp;
+}
+//@ts-ignore
 class ProfileContainer extends React.Component<ProfilePropsType2> {
     componentDidMount() {
-        let userId = this.props.match.params.userId;
-        if (!userId && this.props.authorizedUserId){
+        let userId;
+        debugger;
+        if(this.props.router.params.userId){
+            userId = this.props.router.params.userId;
+        } else if (this.props.authorizedUserId){
             userId = this.props.authorizedUserId.toString();
-            if (!userId) {
-                this.props.history.push("/login");
-            }
+        } else {
+            this.props.history.push("/login");
         }
         this.props.getUserProfile(+userId);
         this.props.getStatus(+userId)
@@ -49,7 +70,7 @@ export type OwnPropsType = MapStateToPropsType & MapDispatchToPropsType;
 type PathParamsType = {
     userId: string
 }
-export type ProfilePropsType2 = RouteComponentProps<PathParamsType> & OwnPropsType;
+// export type ProfilePropsType2 = RouteComponentProps<PathParamsType> & OwnPropsType;
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {

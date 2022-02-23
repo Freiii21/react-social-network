@@ -4,10 +4,10 @@ import {Input} from '../common/FormsControls/FormsControls';
 import {required} from '../../utils/validators/validators';
 import {connect} from 'react-redux';
 import {login} from '../../redux/auth-reducer';
-import {Redirect} from 'react-router-dom';
 import {AppStateType} from '../../redux/redux-store';
 import sExt from './../common/FormsControls/FormsControls.module.css'
 import s from './Login.module.css'
+import { Navigate } from 'react-router-dom';
 
 
 type FormDataType = {
@@ -66,7 +66,7 @@ const Login = (props: LoginPropsType) => {
     }
 
     if (props.isAuth) {
-        return <Redirect to={'/profile'}/>
+        return <Navigate to={'/profile'}/>
     }
 
     return (

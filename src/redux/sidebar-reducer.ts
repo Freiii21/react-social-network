@@ -1,4 +1,9 @@
 import {ActionsTypes} from './redux-store';
+import Keanu from './../assets/sidebarFriends/Keanu.jpg'
+import Scarlett from './../assets/sidebarFriends/Scarlett.jpg'
+import Johnny from './../assets/sidebarFriends/Johnny.jpg'
+import Rachel from './../assets/sidebarFriends/Rachel.jpg'
+import Ross from './../assets/sidebarFriends/Ross.jpg'
 
 export type FriendType = {
     id: number
@@ -8,11 +13,11 @@ export type FriendType = {
 
 let initialState:InitialStateSidebarType = {
     friends: [
-        {id: 1, name: 'Keanu', avatar: '/images/Redux/State/friends/Keanu.jpg'},
-        {id: 2, name: 'Scarlett', avatar: '/images/Redux/State/friends/Scarlett.jpg'},
-        {id: 3, name: 'Johnny', avatar: '/images/Redux/State/friends/Johnny.jpg'},
-        {id: 4, name: 'Rachel', avatar: '/images/Redux/State/friends/Rachel.jpg'},
-        {id: 5, name: 'Ross', avatar: '/images/Redux/State/friends/Ross.jpg'},
+        {id: 1, name: 'Keanu', avatar: Keanu},
+        {id: 2, name: 'Scarlett', avatar: Scarlett},
+        {id: 3, name: 'Johnny', avatar: Johnny},
+        {id: 4, name: 'Rachel', avatar: Rachel},
+        {id: 5, name: 'Ross', avatar: Ross},
     ]
 }
 export type InitialStateSidebarType = {

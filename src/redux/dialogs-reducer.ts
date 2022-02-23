@@ -1,4 +1,13 @@
 import {ActionsTypes} from './redux-store';
+import Dimych from './../assets/messages/Dimych.jpg'
+import Andrey from './../assets/messages/Andrey.jpg'
+import Sveta from './../assets/messages/Sveta.jpg'
+import Sasha from './../assets/messages/Sasha.jpg'
+import Viktor from './../assets/messages/Viktor.jpg'
+import Valera from './../assets/messages/Valera.jpg'
+import me from './../assets/messages/me.jpg'
+import you from './../assets/messages/you.jpg'
+
 
 export type DialogType = {
     id: number
@@ -18,18 +27,18 @@ export type InitialStateDialogsPageType = {
 
 let initialState:InitialStateDialogsPageType = {
     dialogs: [
-        {id: 1, name: 'Dimych', avatar: '/images/Redux/State/dialogs/Dimych.jpg'},
-        {id: 2, name: 'Andrey', avatar: '/images/Redux/State/dialogs/Andrey.jpg'},
-        {id: 3, name: 'Sveta', avatar: '/images/Redux/State/dialogs/Sveta.jpg'},
-        {id: 4, name: 'Sasha', avatar: '/images/Redux/State/dialogs/Sasha.jpg'},
-        {id: 5, name: 'Viktor', avatar: '/images/Redux/State/dialogs/Viktor.jpg'},
-        {id: 6, name: 'Valera', avatar: '/images/Redux/State/dialogs/Valera.jpg'},
+        {id: 1, name: 'Dimych', avatar: Dimych},
+        {id: 2, name: 'Andrey', avatar: Andrey},
+        {id: 3, name: 'Sveta', avatar: Sveta},
+        {id: 4, name: 'Sasha', avatar: Sasha},
+        {id: 5, name: 'Viktor', avatar: Viktor},
+        {id: 6, name: 'Valera', avatar: Valera},
     ],
     messages: [
-        {id: 1, message: 'hi', owner: 'me', avatar: '/images/Redux/State/messages/me.jpg'},
-        {id: 2, message: 'Yo', owner: 'you', avatar: '/images/Redux/State/messages/you.jpg'},
-        {id: 3, message: 'How is your it-kamasutra?', owner: 'me', avatar: '/images/Redux/State/messages/me.jpg'},
-        {id: 4, message: 'Good enough, dude!', owner: 'you', avatar: '/images/Redux/State/messages/you.jpg'},
+        {id: 1, message: 'hi', owner: 'me', avatar: me},
+        {id: 2, message: 'Yo', owner: 'you', avatar: you},
+        {id: 3, message: 'How is your it-kamasutra?', owner: 'me', avatar: me},
+        {id: 4, message: 'Good enough, dude!', owner: 'you', avatar: you},
     ]
 }
 
@@ -41,7 +50,7 @@ const dialogsReducer = (state:InitialStateDialogsPageType = initialState, action
                 id: 99,
                 message: action.newMessageBody,
                 owner: 'me',
-                avatar: '/images/Redux/State/messages/me.jpg',
+                avatar: me,
             };
             return {
                 ...state,

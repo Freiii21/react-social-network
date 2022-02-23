@@ -14,7 +14,9 @@ export const DialogItem = (props: DialogItemPropsType) => {
     return (
         <div className={s.dialog}>
             <img src={props.avatar}/>
-            <NavLink to={path} activeClassName={s.activeLink}>{props.name}</NavLink>
+            <NavLink to={path} className={({isActive}) => (isActive ? s.activeLink : '')}>
+                {props.name}
+            </NavLink>
         </div>
     )
 }

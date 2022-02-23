@@ -1,5 +1,7 @@
 import React from 'react';
 import s from "./Post.module.css"
+import ava from './../../../../assets/profile/ava.jpg'
+import like from './../../../../assets/profile/like.png'
 
 type PostPropsType = {
     message: string
@@ -10,12 +12,12 @@ const Post = (props: PostPropsType) => {
     return (
         <div className={s.item}>
             <div className={s.messageBlock}>
-                <img src="/images/Profile/MyPosts/Post/ava.jpg" alt=""/>
+                <img src={ava} alt=""/>
                 <span>{props.message}</span>
             </div>
             <div>
                 <span className={s.likes}>
-                    <img src="/images/Profile/MyPosts/Post/like.png" alt=""/>
+                    <img src={like} alt=""/>
                     {props.likesCount}
                 </span>
             </div>
