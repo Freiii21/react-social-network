@@ -40,3 +40,11 @@
     margin-left: 33%;
     color: white;
 }
+.bottom{
+    margin-top: 30%;
+    font-style: italic;
+}
+.mail{
+    font-weight: bold;
+    margin-left: 10px;
+}

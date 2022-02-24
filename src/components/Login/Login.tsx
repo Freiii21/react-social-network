@@ -73,6 +73,10 @@ const Login = (props: LoginPropsType) => {
         <div className={s.common}>
             <h1>Authentication</h1>
             <LoginReduxForm onSubmit={onSubmit}/>
+            <div className={s.bottom}>
+                *If you do not have credentials use the following:
+                <span className={s.mail}>free@samuraijs.com = free</span>
+            </div>
         </div>
     )
 }
