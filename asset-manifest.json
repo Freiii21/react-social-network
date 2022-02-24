@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/react-social-network/static/css/main.82c780f9.chunk.css",
-    "main.js": "/react-social-network/static/js/main.fac04c21.chunk.js",
-    "main.js.map": "/react-social-network/static/js/main.fac04c21.chunk.js.map",
+    "main.css": "/react-social-network/static/css/main.d9c1f870.chunk.css",
+    "main.js": "/react-social-network/static/js/main.b682689f.chunk.js",
+    "main.js.map": "/react-social-network/static/js/main.b682689f.chunk.js.map",
     "runtime-main.js": "/react-social-network/static/js/runtime-main.5f984698.js",
     "runtime-main.js.map": "/react-social-network/static/js/runtime-main.5f984698.js.map",
-    "static/js/2.92a4cf35.chunk.js": "/react-social-network/static/js/2.92a4cf35.chunk.js",
-    "static/js/2.92a4cf35.chunk.js.map": "/react-social-network/static/js/2.92a4cf35.chunk.js.map",
+    "static/js/2.66319869.chunk.js": "/react-social-network/static/js/2.66319869.chunk.js",
+    "static/js/2.66319869.chunk.js.map": "/react-social-network/static/js/2.66319869.chunk.js.map",
     "static/js/3.ae155fe5.chunk.js": "/react-social-network/static/js/3.ae155fe5.chunk.js",
     "static/js/3.ae155fe5.chunk.js.map": "/react-social-network/static/js/3.ae155fe5.chunk.js.map",
     "index.html": "/react-social-network/index.html",
-    "static/css/main.82c780f9.chunk.css.map": "/react-social-network/static/css/main.82c780f9.chunk.css.map",
-    "static/js/2.92a4cf35.chunk.js.LICENSE.txt": "/react-social-network/static/js/2.92a4cf35.chunk.js.LICENSE.txt",
+    "static/css/main.d9c1f870.chunk.css.map": "/react-social-network/static/css/main.d9c1f870.chunk.css.map",
+    "static/js/2.66319869.chunk.js.LICENSE.txt": "/react-social-network/static/js/2.66319869.chunk.js.LICENSE.txt",
     "static/media/Valera.ef0845d2.jpg": "/react-social-network/static/media/Valera.ef0845d2.jpg",
     "static/media/Viktor.c3216a32.jpg": "/react-social-network/static/media/Viktor.c3216a32.jpg",
     "static/media/ava.c1b533b6.jpg": "/react-social-network/static/media/ava.c1b533b6.jpg",
@@ -21,8 +21,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.5f984698.js",
-    "static/js/2.92a4cf35.chunk.js",
-    "static/css/main.82c780f9.chunk.css",
-    "static/js/main.fac04c21.chunk.js"
+    "static/js/2.66319869.chunk.js",
+    "static/css/main.d9c1f870.chunk.css",
+    "static/js/main.b682689f.chunk.js"
   ]
 }
