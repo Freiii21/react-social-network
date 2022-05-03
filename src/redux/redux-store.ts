@@ -1,7 +1,7 @@
 import {applyMiddleware, combineReducers, createStore } from "redux";
 import profileReducer, {
     AddPostActionType,
-    AddUserProfileAT,
+    AddUserProfileAT, DeletePostAT,
     SetStatusAT
 } from './profile-reducer';
 import dialogsReducer, {SendMessageActionType} from './dialogs-reducer';
@@ -34,7 +34,7 @@ export type AppStateType = ReturnType<typeof rootReducer>;
 export type ActionsTypes = AddPostActionType
     | SendMessageActionType | FollowAT | UnfollowAT | SetUsersAT
     | SetCurrentPageAT | SetTotalUsersCountAT | ToggleIsFetchingAT | AddUserProfileAT | SetUserDataAT
-    | ToggleFollowingProgressAT | SetStatusAT | SetInitializedAT
+    | ToggleFollowingProgressAT | SetStatusAT | SetInitializedAT | DeletePostAT
 
 
 export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, ActionsTypes>

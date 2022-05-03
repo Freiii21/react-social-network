@@ -60,6 +60,12 @@ const profileReducer = (state:InitialStateProfilePageType = initialState,action:
             };
 
         }
+        case 'DELETE_POST':{
+            return  {
+                ...state,
+                posts: [...state.posts.filter(p => p.id !== action.postId)]
+            }
+        }
         case 'SET_USER_PROFILE': {
             return {
                 ...state,
@@ -89,6 +95,7 @@ export type SetStatusAT = {
     type:'SET_STATUS',
     status: string
 }
+export type DeletePostAT = ReturnType<typeof deletePostAC>;
 
 export const addPostActionCreator = (newPostBody: string):AddPostActionType => {
     return {
@@ -107,6 +114,12 @@ export const setStatus = (status:string):SetStatusAT => {
         type:'SET_STATUS',
         status
     }
+};
+export const deletePostAC = (postId:number) => {
+    return {
+        type:'DELETE_POST',
+        postId
+    } as const;
 };
 
 export const getUserProfile = (userId:number) => {
