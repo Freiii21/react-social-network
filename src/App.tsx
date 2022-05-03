@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Navigate, Route, Routes, useNavigate} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import './App.css';
 import {Settings} from './components/Settings/Settings';
 import {Music} from './components/Music/Music';
@@ -18,16 +18,17 @@ import {Preloader} from './components/common/Preloader/Preloader';
 
 const App = () => {
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(initializeApp())
-    }, [dispatch])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const initialized = useSelector<AppStateType, boolean>(store => store.app.initialized);
     const isAuth = useSelector<AppStateType, boolean>(store => store.auth.isAuth);
     const appWrapperClass = isAuth ? 'app-wrapper' : `${'app-wrapper'} ${'withoutNavbar'}`;
 
-    const navigate = useNavigate();
-
+    // const navigate = useNavigate();
 
     if(!initialized){
         return <Preloader />
@@ -35,7 +36,6 @@ const App = () => {
 
     return (
         <div className={appWrapperClass}>
-            {!isAuth && <Navigate to={'/login'}/>}
             <HeaderContainer/>
             {isAuth && <NavbarContainer/>}
             <div className="app-wrapper-content">

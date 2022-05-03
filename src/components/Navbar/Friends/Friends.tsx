@@ -10,7 +10,7 @@ export const Friends = (props: FriendsPropsType) => {
     const friendsLine = props.friends.map(f => {
         return (
             <span key={f.id}>
-                <img src={f.avatar}/>
+                <img src={f.avatar} alt=""/>
                 <div>{f.name}</div>
             </span>
         )

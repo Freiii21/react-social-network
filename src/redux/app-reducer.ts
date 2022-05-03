@@ -1,5 +1,4 @@
 import {ActionsTypes} from './redux-store';
-import {Dispatch} from 'redux';
 import {getAuthUserData} from './auth-reducer';
 
 const SET_INITIALIZED = 'SET_INITIALIZED';

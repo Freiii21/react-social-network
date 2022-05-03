@@ -12,8 +12,9 @@ type PostsFormDataType = {
 
 const maxLength10 = maxLengthCreator(10)
 
-const MyPosts = (props: MyPostsPropsType) => {
-    let postsElements = props.posts.map(p => <Post message={p.message} key={p.id} likesCount={p.likesCount}/>);
+const MyPosts = React.memo((props: MyPostsPropsType) => {
+
+    let postsElements = props.posts.map((p,index) => <Post message={p.message} key={index} likesCount={p.likesCount}/>);
 
     const addNewPost = (values: PostsFormDataType) => {
         props.addPost(values.newPostBody);
@@ -30,7 +31,7 @@ const MyPosts = (props: MyPostsPropsType) => {
             </div>
         </div>
     )
-}
+})
 
 const addPostForm = (props: InjectedFormProps<PostsFormDataType>) => {
     return (

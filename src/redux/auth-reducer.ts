@@ -1,4 +1,4 @@
-import {ActionsTypes, AppThunkType} from './redux-store';
+import {ActionsTypes} from './redux-store';
 import {Dispatch} from 'redux';
 import {authAPI} from '../api/api';
 import {stopSubmit} from 'redux-form';

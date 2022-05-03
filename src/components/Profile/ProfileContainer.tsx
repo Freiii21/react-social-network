@@ -66,9 +66,9 @@ type MapDispatchToPropsType = {
 }
 export type OwnPropsType = MapStateToPropsType & MapDispatchToPropsType;
 
-type PathParamsType = {
-    userId: string
-}
+// type PathParamsType = {
+//     userId: string
+// }
 // export type ProfilePropsType2 = RouteComponentProps<PathParamsType> & OwnPropsType;
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {

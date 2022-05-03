@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import Navbar from './Navbar';
 import {AppStateType} from '../../redux/redux-store';
@@ -15,6 +14,6 @@ const mapStateToProps = (state:AppStateType):MapStateToPropsType => {
         state: state.sidebar
     }
 }
-const mapDispatchToProps = () => {};
+// const mapDispatchToProps = () => {};
 
-export const NavbarContainer = connect(mapStateToProps,mapDispatchToProps)(Navbar);
+export const NavbarContainer = connect(mapStateToProps)(Navbar);
