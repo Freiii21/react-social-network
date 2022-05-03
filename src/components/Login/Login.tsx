@@ -74,8 +74,9 @@ const Login = (props: LoginPropsType) => {
             <h1>Authentication</h1>
             <LoginReduxForm onSubmit={onSubmit}/>
             <div className={s.bottom}>
-                *If you do not have credentials use the following:
-                <span className={s.mail}>free@samuraijs.com = free</span>
+                You can use common test account credentials:
+                <div><span className={s.mail}>Login</span>: free@samuraijs.com</div>
+                <div><span className={s.mail}>Password</span>: free</div>
             </div>
         </div>
     )

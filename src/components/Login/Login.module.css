@@ -18,10 +18,8 @@
 }
 .checkboxField{
     display: flex;
-    /*align-items: flex-start;*/
     margin: 5px 0;
     font-size: 18px;
-    /*font-weight: bold;*/
 }
 .checkbox{
     width: 20px;
@@ -41,10 +39,9 @@
     color: white;
 }
 .bottom{
-    margin-top: 30%;
+    margin-top: 27%;
     font-style: italic;
 }
 .mail{
-    font-weight: bold;
-    margin-left: 10px;
+    text-decoration: underline;
 }
