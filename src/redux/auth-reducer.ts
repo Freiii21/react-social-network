@@ -3,6 +3,8 @@ import {Dispatch} from 'redux';
 import {authAPI} from '../api/api';
 import {stopSubmit} from 'redux-form';
 
+const SET_USER_DATA = "samurai-network/auth/SET_USER_DATA" as const;
+
 export type AuthType = {
     userId: number | null
     login: string | null
@@ -18,7 +20,7 @@ const initialState:AuthType = {
 
 export const authReducer = (state: AuthType = initialState, action: ActionsTypes): AuthType => {
     switch (action.type) {
-        case "SET_USER_DATA":
+        case SET_USER_DATA:
             return {
                 ...state,
                 ...action.payload,
@@ -28,19 +30,11 @@ export const authReducer = (state: AuthType = initialState, action: ActionsTypes
     }
 }
 
-export type SetUserDataAT = {
-    type: 'SET_USER_DATA',
-    payload: {
-        userId: number | null
-        email: string | null
-        login: string | null
-        isAuth: boolean
-    }
-}
+export type SetUserDataAT = ReturnType<typeof setAuthUserData>;
 
-export const setAuthUserData = (userId:number | null, email:string | null, login:string | null, isAuth: boolean):SetUserDataAT => {
+export const setAuthUserData = (userId:number | null, email:string | null, login:string | null, isAuth: boolean) => {
     return {
-        type: 'SET_USER_DATA',
+        type: SET_USER_DATA,
         payload: {
             userId,
             email,
@@ -50,41 +44,32 @@ export const setAuthUserData = (userId:number | null, email:string | null, login
     }
 }
 
-export const getAuthUserData = () => {
-    return (dispatch:Dispatch<ActionsTypes>) => {
-        return authAPI.me()
-            .then(data => {
-                if (data.resultCode === 0){
-                    const {id, email, login} = data.data;
-                    dispatch(setAuthUserData(id, email, login, true));
-                }
-            })
+export const getAuthUserData = () => async (dispatch: Dispatch<ActionsTypes>) => {
+    let response = await authAPI.me();
+
+    if (response.resultCode === 0) {
+        const {id, email, login} = response.data;
+        dispatch(setAuthUserData(id, email, login, true));
     }
 }
 
-// export const login = (email: string, password: string, rememberMe: boolean): AppThunkType => {
-export const login = (email: string, password: string, rememberMe: boolean): any => {
-    return (dispatch: any) => {
-        authAPI.login(email, password, rememberMe)
-            .then(res => {
-                if (res.data.resultCode === 0){
-                   dispatch(getAuthUserData());
-                } else {
-                    debugger
-                    const message = res.data.messages.length > 0 ? res.data.messages[0] : "Some error";
-                    dispatch(stopSubmit("login",{_error: message}));
-                }
-            })
+export const login = (email: string, password: string, rememberMe: boolean): any => async (dispatch: any) => {
+    let response = await authAPI.login(email, password, rememberMe);
+
+    if (response.data.resultCode === 0) {
+        dispatch(getAuthUserData());
+    } else {
+        const message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error';
+        dispatch(stopSubmit('login', {_error: message}));
     }
 }
 
-export const logout = () => {
-    return (dispatch:Dispatch<ActionsTypes>) => {
-        authAPI.logout()
-            .then(res => {
-                if (res.data.resultCode === 0){
-                    dispatch(setAuthUserData(null, null, null, false));
-                }
-            })
+
+export const logout = () => async (dispatch: Dispatch<ActionsTypes>) => {
+    let response = await authAPI.logout();
+
+    if (response.data.resultCode === 0) {
+        dispatch(setAuthUserData(null, null, null, false));
     }
+
 }

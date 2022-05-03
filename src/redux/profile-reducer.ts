@@ -46,7 +46,6 @@ const initialState:InitialStateProfilePageType = {
 
 
 const profileReducer = (state:InitialStateProfilePageType = initialState,action: ActionsTypes):InitialStateProfilePageType => {
-
     switch (action.type) {
         case 'ADD_POST': {
             let newPost: PostType = {
@@ -58,7 +57,6 @@ const profileReducer = (state:InitialStateProfilePageType = initialState,action:
                 ...state,
                 posts: [...state.posts, newPost],
             };
-
         }
         case 'DELETE_POST':{
             return  {
@@ -122,31 +120,22 @@ export const deletePostAC = (postId:number) => {
     } as const;
 };
 
-export const getUserProfile = (userId:number) => {
-    return (dispatch:Dispatch) => {
-        usersAPI.getUserProfile(+userId)
-            .then(data => {
-                dispatch(setUserProfile(data));
-            })
+
+export const getUserProfile = (userId: number) => async (dispatch: Dispatch) => {
+    let response = await usersAPI.getUserProfile(+userId);
+    dispatch(setUserProfile(response));
+}
+
+export const getStatus = (userId: number) => async (dispatch: Dispatch) => {
+    const response = await profileAPI.getStatus(+userId);
+    dispatch(setStatus(response));
+}
+
+export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
+    const response = await profileAPI.updateStatus(status);
+    if (response.resultCode === 0) {
+        dispatch(setStatus(status));
     }
 }
 
-export const getStatus = (userId:number) => {
-    return (dispatch:Dispatch) => {
-        profileAPI.getStatus(+userId)
-            .then(data => {
-                dispatch(setStatus(data));
-            })
-    }
-}
-export const updateStatus = (status: string) => {
-    return (dispatch:Dispatch) => {
-        profileAPI.updateStatus(status)
-            .then(data => {
-                if(data.resultCode === 0){
-                    dispatch(setStatus(status));
-                }
-            })
-    }
-}
 export default profileReducer;

@@ -5,7 +5,6 @@ import {required} from '../../utils/validators/validators';
 import {connect} from 'react-redux';
 import {login} from '../../redux/auth-reducer';
 import {AppStateType} from '../../redux/redux-store';
-import sExt from './../common/FormsControls/FormsControls.module.css'
 import s from './Login.module.css'
 import { Navigate } from 'react-router-dom';
 
@@ -20,7 +19,7 @@ type FormDataType = {
 const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit} className={s.form}>
-            {props.error && <div className={sExt.formSummaryError}>
+            {props.error && <div className={s.formSummaryError}>
                 <span>
                     {props.error}
                 </span>
