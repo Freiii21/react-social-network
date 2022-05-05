@@ -20,7 +20,7 @@ export type UsersPropsType2 = {
 export const Users = (props: UsersPropsType2) => {
     return (
         <div>
-            <Paginator totalUsersCount={props.totalUsersCount} pageSize={props.pageSize}
+            <Paginator totalItemssCount={props.totalUsersCount} pageSize={props.pageSize}
                        currentPage={props.currentPage} onPageChanged={props.onPageChanged}/>
             {props.users.map(u => <div key={u.id}>
                 <span>
