@@ -25,17 +25,17 @@ export const Paginator = (props: PaginatorPropsType) => {
 
     return (
         <div>
-            { portionNumber > 1 &&
-            <button onClick={() => { setPortionNumber(portionNumber -1)}}>PREV</button>}
+            <button onClick={() => { setPortionNumber(portionNumber -1)}}
+                    disabled={portionNumber <= 1}
+                    className={s.button}>PREV</button>
             {pages
                 .filter(p => p >= leftPortionPageNumber && p <=rightPortionPageNumber)
                 .map(p => <span
                 className={props.currentPage === p ? s.selectedPage : s.usual}
                 onClick={(e) => props.onPageChanged(p)}
             >{p}</span>)}
-            {/*{pagesCount > 15 ? <span> ... {pagesCount}</span> : null}*/}
             { portionCount > portionNumber &&
-            <button onClick={() => { setPortionNumber(portionNumber +1)}}>NEXT</button>}
+            <button onClick={() => { setPortionNumber(portionNumber +1)}} className={s.button}>NEXT</button>}
         </div>
     )
 }

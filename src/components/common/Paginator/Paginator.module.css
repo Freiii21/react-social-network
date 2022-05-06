@@ -6,3 +6,12 @@
     margin: 3px;
     font-weight: bold;
 }
+
+.button{
+    margin: 0 5px 5px 5px;
+    height: 25px;
+    width: 50px;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+}

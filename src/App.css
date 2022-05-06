@@ -24,3 +24,6 @@
     margin: 1px;
     border-radius: 5px;
 }
+.preloader{
+    position: relative;
+}

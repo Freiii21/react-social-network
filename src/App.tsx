@@ -4,7 +4,6 @@ import './App.css';
 import {Settings} from './components/Settings/Settings';
 import {Music} from './components/Music/Music';
 import {News} from './components/News/News';
-import Dialogs from './components/Dialogs/DialogsContainer';
 import {NavbarContainer} from './components/Navbar/NavbarContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
@@ -14,6 +13,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {AppStateType} from './redux/redux-store';
 import {initializeApp} from './redux/app-reducer';
 import {Preloader} from './components/common/Preloader/Preloader';
+
+const Dialogs = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 
 
 const App = () => {
@@ -28,8 +29,6 @@ const App = () => {
     const isAuth = useSelector<AppStateType, boolean>(store => store.auth.isAuth);
     const appWrapperClass = isAuth ? 'app-wrapper' : `${'app-wrapper'} ${'withoutNavbar'}`;
 
-    // const navigate = useNavigate();
-
     if(!initialized){
         return <Preloader />
     }
@@ -43,7 +42,11 @@ const App = () => {
                     <Route path="/" element={<ProfileContainer/>}/>
                     <Route path="/profile" element={<ProfileContainer/>}/>
                     <Route path="/profile/:userId" element={<ProfileContainer/>}/>
-                    <Route path="/dialogs" element={<Dialogs/>}/>
+                    <Route path="/dialogs" element={
+                        <React.Suspense fallback={<div className="preloader"><Preloader/></div>}>
+                            <Dialogs/>
+                        </React.Suspense>
+                    }/>
                     <Route path="/news" element={<News/>}/>
                     <Route path="/music" element={<Music/>}/>
                     <Route path="/settings" element={<Settings/>}/>
