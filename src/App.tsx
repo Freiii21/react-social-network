@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Route, Routes} from 'react-router-dom';
+import {Route, Routes, Navigate} from 'react-router-dom';
 import './App.css';
 import {Settings} from './components/Settings/Settings';
 import {Music} from './components/Music/Music';
@@ -13,6 +13,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {AppStateType} from './redux/redux-store';
 import {initializeApp} from './redux/app-reducer';
 import {Preloader} from './components/common/Preloader/Preloader';
+import {PageNotFound} from './components/NotFound/PageNotFound';
 
 const Dialogs = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 
@@ -53,6 +54,8 @@ const App = () => {
                     <Route path="/settings" element={<Settings/>}/>
                     <Route path="/users" element={<UsersContainer/>}/>
                     <Route path="/login" element={<Login/>}/>
+                    <Route path="/404" element={<PageNotFound/>}/>
+                    <Route path='*' element={<Navigate to={"/404"} />} />
                 </Routes>
             </div>
         </div>
