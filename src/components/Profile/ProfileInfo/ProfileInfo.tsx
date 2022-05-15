@@ -28,10 +28,16 @@ const ProfileInfo = (props:ProfileInfoPropsType) => {
     return (
         <div>
             <div className={s.descriptionBlock}>
-                <img src={props.profile.photos.small ? props.profile.photos.small : defaultUserPhoto} alt=""/><br/>
-                {props.isOwner && <div><input type={'file'} onChange={onMainPhotoSelected}/></div>}
-                <span>{props.profile.fullName}</span><br/>
-                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+                <div className={s.avatarField}>
+                    <img src={props.profile.photos.large ? props.profile.photos.large : defaultUserPhoto} alt=""/>
+                    {props.isOwner && <label htmlFor={"file"}>
+                        <input type={'file'} onChange={onMainPhotoSelected} id={'file'} hidden/>Select photo</label>}
+                </div>
+                <span>
+                    <span style={{fontWeight:'bold'}}>Name: </span>
+                    {props.profile.fullName}
+                </span><br/>
+                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} isOwner={props.isOwner}/>
             </div>
         </div>
     )

@@ -1,9 +1,34 @@
 .descriptionBlock {
     padding: 10px
 }
-
-.image img{
-    width: 100%;
-    height: 200px;
+.descriptionBlock img{
+    width: 230px;
+    height: 230px;
     border-radius: 5px;
+}
+.avatarField {
+    width: 230px;
+    height: 230px;
+    position: relative;
+}
+.avatarField label {
+    position: absolute;
+    width: 120px;
+    height: 28px;
+    left: 60px;
+    top: 101px;
+    background-color: white;
+    opacity: 0;
+    visibility: hidden;
+    text-align: center;
+    padding: 3px;
+    border-radius: 5px;
+}
+.avatarField:hover label{
+    opacity: 0.8;
+    visibility: visible;
+}
+.avatarField label:hover {
+    opacity: 1;
+    cursor: pointer;
 }
