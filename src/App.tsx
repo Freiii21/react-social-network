@@ -29,6 +29,7 @@ const App = () => {
     const isAuth = useSelector<AppStateType, boolean>(store => store.auth.isAuth);
     const appWrapperClass = isAuth ? 'app-wrapper' : `${'app-wrapper'} ${'withoutNavbar'}`;
 
+
     if(!initialized){
         return <Preloader />
     }

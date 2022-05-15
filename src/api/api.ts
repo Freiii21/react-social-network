@@ -43,6 +43,18 @@ export const profileAPI = {
             .then(response => {
                 return response.data
             });
+    },
+    savePhoto(photo: File){
+        const formData = new FormData();
+        formData.append("inage", photo);
+        return instance.put(`profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+            .then(response => {
+                return response.data
+            });
     }
 }
 

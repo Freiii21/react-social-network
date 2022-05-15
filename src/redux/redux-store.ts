@@ -1,7 +1,7 @@
 import {applyMiddleware, combineReducers, createStore } from "redux";
 import profileReducer, {
     AddPostActionType,
-    AddUserProfileAT, DeletePostAT,
+    AddUserProfileAT, DeletePostAT, SavePhotoAT,
     SetStatusAT
 } from './profile-reducer';
 import dialogsReducer, {SendMessageActionType} from './dialogs-reducer';
@@ -34,15 +34,15 @@ export type AppStateType = ReturnType<typeof rootReducer>;
 export type ActionsTypes = AddPostActionType
     | SendMessageActionType | FollowAT | UnfollowAT | SetUsersAT
     | SetCurrentPageAT | SetTotalUsersCountAT | ToggleIsFetchingAT | AddUserProfileAT | SetUserDataAT
-    | ToggleFollowingProgressAT | SetStatusAT | SetInitializedAT | DeletePostAT
+    | ToggleFollowingProgressAT | SetStatusAT | SetInitializedAT | DeletePostAT | SavePhotoAT
 
 
 export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, ActionsTypes>
 
 //@ts-ignore
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)));
-// export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)));
+export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 //@ts-ignore
 window.store = store;
