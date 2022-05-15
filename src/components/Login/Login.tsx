@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import {InjectedFormProps, reduxForm, Field} from 'redux-form';
 import {Input} from '../common/FormsControls/FormsControls';
 import {required} from '../../utils/validators/validators';
@@ -13,8 +13,8 @@ type FormDataType = {
     email: string
     password: string
     rememberMe: boolean
+    captcha: string | null
 }
-
 
 const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
@@ -61,17 +61,29 @@ const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
 
 const Login = (props: LoginPropsType) => {
     const onSubmit = (formData: FormDataType) => {
-        props.login(formData.email, formData.password, formData.rememberMe)
+        props.login(formData.email, formData.password, formData.rememberMe,captcha)
     }
 
     if (props.isAuth) {
         return <Navigate to={'/profile'}/>
     }
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [captcha, setCaptcha] = useState<string>("")
+    const onCaptchaChange = (e:ChangeEvent<HTMLInputElement>) => {
+        setCaptcha(e.currentTarget.value);
+    }
+
     return (
         <div className={s.common}>
             <h1>Authentication</h1>
             <LoginReduxForm onSubmit={onSubmit}/>
+            {props.captchaUrl ? <div className={s.captcha}>
+                <img src={props.captchaUrl} alt=""/><br/>
+                <input value={captcha} onChange={onCaptchaChange}/>
+            </div>
+                : <div className={s.fieldForCaptcha}/>
+            }
             <div className={s.bottom}>
                 You can use common test account credentials:
                 <div><span className={s.mail}>Login</span>: free@samuraijs.com</div>
@@ -83,14 +95,16 @@ const Login = (props: LoginPropsType) => {
 
 type MapStateToPropsType = {
     isAuth: boolean
+    captchaUrl: string | null
 }
 type MapDispatchToPropsType = {
-    login: (email: string, password: string, rememberMe: boolean) => void;
+    login: (email: string, password: string, rememberMe: boolean, captcha?: string) => void;
 }
 type LoginPropsType = MapStateToPropsType & MapDispatchToPropsType;
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     isAuth: state.auth.isAuth,
+    captchaUrl: state.auth.captchaUrl
 });
 
 export default connect(mapStateToProps, {login})(Login)

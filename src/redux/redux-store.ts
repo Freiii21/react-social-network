@@ -14,7 +14,7 @@ import usersReducer, {
     SetUsersAT,
     UnfollowAT, ToggleFollowingProgressAT
 } from './users-reducer';
-import {authReducer, SetUserDataAT} from './auth-reducer';
+import {authReducer, GetCaptchaUrlSuccessAT, SetUserDataAT} from './auth-reducer';
 import thunkMiddleware, {ThunkAction} from 'redux-thunk'
 import { reducer as formReducer} from 'redux-form'
 import {appReducer, SetInitializedAT} from './app-reducer';
@@ -34,7 +34,7 @@ export type AppStateType = ReturnType<typeof rootReducer>;
 export type ActionsTypes = AddPostActionType
     | SendMessageActionType | FollowAT | UnfollowAT | SetUsersAT
     | SetCurrentPageAT | SetTotalUsersCountAT | ToggleIsFetchingAT | AddUserProfileAT | SetUserDataAT
-    | ToggleFollowingProgressAT | SetStatusAT | SetInitializedAT | DeletePostAT | SavePhotoAT
+    | ToggleFollowingProgressAT | SetStatusAT | SetInitializedAT | DeletePostAT | SavePhotoAT | GetCaptchaUrlSuccessAT
 
 
 export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, ActionsTypes>

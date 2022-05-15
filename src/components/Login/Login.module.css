@@ -42,7 +42,7 @@
     color: white;
 }
 .bottom{
-    margin-top: 27%;
+    margin-top: 14%;
     font-style: italic;
 }
 .mail{
@@ -56,4 +56,24 @@
     left: 0;
     right: 0;
     text-align: center;
+}
+.captcha{
+    margin-left: 17px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.captcha img {
+    border-radius: 7px;
+}
+.captcha input {
+    margin-top: -15px;
+    height:40px;
+    font-size: 16px;
+    padding-left: 5px;
+    border: 1px solid;
+    border-radius: 7px;
+}
+.fieldForCaptcha{
+    height: 157px;
 }
