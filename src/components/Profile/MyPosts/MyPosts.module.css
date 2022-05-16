@@ -1,5 +1,7 @@
 .postsBlock {
     padding: 10px;
+    width: 75%;
+    margin: 0 auto;
 }
 .postsTitle{
     text-align: center;
@@ -17,6 +19,7 @@
 }
 .inputAndButtonField{
     margin-top: 10px;
+    margin-bottom: 30px;
     display: flex;
     justify-content: center;
 }
