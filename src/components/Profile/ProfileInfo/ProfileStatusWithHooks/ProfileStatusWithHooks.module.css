@@ -1,0 +1,21 @@
+.status{
+    font-style: italic;
+}
+.input {
+    outline: none;
+    border: none;
+    font-style: italic;
+    font-size: 15px;
+
+    border-radius: 2px;
+}
+.statusTitle{
+    text-decoration: underline;
+    margin-right: 5px;
+    margin-top: 10px;
+}
+.editImage{
+    margin-left: 5px;
+    width: 12px;
+    height: 12px;
+}

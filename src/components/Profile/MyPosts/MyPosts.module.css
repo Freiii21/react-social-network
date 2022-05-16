@@ -1,7 +1,34 @@
 .postsBlock {
     padding: 10px;
 }
-
+.postsBlock h3{
+    text-align: center;
+    font-size: 27px;
+}
+.input{
+    width: 300px;
+    height: 45px;
+    border-radius: 7px;
+    padding: 5px;
+    font-style: italic;
+    margin: 0 auto;
+    resize: none;
+    outline: none;
+}
+.inputAndButtonField{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+.addPostButton{
+    margin-left: 2px;
+    width: 55px;
+    height: 45px;
+    border: 1px solid white;
+    border-radius: 7px;
+    font-weight: bold;
+    cursor: pointer;
+}
 .posts {
     margin-top: 10px;
 }

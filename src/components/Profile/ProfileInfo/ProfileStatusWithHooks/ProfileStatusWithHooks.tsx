@@ -1,4 +1,6 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
+import s from "./ProfileStatusWithHooks.module.css";
+import editIcon from "./../../../../assets/editIcon.svg";
 
 type ProfileStatusPropsType = {
     isOwner:boolean
@@ -22,6 +24,12 @@ export const ProfileStatusWithHooks = (props: ProfileStatusPropsType) => {
         setEditMode(false);
         props.updateStatus(status);
     }
+    const deactivateEditModeByEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter"){
+            setEditMode(false);
+            props.updateStatus(status);
+        }
+    }
     const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
         setStatus(e.currentTarget.value)
     }
@@ -30,21 +38,24 @@ export const ProfileStatusWithHooks = (props: ProfileStatusPropsType) => {
         <div>
             {!editMode &&
             <div>
-                <span onDoubleClick={activateEditMode} >
-                    <span style={{fontWeight:'bold'}}>Status: </span>
+                <span className={s.status}>
+                    <span className={s.statusTitle}>Status:</span>
                     {props.isOwner ?
                         props.status || 'Set your status...'
-                        : props.status || 'user has not set status'
+                        : props.status || '...'
                     }
                 </span>
+                {props.isOwner && <img src={editIcon} alt="" className={s.editImage} onClick={activateEditMode}/>}
             </div>}
             {editMode &&
-            <div>
-                <span style={{fontWeight:'bold'}}>Status: </span>
+            <div className={s.status}>
+                <span className={s.statusTitle}>Status: </span>
                 <input autoFocus
                        onBlur={deactivateEditMode}
+                       onKeyPress={deactivateEditModeByEnter}
                        value={status}
                        onChange={onStatusChange}
+                       className={s.input}
                 />
             </div>}
         </div>
