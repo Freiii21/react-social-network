@@ -2,6 +2,7 @@ import React from 'react';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import {MyPostsContainer} from './MyPosts/MyPostsContainer';
 import {ProfileType} from '../../redux/profile-reducer';
+import s from "./Profile.module.css"
 
 export type ProfilePropsType = {
     isOwner:boolean
@@ -22,6 +23,7 @@ const Profile = (props: ProfilePropsType) => {
                 updateStatus={props.updateStatus}
             />
             {props.isOwner && <MyPostsContainer/>}
+            {!props.isOwner && <div className={s.emptyPostsField}>There are no user`s posts...</div>}
         </div>
     )
 }

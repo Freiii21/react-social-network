@@ -6,6 +6,7 @@ export type PostType = {
     id: number
     message: string
     likesCount: number
+    isLikedIt: boolean
 }
 type ContactsType = {
     facebook: string
@@ -17,7 +18,6 @@ type ContactsType = {
     github: string
     mainLink: null
 }
-
 export type ProfileType = {
     aboutMe: string
     contacts: ContactsType
@@ -37,25 +37,27 @@ export type InitialStateProfilePageType = {
 }
 const initialState:InitialStateProfilePageType = {
     posts: [
-        {id: 1, message: 'Hi, how are you?', likesCount: 12},
-        {id: 2, message: 'It\'s my first post!', likesCount: 11},
+        {id: 1, message: 'Hi, how are you?', likesCount: 12, isLikedIt: false},
+        {id: 2, message: 'It\'s my first post!', likesCount: 77, isLikedIt: false},
     ],
     profile: null,
     status: ""
 }
-
+let postId = 2;
 
 const profileReducer = (state:InitialStateProfilePageType = initialState,action: ActionsTypes):InitialStateProfilePageType => {
     switch (action.type) {
         case 'ADD_POST': {
+            postId += 1;
             let newPost: PostType = {
-                id: 5,
+                id: postId,
                 message: action.newPostBody,
                 likesCount: 0,
+                isLikedIt: false
             };
             return {
                 ...state,
-                posts: [...state.posts, newPost],
+                posts: [newPost, ...state.posts],
             };
         }
         case 'DELETE_POST':{
@@ -90,6 +92,17 @@ const profileReducer = (state:InitialStateProfilePageType = initialState,action:
             }
             return state;
         }
+        case 'HANDLE_LIKE': {
+            const postsCopy = state.posts.map(p => p.id !== action.postId ? p
+                : {...p,
+                    likesCount: action.status ? p.likesCount += 1 : p.likesCount -= 1,
+                    isLikedIt: action.status}
+            );
+            return {
+                ...state,
+                posts: postsCopy
+            }
+        }
         default:
             return state;
     }
@@ -109,6 +122,7 @@ export type SetStatusAT = {
 }
 export type DeletePostAT = ReturnType<typeof deletePostAC>;
 export type SavePhotoAT = ReturnType<typeof savePhotoSuccessAC>;
+export type HandleLikeAT = ReturnType<typeof handleLikeAC>;
 
 export const addPostActionCreator = (newPostBody: string):AddPostActionType => {
     return {
@@ -138,6 +152,13 @@ export const savePhotoSuccessAC = (photo:string) => {
     return {
         type:'SAVE_PHOTO',
         photo
+    } as const;
+};
+export const handleLikeAC = (postId:number, status:boolean) => {
+    return {
+        type:'HANDLE_LIKE',
+        postId,
+        status
     } as const;
 };
 

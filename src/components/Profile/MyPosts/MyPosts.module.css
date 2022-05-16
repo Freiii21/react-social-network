@@ -1,16 +1,16 @@
 .postsBlock {
     padding: 10px;
 }
-.postsBlock h3{
+.postsTitle{
     text-align: center;
-    font-size: 27px;
+    font-size: 24px;
+    font-weight: bold;
 }
 .input{
     width: 300px;
     height: 45px;
     border-radius: 7px;
     padding: 5px;
-    font-style: italic;
     margin: 0 auto;
     resize: none;
     outline: none;
@@ -31,4 +31,15 @@
 }
 .posts {
     margin-top: 10px;
+}
+.inputField{
+    position: relative;
+}
+.inputError{
+    position: absolute;
+    left:0;
+    right: 0;
+    text-align: center;
+    top: 42px;
+    color: red;
 }
