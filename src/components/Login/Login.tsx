@@ -76,14 +76,16 @@ const Login = (props: LoginPropsType) => {
 
     return (
         <div className={s.common}>
-            <h1>Authentication</h1>
-            <LoginReduxForm onSubmit={onSubmit}/>
-            {props.captchaUrl ? <div className={s.captcha}>
-                <img src={props.captchaUrl} alt=""/><br/>
-                <input value={captcha} onChange={onCaptchaChange}/>
+            <div>
+                <h1>Authentication</h1>
+                <LoginReduxForm onSubmit={onSubmit}/>
+                {props.captchaUrl ? <div className={s.captcha}>
+                        <img src={props.captchaUrl} alt=""/><br/>
+                        <input value={captcha} onChange={onCaptchaChange}/>
+                    </div>
+                    : <div className={s.fieldForCaptcha}/>
+                }
             </div>
-                : <div className={s.fieldForCaptcha}/>
-            }
             <div className={s.bottom}>
                 You can use common test account credentials:
                 <div><span className={s.mail}>Login</span>: free@samuraijs.com</div>

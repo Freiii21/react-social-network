@@ -30,10 +30,19 @@ export const Dialogs = (props: DialogsPropsType) => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                {dialogsElements}
+                <div>
+                    {dialogsElements}
+                </div>
+                <div className={s.line}/>
             </div>
-            <div className={s.messages}>
-                <div>{messagesElements}</div>
+            <div className={s.messagesField}>
+                <div className={s.messages}>
+                    <div className={s.companion}>
+                        <img src={props.dialogsPage.dialogs[0].avatar} alt=""/>
+                        <div>{props.dialogsPage.dialogs[0].name}</div>
+                    </div>
+                    {messagesElements}
+                </div>
                 <AddMessageFormRedux onSubmit={addNewMessage}/>
             </div>
         </div>
@@ -46,14 +55,14 @@ const AddMessageForm = (props: InjectedFormProps<DialogsFormDataType>) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div className={s.answerField}>
-                <div>
+
                     <Field component={Textarea}
                            name="newMessageBody"
                            placeholder="Type a message..."
                            className={s.inputField}
                            validate={[required, maxLength50]}
                     />
-                </div>
+
                 <div>
                     <button className={s.sendMessage}>Send</button>
                 </div>

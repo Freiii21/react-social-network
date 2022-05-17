@@ -1,8 +1,8 @@
 .app-wrapper {
     margin: 0 auto;
     display: grid;
-    width: 1200px;
-    min-height: 98vh;
+    max-width: 1200px;
+    min-height: 96vh;
     background-color: powderblue;
     padding: 1px;
     border-radius: 5px;

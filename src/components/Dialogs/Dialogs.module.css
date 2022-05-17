@@ -1,11 +1,17 @@
 .dialogs {
-    display: grid;
-    grid-template-columns: 2fr 10fr;
+    display: flex;
+    min-height: 100%;
+    width: 100%;
 }
 
 .dialogsItems {
-    padding: 10px;
-    color: white;
+    padding: 15px 10px 10px 15px;
+    width: 25%;
+    display: flex;
+    justify-content: space-between;
+}
+.line{
+    border-right: 1px solid darkslategrey;
 }
 
 .dialog {
@@ -30,12 +36,16 @@
     color: orange;
 }
 
-.messages {
-    display: grid;
-    grid-template-rows: 650px 50px;
-    padding: 10px;
-    margin-right: 100px;
-    margin-left: 100px;
+.messagesField {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100%;
+    width: 75%;
+}
+.messages{
+    /*border: 1px solid green;*/
+    padding: 10px 30px 10px 21px;
 }
 
 .message img {
@@ -63,26 +73,44 @@
 }
 
 .answerField {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
 }
 
 .inputField {
-    width: 500px;
-    height: 44px;
+    width: 400px;
+    height: 42px;
+    margin-top: 4px;
     font-size: 13px;
     font-weight: bold;
     padding: 5px;
-    border: 2px solid black;
-    border-radius: 10px;
+    border-radius: 7px;
+    outline: none;
+    resize: none;
 }
 
 .sendMessage {
-    height: 44px;
+    height: 42px;
     margin-left: 5px;
-    margin-top: 0px;
     padding: 10px;
+    border: 1px solid white;
     font-weight: bold;
-    background-color: deepskyblue;
+    background-color: #EFEFEF;
     border-radius: 10px;
+}
+.companion{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+.companion img {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    margin-right: 10px;
 }
