@@ -13,7 +13,7 @@ type MapStateToPropsType = {
     dialogsPage: InitialStateDialogsPageType
 }
 type MapDispatchToPropsType = {
-    sendMessage: (newMessageBody: string) => void
+    sendMessage: (newMessageBody: string, userId: number) => void
 }
 export type DialogsPropsType = MapStateToPropsType & MapDispatchToPropsType;
 
@@ -24,8 +24,8 @@ const mapStateToProps = (state:AppStateType):MapStateToPropsType => {
 };
 const mapDispatchToProps = (dispatch: Dispatch):MapDispatchToPropsType => {
     return {
-        sendMessage: (newMessageBody: string) => {
-            dispatch(sendMessageActionCreator(newMessageBody))
+        sendMessage: (newMessageBody: string, userId: number) => {
+            dispatch(sendMessageActionCreator(newMessageBody, userId))
         }
     }
 };

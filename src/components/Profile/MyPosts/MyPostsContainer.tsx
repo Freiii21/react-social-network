@@ -18,7 +18,7 @@ export type MyPostsPropsType = MapStateToPropsType & MapDispatchToPropsType;
 const mapStateToProps = (state:AppStateType):MapStateToPropsType => {
     return {
         posts: state.profilePage.posts,
-        avatar: state.profilePage.profile?.photos.small
+        avatar: state.profilePage.profile?.photos.large
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch):MapDispatchToPropsType => {

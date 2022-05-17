@@ -86,7 +86,7 @@ const profileReducer = (state:InitialStateProfilePageType = initialState,action:
                         ...state.profile,
                         photos:{
                             ...state.profile.photos,
-                            small: action.photo
+                            large: action.photo
                         }}
                 }
             }

@@ -14,32 +14,39 @@ export type DialogsFormDataType = {
 const maxLength50 = maxLengthCreator(50);
 
 export const Dialogs = (props: DialogsPropsType) => {
-    const dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name}
-                                                                           key={d.id}
-                                                                           id={d.id}
-                                                                           avatar={d.avatar}/>);
-    const messagesElements = props.dialogsPage.messages.map(m => <Message message={m.message}
-                                                                          key={m.id}
-                                                                          owner={m.owner}
-                                                                          avatar={m.avatar}/>);
+    const usersList = props.dialogsPage.dialogs.map(d =>
+        <DialogItem name={d.name}
+                    key={d.id}
+                    id={d.id}
+                    avatar={d.avatar}
+        />);
+
+    const messagesElements = props.dialogsPage.messages[props.dialogsPage.activeInterlocutor].map(m =>
+        <Message
+            message={m.message}
+            key={m.id}
+            owner={m.owner}
+            myAvatar={props.dialogsPage.myAvatar}
+            friendAvatar={m.avatar}
+        />);
 
     const addNewMessage = (values: DialogsFormDataType) => {
-        props.sendMessage(values.newMessageBody);
+        props.sendMessage(values.newMessageBody, props.dialogsPage.activeInterlocutor);
     }
 
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
                 <div>
-                    {dialogsElements}
+                    {usersList}
                 </div>
                 <div className={s.line}/>
             </div>
             <div className={s.messagesField}>
                 <div className={s.messages}>
                     <div className={s.companion}>
-                        <img src={props.dialogsPage.dialogs[0].avatar} alt=""/>
-                        <div>{props.dialogsPage.dialogs[0].name}</div>
+                        <img src={props.dialogsPage.dialogs[props.dialogsPage.activeInterlocutor].avatar} alt=""/>
+                        <div>{props.dialogsPage.dialogs[props.dialogsPage.activeInterlocutor].name}</div>
                     </div>
                     {messagesElements}
                 </div>

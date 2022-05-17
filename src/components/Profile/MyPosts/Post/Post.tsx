@@ -1,6 +1,6 @@
 import React from 'react';
 import s from "./Post.module.css"
-import ava from './../../../../assets/profile/ava.jpg'
+import ava from './../../../../assets/users/user1.jpg'
 import like from './../../../../assets/profile/like.svg'
 import like0 from './../../../../assets/profile/like0.svg'
 import deleteIcon from './../../../../assets/deleteIcon.svg'
