@@ -36,7 +36,6 @@
     cursor: pointer;
 }
 .name{
-    /*width: 230px;*/
     text-align: center;
     font-weight: bold;
     font-size: 30px;
@@ -51,4 +50,10 @@
     margin-top: 5px;
     width: 75%;
     border-bottom: 1px solid darkslategrey;
+}
+.preloader{
+    height: 316px;
+    display: flex;
+    justify-content: center;
+    position: relative;
 }

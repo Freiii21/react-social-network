@@ -22,8 +22,15 @@ const ProfileInfo = (props:ProfileInfoPropsType) => {
 
 
     if (!props.profile) {
-        return <Preloader/>
+        return <div className={s.preloader}>
+            <Preloader/>
+            <div className={s.line}/>
+        </div>
     }
+    // return <div className={s.preloader}>
+    //     <Preloader/>
+    //     <div className={s.line}/>
+    // </div>
 
     return (
         <div className={s.profileInfoBlock}>
