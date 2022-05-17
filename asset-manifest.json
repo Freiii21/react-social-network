@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.css": "/react-social-network/static/css/main.eb27d52b.chunk.css",
-    "main.js": "/react-social-network/static/js/main.4e5e68b5.chunk.js",
-    "main.js.map": "/react-social-network/static/js/main.4e5e68b5.chunk.js.map",
+    "main.css": "/react-social-network/static/css/main.167d1c0a.chunk.css",
+    "main.js": "/react-social-network/static/js/main.5ddebd32.chunk.js",
+    "main.js.map": "/react-social-network/static/js/main.5ddebd32.chunk.js.map",
     "runtime-main.js": "/react-social-network/static/js/runtime-main.4169cffb.js",
     "runtime-main.js.map": "/react-social-network/static/js/runtime-main.4169cffb.js.map",
-    "static/js/2.09ac08c7.chunk.js": "/react-social-network/static/js/2.09ac08c7.chunk.js",
-    "static/js/2.09ac08c7.chunk.js.map": "/react-social-network/static/js/2.09ac08c7.chunk.js.map",
+    "static/js/2.efd603b4.chunk.js": "/react-social-network/static/js/2.efd603b4.chunk.js",
+    "static/js/2.efd603b4.chunk.js.map": "/react-social-network/static/js/2.efd603b4.chunk.js.map",
     "static/css/3.28f40826.chunk.css": "/react-social-network/static/css/3.28f40826.chunk.css",
     "static/js/3.e97f41f2.chunk.js": "/react-social-network/static/js/3.e97f41f2.chunk.js",
     "static/js/3.e97f41f2.chunk.js.map": "/react-social-network/static/js/3.e97f41f2.chunk.js.map",
@@ -14,8 +14,8 @@
     "static/js/4.71cb6211.chunk.js.map": "/react-social-network/static/js/4.71cb6211.chunk.js.map",
     "index.html": "/react-social-network/index.html",
     "static/css/3.28f40826.chunk.css.map": "/react-social-network/static/css/3.28f40826.chunk.css.map",
-    "static/css/main.eb27d52b.chunk.css.map": "/react-social-network/static/css/main.eb27d52b.chunk.css.map",
-    "static/js/2.09ac08c7.chunk.js.LICENSE.txt": "/react-social-network/static/js/2.09ac08c7.chunk.js.LICENSE.txt",
+    "static/css/main.167d1c0a.chunk.css.map": "/react-social-network/static/css/main.167d1c0a.chunk.css.map",
+    "static/js/2.efd603b4.chunk.js.LICENSE.txt": "/react-social-network/static/js/2.efd603b4.chunk.js.LICENSE.txt",
     "static/media/Valera.ef0845d2.jpg": "/react-social-network/static/media/Valera.ef0845d2.jpg",
     "static/media/Viktor.c3216a32.jpg": "/react-social-network/static/media/Viktor.c3216a32.jpg",
     "static/media/ava.c1b533b6.jpg": "/react-social-network/static/media/ava.c1b533b6.jpg",
@@ -29,8 +29,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.4169cffb.js",
-    "static/js/2.09ac08c7.chunk.js",
-    "static/css/main.eb27d52b.chunk.css",
-    "static/js/main.4e5e68b5.chunk.js"
+    "static/js/2.efd603b4.chunk.js",
+    "static/css/main.167d1c0a.chunk.css",
+    "static/js/main.5ddebd32.chunk.js"
   ]
 }
