@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './../Dialogs.module.css';
+import s from './Message.module.css';
 
 type MessagePropsType = {
     message: string
@@ -13,7 +13,9 @@ export const Message = (props: MessagePropsType) => {
         <div className={s.message}>
             <div className={s[props.owner]}>
                 {props.owner !== "me" ? <img src={props.friendAvatar} alt='ava'/> : false}
-                {props.message}
+                <div className={s.messageTextFiled}>
+                    {props.message}
+                </div>
                 {props.owner === "me" ? <img src={props.myAvatar} alt='ava'/> : false}
             </div>
         </div>

@@ -17,6 +17,9 @@ const MyPosts = React.memo((props: MyPostsPropsType) => {
         props.deletePost(postIdForDeletion)
         setShowModalWindow(false)
     }
+    const onCancelDeletePost = () => {
+        showModalOnDeletePost(false, 0)
+    }
 
     let postsElements = props.posts.map((p) => <Post message={p.message}
                                                      key={p.id}
@@ -67,7 +70,7 @@ const MyPosts = React.memo((props: MyPostsPropsType) => {
                         <div className={s.confirmField}>Delete the post?</div>
                         <div>
                             <button className={s.confirmButton} onClick={onDeletePost}>Yes</button>
-                            <button className={s.confirmButton} onClick={() => showModalOnDeletePost(false, 0)}>No</button>
+                            <button className={s.confirmButton} onClick={onCancelDeletePost}>No</button>
                         </div>
                     </div>
                 </div>

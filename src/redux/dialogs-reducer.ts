@@ -51,28 +51,29 @@ let initialState:InitialStateDialogsPageType = {
     ],
     messages:{
         0: [
-            {id: 1, message: 'hi', owner: 'me', avatar: me},
-            {id: 2, message: 'Yo', owner: 'you', avatar: Dimych},
-            {id: 3, message: 'How is your it-kamasutra?', owner: 'me', avatar: me},
-            {id: 4, message: 'Good enough, dude!', owner: 'you', avatar: Dimych},
+            {id: -1, message: 'hi', owner: 'me', avatar: me},
+            {id: -2, message: 'Yo', owner: 'you', avatar: Dimych},
+            {id: -3, message: 'How is your it-kamasutra?', owner: 'me', avatar: me},
+            {id: -4, message: 'Good enough, dude!', owner: 'you', avatar: Dimych},
         ],
         1: [
-            {id: 1, message: 'hi', owner: 'me', avatar: me},
-            {id: 2, message: 'I`m Ignat!', owner: 'you', avatar: Ignat},
+            {id: -5, message: 'hi', owner: 'me', avatar: me},
+            {id: -6, message: 'I`m Ignat!', owner: 'you', avatar: Ignat},
         ],
         2:[], 3:[], 4:[], 5:[], 6:[], 7:[], 8:[], 9:[], 10:[]
     }
 }
-
+let messageId = 0;
 const dialogsReducer = (state:InitialStateDialogsPageType = initialState, action: ActionsTypes):InitialStateDialogsPageType => {
     switch (action.type) {
         case 'SEND-MESSAGE': {
             let newMessage: MessageType = {
-                id: 99,
+                id: messageId,
                 message: action.newMessageBody,
                 owner: 'me',
                 avatar: me,
             };
+            messageId++;
             return {
                 ...state,
                 messages: {

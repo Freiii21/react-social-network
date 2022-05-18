@@ -1,26 +1,26 @@
-import React, {useEffect} from 'react';
+import React, {ChangeEvent, useEffect, useRef, useState} from 'react';
 import s from './Dialogs.module.css';
 import {Message} from './Message/Message'
 import {DialogItem} from './DialogItem/DialogItem';
 import {DialogsPropsType} from './DialogsContainer';
-import {Field, InjectedFormProps, reduxForm} from 'redux-form';
-import {Textarea} from '../common/FormsControls/FormsControls';
-import {maxLengthCreator, required} from '../../utils/validators/validators';
 
-export type DialogsFormDataType = {
-    newMessageBody: string
-    authorizedUserId: number | null
-}
-
-const maxLength50 = maxLengthCreator(50);
 
 export const Dialogs = (props: DialogsPropsType) => {
+    const bottomPage = useRef<null | HTMLDivElement>(null);
+    // const bottomPageRefScroll = () => {
+    //     bottomPage.current && bottomPage.current.scrollIntoView({behavior: 'smooth', block: 'start'});
+    // }
     useEffect(()=>{
         if(props.authorizedUserId){
             props.getUserProfile(props.authorizedUserId)
         }
         // eslint-disable-next-line
     },[])
+
+    // useEffect(()=>{
+    //     bottomPageRefScroll();
+    //     // eslint-disable-next-line
+    // },[props.dialogsPage.messages])
 
     const usersList = props.dialogsPage.dialogs.map(d =>
         <DialogItem name={d.name}
@@ -31,7 +31,7 @@ export const Dialogs = (props: DialogsPropsType) => {
                     activeInterlocutor={props.dialogsPage.activeInterlocutor}
         />);
 
-    const messagesElements = props.dialogsPage.messages[props.dialogsPage.activeInterlocutor].map(m =>
+    const messagesElementsFromState = props.dialogsPage.messages[props.dialogsPage.activeInterlocutor].map(m =>
         <Message
             message={m.message}
             key={m.id}
@@ -39,11 +39,24 @@ export const Dialogs = (props: DialogsPropsType) => {
             myAvatar={props.dialogsPage.myAvatar}
             friendAvatar={m.avatar}
         />);
+    const messagesElements = messagesElementsFromState.length > 0 ? messagesElementsFromState
+        : <div className={s.messagesFiller}>There are no messages yet...</div>
 
-    const addNewMessage = (values: DialogsFormDataType) => {
-        props.sendMessage(values.newMessageBody, props.dialogsPage.activeInterlocutor);
+    const [message, setMessage] = useState<string>("")
+    const [error, setError] = useState<string>("")
+    const omMessageType = (e:ChangeEvent<HTMLTextAreaElement>) => {
+        setError("")
+        setMessage(e.currentTarget.value)
     }
 
+    const addNewMessage = () => {
+        if(!message){
+            setError("Message cannot be empty")
+        } else {
+            props.sendMessage(message, props.dialogsPage.activeInterlocutor);
+            setMessage("");
+        }
+    }
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
@@ -60,33 +73,20 @@ export const Dialogs = (props: DialogsPropsType) => {
                     </div>
                     {messagesElements}
                 </div>
-                <AddMessageFormRedux onSubmit={addNewMessage}/>
+                {/*<AddMessageFormRedux onSubmit={addNewMessage}/>*/}
+                <div className={s.answerField}>
+                    <div className={s.textareaFiled}>
+                        <textarea placeholder="Type a message..."
+                                 value={message}
+                                 onChange={omMessageType}
+                                 className={s.inputField}/>
+                        {error && <div className={s.error}>{error}</div>}
+                    </div>
+                    <div ref={bottomPage}>
+                        <button className={s.sendMessage} onClick={addNewMessage}>Send</button>
+                    </div>
+                </div>
             </div>
         </div>
     )
 }
-
-
-
-const AddMessageForm = (props: InjectedFormProps<DialogsFormDataType>) => {
-    return (
-        <form onSubmit={props.handleSubmit}>
-            <div className={s.answerField}>
-
-                    <Field component={Textarea}
-                           name="newMessageBody"
-                           placeholder="Type a message..."
-                           className={s.inputField}
-                           validate={[required, maxLength50]}
-                    />
-
-                <div>
-                    <button className={s.sendMessage}>Send</button>
-                </div>
-            </div>
-        </form>
-    )
-}
-
-
-const AddMessageFormRedux = reduxForm<DialogsFormDataType>({form: "dialogAddMessageForm"})(AddMessageForm);
