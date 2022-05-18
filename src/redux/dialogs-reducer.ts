@@ -51,16 +51,41 @@ let initialState:InitialStateDialogsPageType = {
     ],
     messages:{
         0: [
-            {id: -1, message: 'hi', owner: 'me', avatar: me},
+            {id: -1, message: 'Hi', owner: 'me', avatar: me},
             {id: -2, message: 'Yo', owner: 'you', avatar: Dimych},
             {id: -3, message: 'How is your it-kamasutra?', owner: 'me', avatar: me},
-            {id: -4, message: 'Good enough, dude!', owner: 'you', avatar: Dimych},
+            {id: -4, message: 'Good enough, dude', owner: 'you', avatar: Dimych},
+            {id: -5, message: 'If you are ready, then come to my course!', owner: 'you', avatar: Dimych},
         ],
         1: [
-            {id: -5, message: 'hi', owner: 'me', avatar: me},
-            {id: -6, message: 'I`m Ignat!', owner: 'you', avatar: Ignat},
+            {id: -6, message: 'Hello', owner: 'you', avatar: Ignat},
+            {id: -7, message: 'Hey, what`s up?', owner: 'me', avatar: me},
+            {id: -8, message: 'Did you do all my tasks?', owner: 'you', avatar: Ignat},
+            {id: -9, message: 'Yes, sure', owner: 'me', avatar: me},
         ],
-        2:[], 3:[], 4:[], 5:[], 6:[], 7:[], 8:[], 9:[], 10:[]
+        2:[
+            {id: -10, message: 'Good afternoon, Sveta', owner: 'me', avatar: me},
+            {id: -11, message: "I finally made my portfolio, yahoooo. Thanks for your lessons!", owner: 'me', avatar: me},
+            {id: -12, message: 'Checked it. Looks nice and modern. Well done.', owner: 'you', avatar: Sveta},
+        ],
+        3:[
+            {id: -13, message: 'Just a reminder, the next English class is on Monday at 19:00. Don\'t forget to get ready.', owner: 'you', avatar: Natalia},
+            {id: -14, message: 'I will be on time, thank you!', owner: 'me', avatar: me},
+        ],
+        4:[],
+        5:[],
+        6:[
+            {id: -15, message: 'It was a hot night, honey.', owner: 'you', avatar: Scarlett},
+            {id: -16, message: 'Call me!', owner: 'you', avatar: Scarlett},
+        ],
+        7:[
+            {id: -17, message: 'Man, that was a hefty heap on that bed...', owner: 'you', avatar: Johnny},
+        ],
+        8:[],
+        9:[
+            {id: -18, message: 'Hey Ross, how are your dinosaurs?', owner: 'me', avatar: me},
+        ],
+        10:[]
     }
 }
 let messageId = 0;
