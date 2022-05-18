@@ -14,12 +14,12 @@ export type FriendType = {
 
 let initialState:InitialStateSidebarType = {
     friends: [
-        {id: 1, name: 'Keanu', avatar: Keanu},
-        {id: 2, name: 'Scarlett', avatar: Scarlett},
-        {id: 3, name: 'Johnny', avatar: Johnny},
-        {id: 4, name: 'Rachel', avatar: Rachel},
-        {id: 5, name: 'Ross', avatar: Ross},
-        {id: 6, name: 'Phoebe', avatar: Phoebe},
+        {id: 5, name: 'Keanu', avatar: Keanu},
+        {id: 6, name: 'Scarlett', avatar: Scarlett},
+        {id: 7, name: 'Johnny', avatar: Johnny},
+        {id: 8, name: 'Rachel', avatar: Rachel},
+        {id: 9, name: 'Ross', avatar: Ross},
+        {id: 10, name: 'Phoebe', avatar: Phoebe},
     ]
 }
 export type InitialStateSidebarType = {
