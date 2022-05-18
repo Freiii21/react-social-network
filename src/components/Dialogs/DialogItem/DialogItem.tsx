@@ -1,22 +1,24 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
-import s from './../Dialogs.module.css';
+import s from './DialogItem.module.css';
 
 type DialogItemPropsType = {
     id: number
     name: string
     avatar: string
+    changeActiveCompanion: (companionId: number) => void
+    activeInterlocutor: number
 }
 
 export const DialogItem = (props: DialogItemPropsType) => {
-    let path = '/dialogs/' + props.id;
+    const onCompanionClick = () => {
+        props.changeActiveCompanion(props.id)
+    }
+    const mainClass = props.activeInterlocutor !== props.id ? s.dialog : `${s.dialog} ${s.active}`
 
     return (
-        <div className={s.dialog}>
-            <img src={props.avatar} alt=""/>
-            <NavLink to={path} className={({isActive}) => (isActive ? s.activeLink : '')}>
-                {props.name}
-            </NavLink>
+        <div className={mainClass}>
+            <img src={props.avatar} alt="" onClick={onCompanionClick} className={s.avatar}/>
+            <div className={s.name}>{props.name}</div>
         </div>
     )
 }

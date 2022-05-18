@@ -27,10 +27,6 @@ const ProfileInfo = (props:ProfileInfoPropsType) => {
             <div className={s.line}/>
         </div>
     }
-    // return <div className={s.preloader}>
-    //     <Preloader/>
-    //     <div className={s.line}/>
-    // </div>
 
     return (
         <div className={s.profileInfoBlock}>
@@ -38,7 +34,7 @@ const ProfileInfo = (props:ProfileInfoPropsType) => {
                 <div className={s.avatarField}>
                     <img src={props.profile.photos.large ? props.profile.photos.large : defaultUserPhoto} alt="" className={s.avatar}/>
                     {props.isOwner && <label htmlFor={"file"}>
-                        <input type={'file'} onChange={onMainPhotoSelected} id={'file'} hidden/>Select photo</label>}
+                        <input type={'file'} accept="image/*" onChange={onMainPhotoSelected} id={'file'} hidden/>Select photo</label>}
                 </div>
                 <div className={s.name}>
                     {props.profile.fullName}

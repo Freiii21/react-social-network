@@ -4,6 +4,7 @@ import {MyPostsContainer} from './MyPosts/MyPostsContainer';
 import {ProfileType} from '../../redux/profile-reducer';
 import s from "./Profile.module.css"
 
+
 export type ProfilePropsType = {
     isOwner:boolean
     savePhoto:(photo: File)=>void
@@ -14,7 +15,7 @@ export type ProfilePropsType = {
 
 const Profile = (props: ProfilePropsType) => {
     return (
-        <div>
+        <div className={s.profilePage}>
             <ProfileInfo
                 isOwner={props.isOwner}
                 savePhoto={props.savePhoto}
@@ -22,7 +23,7 @@ const Profile = (props: ProfilePropsType) => {
                 status={props.status}
                 updateStatus={props.updateStatus}
             />
-            {props.isOwner && <MyPostsContainer/>}
+            {props.isOwner && <MyPostsContainer />}
             {!props.isOwner && <div className={s.emptyPostsField}>There are no user`s posts...</div>}
         </div>
     )

@@ -181,7 +181,7 @@ export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
 export const savePhoto = (photo: File) => async (dispatch: Dispatch) => {
     const response = await profileAPI.savePhoto(photo);
     if (response.resultCode === 0) {
-        dispatch(savePhotoSuccessAC(response.data.photos.small));
+        dispatch(savePhotoSuccessAC(response.data.photos.large));
     }
 }
 

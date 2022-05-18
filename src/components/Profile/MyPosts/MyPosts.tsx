@@ -4,22 +4,33 @@ import Post from './Post/Post';
 import {MyPostsPropsType} from './MyPostsContainer';
 
 const MyPosts = React.memo((props: MyPostsPropsType) => {
+    const [showModalWindow, setShowModalWindow] = useState<boolean>(false)
+    const [postText, setPostText] = useState<string>("");
+    const [error, setError] = useState<string>("");
+    const [postIdForDeletion, setPostIdForDeletion] = useState<number>(0);
+
+    const showModalOnDeletePost = (status: boolean, postId: number) => {
+        setShowModalWindow(status)
+        setPostIdForDeletion(postId);
+    }
+    const onDeletePost = () => {
+        props.deletePost(postIdForDeletion)
+        setShowModalWindow(false)
+    }
+
     let postsElements = props.posts.map((p) => <Post message={p.message}
                                                      key={p.id}
                                                      id={p.id}
                                                      avatar={props.avatar}
                                                      likeStatus={p.isLikedIt}
                                                      handleLike={props.handleLike}
-                                                     deletePost={props.deletePost}
+                                                     showModalOnDeletePost={showModalOnDeletePost}
                                                      likesCount={p.likesCount}/>);
 
-    const [postText, setPostText] = useState<string>("");
-    const [error, setError] = useState<string>("");
     const onPostTextChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
         setError("")
         setPostText(e.currentTarget.value)
     }
-
     const addNewPost = () => {
         if (postText === ""){
             setError("Post cannot be empty")
@@ -30,23 +41,37 @@ const MyPosts = React.memo((props: MyPostsPropsType) => {
     }
 
     return (
-        <div className={s.postsBlock}>
-            <div className={s.postsTitle}>My posts</div>
-            <div className={s.inputAndButtonField}>
-                <div className={s.inputField}>
+        <div>
+            <div className={s.postsBlock}>
+                <div className={s.postsTitle}>My posts</div>
+                <div className={s.inputAndButtonField}>
+                    <div className={s.inputField}>
                     <textarea placeholder="Type a post..."
                               onChange={onPostTextChange}
                               value={postText}
                               className={s.input}/>
-                    {error && <div className={s.inputError}>{error}</div>}
+                        {error && <div className={s.inputError}>{error}</div>}
+                    </div>
+                    <div>
+                        <button className={s.addPostButton} onClick={addNewPost}>Add post</button>
+                    </div>
                 </div>
-                <div>
-                    <button className={s.addPostButton} onClick={addNewPost}>Add post</button>
+                <div className={s.posts}>
+                    {postsElements}
                 </div>
             </div>
-            <div className={s.posts}>
-                {postsElements}
-            </div>
+            {showModalWindow && <div>
+                <div className={s.backgoundForModalWindow}/>
+                <div className={s.modalWindowField}>
+                    <div className={s.modalWindow}>
+                        <div className={s.confirmField}>Delete the post?</div>
+                        <div>
+                            <button className={s.confirmButton} onClick={onDeletePost}>Yes</button>
+                            <button className={s.confirmButton} onClick={() => showModalOnDeletePost(false, 0)}>No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>}
         </div>
     )
 })

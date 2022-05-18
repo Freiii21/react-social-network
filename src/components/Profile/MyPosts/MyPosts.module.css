@@ -46,3 +46,46 @@
     top: 42px;
     color: red;
 }
+.backgoundForModalWindow{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    background-color: black;
+    opacity: 0.4;
+}
+.modalWindowField{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modalWindow{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: white;
+    width: 350px;
+    height: 150px;
+    border-radius: 7px;
+    box-shadow: 0 0 3px white;
+}
+.confirmField{
+    font-size: 30px;
+    font-weight: bold;
+}
+.confirmButton{
+    width: 90px;
+    height: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 7px;
+    border: none;
+    font-weight: bold;
+    box-shadow: 0 0 3px black;
+    cursor: pointer;
+}

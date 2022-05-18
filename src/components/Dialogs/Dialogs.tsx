@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import s from './Dialogs.module.css';
 import {Message} from './Message/Message'
 import {DialogItem} from './DialogItem/DialogItem';
@@ -9,16 +9,26 @@ import {maxLengthCreator, required} from '../../utils/validators/validators';
 
 export type DialogsFormDataType = {
     newMessageBody: string
+    authorizedUserId: number | null
 }
 
 const maxLength50 = maxLengthCreator(50);
 
 export const Dialogs = (props: DialogsPropsType) => {
+    useEffect(()=>{
+        if(props.authorizedUserId){
+            props.getUserProfile(props.authorizedUserId)
+        }
+        // eslint-disable-next-line
+    },[])
+
     const usersList = props.dialogsPage.dialogs.map(d =>
         <DialogItem name={d.name}
                     key={d.id}
                     id={d.id}
                     avatar={d.avatar}
+                    changeActiveCompanion={props.changeActiveCompanion}
+                    activeInterlocutor={props.dialogsPage.activeInterlocutor}
         />);
 
     const messagesElements = props.dialogsPage.messages[props.dialogsPage.activeInterlocutor].map(m =>

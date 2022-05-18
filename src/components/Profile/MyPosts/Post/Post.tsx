@@ -11,7 +11,7 @@ type PostPropsType = {
     avatar: string | undefined
     likeStatus: boolean
     handleLike:(postId:number, status:boolean) => void
-    deletePost:(postId:number) => void
+    showModalOnDeletePost:(status: boolean, postId: number)=>void
     likesCount: number
 }
 
@@ -20,15 +20,15 @@ const Post = (props: PostPropsType) => {
     const onLikeClick = () => {
         props.handleLike(props.id, !props.likeStatus)
     }
-    const onDeletePost = () => {
-        props.deletePost(props.id)
+    const showModalOnDeletePost = () => {
+        props.showModalOnDeletePost(true, props.id)
     }
     return (
         <div className={s.item}>
             <div className={s.messageBlock}>
                 <img className={s.avatar} src={props.avatar ? props.avatar : ava} alt=""/>
                 <span>{props.message}</span>
-                <img src={deleteIcon} alt="" className={s.delete} onClick={onDeletePost}/>
+                <img src={deleteIcon} alt="" className={s.delete} onClick={showModalOnDeletePost}/>
             </div>
             <div>
                 <span className={s.likes} onClick={onLikeClick}>

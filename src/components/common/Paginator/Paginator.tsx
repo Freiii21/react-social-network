@@ -30,7 +30,7 @@ export const Paginator = (props: PaginatorPropsType) => {
                     className={s.button}>PREV</button>
             {pages
                 .filter(p => p >= leftPortionPageNumber && p <=rightPortionPageNumber)
-                .map(p => <span
+                .map((p,index) => <span key={index}
                 className={props.currentPage === p ? s.selectedPage : s.usual}
                 onClick={(e) => props.onPageChanged(p)}
             >{p}</span>)}

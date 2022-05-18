@@ -4,7 +4,7 @@ import profileReducer, {
     AddUserProfileAT, DeletePostAT, HandleLikeAT, SavePhotoAT,
     SetStatusAT
 } from './profile-reducer';
-import dialogsReducer, {SendMessageActionType} from './dialogs-reducer';
+import dialogsReducer, {ChangeActiveCompanionAT, SendMessageActionType} from './dialogs-reducer';
 import sidebarReducer from './sidebar-reducer';
 import usersReducer, {
     FollowAT,
@@ -35,7 +35,7 @@ export type ActionsTypes = AddPostActionType
     | SendMessageActionType | FollowAT | UnfollowAT | SetUsersAT
     | SetCurrentPageAT | SetTotalUsersCountAT | ToggleIsFetchingAT | AddUserProfileAT | SetUserDataAT
     | ToggleFollowingProgressAT | SetStatusAT | SetInitializedAT | DeletePostAT | SavePhotoAT | GetCaptchaUrlSuccessAT
-    | HandleLikeAT
+    | HandleLikeAT | ChangeActiveCompanionAT
 
 
 export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, ActionsTypes>

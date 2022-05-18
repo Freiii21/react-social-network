@@ -4,7 +4,7 @@ import {getAuthUserData} from './auth-reducer';
 const SET_INITIALIZED = 'SET_INITIALIZED';
 
 const initialState = {
-    initialized: false
+    initialized: false,
 }
 
 type initialStateType = typeof initialState;

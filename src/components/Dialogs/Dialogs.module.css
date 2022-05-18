@@ -14,27 +14,7 @@
     border-right: 1px solid darkslategrey;
 }
 
-.dialog {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-}
 
-.dialog img {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    margin-right: 5px;
-}
-
-.dialog a {
-    text-decoration: none;
-    color: black;
-}
-
-.dialog a.activeLink {
-    color: orange;
-}
 
 .messagesField {
     display: flex;
