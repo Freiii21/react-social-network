@@ -27,7 +27,7 @@ export const Users = (props: UsersPropsType2) => {
 
     return (
         <div className={s.usersTab}>
-            {props.isFetching && <Preloader/>}
+            {props.isFetching && <Preloader marginTop={"43px"}/>}
             <div className={s.paginator}>
                 <Paginator totalItemssCount={props.totalUsersCount} pageSize={props.pageSize}
                            currentPage={props.currentPage} onPageChanged={props.onPageChanged}/>
