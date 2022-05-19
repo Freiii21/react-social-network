@@ -17,6 +17,7 @@ type PostPropsType = {
 
 const Post = (props: PostPropsType) => {
     const likesIcon = props.likesCount > 0 ? like : like0;
+    const likes = props.likesCount === 0 ? s.likes : `${s.likes} ${s.likesActive}`
     const onLikeClick = () => {
         props.handleLike(props.id, !props.likeStatus)
     }
@@ -31,9 +32,9 @@ const Post = (props: PostPropsType) => {
                 <img src={deleteIcon} alt="" className={s.delete} onClick={showModalOnDeletePost}/>
             </div>
             <div>
-                <span className={s.likes} onClick={onLikeClick}>
+                <span className={likes} onClick={onLikeClick}>
                     <img src={likesIcon} alt=""/>
-                    {props.likesCount}
+                    <div className={s.likeNumber}>{props.likesCount}</div>
                 </span>
             </div>
         </div>

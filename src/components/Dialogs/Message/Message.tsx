@@ -9,10 +9,10 @@ type MessagePropsType = {
 }
 
 export const Message = (props: MessagePropsType) => {
-    const message = props.message.replace(
-        /\b(https?\:\/\/\S+)/mg,
-        '<a href="$1">$1</a>'
-    );
+    // const message = props.message.replace(
+    //     /\b(https?\:\/\/\S+)/mg,
+    //     '<a href="$1">$1</a>'
+    // );
 
 
     return (
@@ -20,8 +20,7 @@ export const Message = (props: MessagePropsType) => {
             <div className={s[props.owner]}>
                 {props.owner !== "me" ? <img src={props.friendAvatar} alt='ava'/> : false}
                 <div className={s.messageTextFiled}>
-                    {message}
-                    {/*{props.message}*/}
+                    {props.message}
                 </div>
                 {props.owner === "me" ? <img src={props.myAvatar} alt='ava'/> : false}
             </div>

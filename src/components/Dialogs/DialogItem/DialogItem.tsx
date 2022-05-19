@@ -16,8 +16,8 @@ export const DialogItem = (props: DialogItemPropsType) => {
     const mainClass = props.activeInterlocutor !== props.id ? s.dialog : `${s.dialog} ${s.active}`
 
     return (
-        <div className={mainClass}>
-            <img src={props.avatar} alt="" onClick={onCompanionClick} className={s.avatar}/>
+        <div className={mainClass} onClick={onCompanionClick}>
+            <img src={props.avatar} alt="" className={s.avatar}/>
             <div className={s.name}>{props.name}</div>
         </div>
     )

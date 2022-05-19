@@ -25,9 +25,16 @@
     font-weight: bold;
     display: flex;
     align-items: center;
+    justify-content: center;
     margin-left: 2px;
     cursor: pointer;
     width: 40px;
+}
+.likesActive{
+    color: #b93e3e;
+}
+.likeNumber{
+    width: 15px;
 }
 .likes img{
     margin: 2px;

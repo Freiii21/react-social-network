@@ -1,8 +1,14 @@
-.userPhoto {
-    width: 100px;
+.usersTab{
+    height: 100%;
+    position: relative;
 }
 .paginator{
+    height: 40px;
     width: 100%;
     text-align: center;
-    margin-top: 5px;
+}
+.usersFiled{
+    height: 93%;
+    display: flex;
+    justify-content: center;
 }

@@ -7,9 +7,9 @@ import {DialogsPropsType} from './DialogsContainer';
 
 export const Dialogs = (props: DialogsPropsType) => {
     const bottomPage = useRef<null | HTMLDivElement>(null);
-    // const bottomPageRefScroll = () => {
-    //     bottomPage.current && bottomPage.current.scrollIntoView({behavior: 'smooth', block: 'start'});
-    // }
+    const bottomPageRefScroll = () => {
+        bottomPage.current && bottomPage.current.scrollIntoView({behavior: 'smooth', block: 'start'});
+    }
     useEffect(()=>{
         if(props.authorizedUserId){
             props.getUserProfile(props.authorizedUserId)
@@ -17,10 +17,10 @@ export const Dialogs = (props: DialogsPropsType) => {
         // eslint-disable-next-line
     },[])
 
-    // useEffect(()=>{
-    //     bottomPageRefScroll();
-    //     // eslint-disable-next-line
-    // },[props.dialogsPage.messages])
+    useEffect(()=>{
+        bottomPageRefScroll();
+        // eslint-disable-next-line
+    },[props.dialogsPage.messages, props.dialogsPage.activeInterlocutor])
 
     const usersList = props.dialogsPage.dialogs.map(d =>
         <DialogItem name={d.name}
