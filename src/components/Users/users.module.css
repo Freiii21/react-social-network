@@ -8,7 +8,7 @@
     text-align: center;
 }
 .usersFiled{
-    height: 93%;
+    max-height: 93%;
     display: flex;
     justify-content: center;
 }

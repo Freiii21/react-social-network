@@ -31,6 +31,7 @@ const MyPosts = React.memo((props: MyPostsPropsType) => {
                                                      likesCount={p.likesCount}/>);
 
     const onPostTextChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
+        debugger
         setError("")
         setPostText(e.currentTarget.value)
     }

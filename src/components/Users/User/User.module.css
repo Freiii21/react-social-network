@@ -4,7 +4,7 @@
     margin-top: 15px;
 }
 .userField{
-    height: 341px;
+    min-height: 341px;
     width: 270px;
     display: flex;
     flex-direction: column;

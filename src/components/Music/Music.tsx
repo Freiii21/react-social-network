@@ -6,7 +6,7 @@ import defaultCover from './../../assets/music/covers/defaultMusicCover.jpg'
 import {AudioPlayer} from './AudioPlayer/AudioPlayer';
 
 
-type trackType = {
+export type trackType = {
     title: string
     artist: string
     audioSrc: string
@@ -19,7 +19,7 @@ export const Music = () => {
     const tracks = [
         {
             title: "Intro",
-            artist: "Unknown",
+            artist: "The XX",
             audioSrc: track1,
             image: defaultCover,
             color: "green"
@@ -36,6 +36,7 @@ export const Music = () => {
     return (
         <div className={s.musicTab}>
             <AudioPlayer tracks={tracks}/>
+
         </div>
     )
 }

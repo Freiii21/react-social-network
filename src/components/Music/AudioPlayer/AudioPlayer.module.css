@@ -9,14 +9,15 @@
 .artwork {
     border-radius: 120px;
     display: block;
-    margin: auto;
-    height: 200px;
-    width: 200px;
+    height: 150px;
+    width: 150px;
+    margin: auto auto 15px;
 }
-.track-info {
+.trackInfo {
     text-align: center;
     z-index: 1;
     position: relative;
+    width: 200px;
 }
 .title {
     font-weight: 700;
@@ -34,5 +35,8 @@
     border-radius: 8px;
     background: #3b7677;
     transition: background 0.2s ease;
-    cursor: pointer;
+    cursor: default;
+}
+.progress::-webkit-slider-thumb{
+    opacity:0;
 }

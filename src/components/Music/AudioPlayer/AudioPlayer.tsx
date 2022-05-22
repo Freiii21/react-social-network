@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import {tracksType} from '../Music';
 import s from "./AudioPlayer.module.css"
 import {AudioControls} from './AudioControls/AudioControls';
+import {TracksList} from '../TrackList/TrackList';
 
 
 type AudioPlayerPropsType = {
@@ -10,6 +11,7 @@ type AudioPlayerPropsType = {
 
 export const AudioPlayer = (props:AudioPlayerPropsType) => {
     // State
+    const [initialState, setInitialState] = useState(false);
     const [trackIndex, setTrackIndex] = useState(0);
     const [trackProgress, setTrackProgress] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
@@ -72,6 +74,11 @@ export const AudioPlayer = (props:AudioPlayerPropsType) => {
         }
         startTimer();
     }
+    const playTrackFromTheList = (id:number) => {
+        setTrackIndex(id)
+        setIsPlaying(true)
+        setInitialState(true)
+    }
     useEffect(() => {
         if (isPlaying) {
             audioRef.current.play();
@@ -105,6 +112,20 @@ export const AudioPlayer = (props:AudioPlayerPropsType) => {
         }
     }, [trackIndex]);
 
+
+
+    const tracksList = props.tracks.map((t,index) => <div key={index}>
+        <TracksList track={t}
+                    trackIndex={trackIndex}
+                    index={index}
+                    playTrackFromTheList={playTrackFromTheList}
+                    isPlaying={isPlaying}
+                    initialState={initialState}
+                    setIsPlaying={setIsPlaying}/>
+    </div>)
+
+    const inputStyle = initialState ? {background: trackStyling,cursor:"pointer"} : {background: trackStyling}
+
     return (
         <div className={s.audioPlayer}>
             <div className={s.trackInfo}>
@@ -113,13 +134,18 @@ export const AudioPlayer = (props:AudioPlayerPropsType) => {
                     src={image}
                     alt={`track artwork for ${title} by ${artist}`}
                 />
-                <h2 className={s.title}>{title}</h2>
-                <h3 className={s.artist}>{artist}</h3>
+                {initialState && <div>
+                    <h2 className={s.title}>{title}</h2>
+                    <h3 className={s.artist}>{artist}</h3>
+                </div>
+                }
                 <AudioControls isPlaying={isPlaying}
                                onPrevClick={toPrevTrack}
                                onPlayPauseClick={setIsPlaying}
+                               initialState={initialState}
                                onNextClick={toNextTrack}/>
                 <input
+                    disabled={!initialState}
                     type="range"
                     value={trackProgress}
                     step="1"
@@ -129,8 +155,12 @@ export const AudioPlayer = (props:AudioPlayerPropsType) => {
                     onChange={(e) => onScrub(e.target.value)}
                     onMouseUp={onScrubEnd}
                     onKeyUp={onScrubEnd}
-                    style={{ background: trackStyling }}
+                    style={inputStyle}
                 />
+            </div>
+            <br/>
+            <div>
+                {tracksList}
             </div>
         </div>
     );

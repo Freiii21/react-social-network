@@ -8,10 +8,13 @@ type AudioControlsPropsType = {
     isPlaying: boolean
     onPlayPauseClick: (value:boolean)=>void
     onPrevClick: () => void
+    initialState:boolean
     onNextClick: () => void
 }
 
 export const AudioControls = (props: AudioControlsPropsType) => {
+    const disabledButtons = !props.initialState;
+    const buttonsStyle = props.initialState ? {cursor:"pointer"} : {};
     return (
         <div>
             <div className={s.audioControls}>
@@ -20,6 +23,8 @@ export const AudioControls = (props: AudioControlsPropsType) => {
                     className={s.prev}
                     aria-label="Previous"
                     onClick={props.onPrevClick}
+                    disabled={disabledButtons}
+                    style={buttonsStyle}
                 >
                     <Prev />
                 </button>
@@ -29,6 +34,8 @@ export const AudioControls = (props: AudioControlsPropsType) => {
                         className={s.pause}
                         onClick={() => props.onPlayPauseClick(false)}
                         aria-label="Pause"
+                        disabled={disabledButtons}
+                        style={buttonsStyle}
                     >
                         <Pause />
                     </button>
@@ -38,6 +45,8 @@ export const AudioControls = (props: AudioControlsPropsType) => {
                         className={s.play}
                         onClick={() => props.onPlayPauseClick(true)}
                         aria-label="Play"
+                        disabled={disabledButtons}
+                        style={buttonsStyle}
                     >
                         <Play />
                     </button>
@@ -47,6 +56,8 @@ export const AudioControls = (props: AudioControlsPropsType) => {
                     className={s.next}
                     aria-label="Next"
                     onClick={props.onNextClick}
+                    disabled={disabledButtons}
+                    style={buttonsStyle}
                 >
                     <Next />
                 </button>
