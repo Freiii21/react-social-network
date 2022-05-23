@@ -46,11 +46,14 @@ export const Dialogs = (props: DialogsPropsType) => {
     const [error, setError] = useState<string>("")
     const omMessageType = (e:ChangeEvent<HTMLTextAreaElement>) => {
         setError("")
+        if(e.currentTarget.value[e.currentTarget.value.length-1] === '\n') {
+            return addNewMessage();
+        }
         setMessage(e.currentTarget.value)
     }
 
     const addNewMessage = () => {
-        if(!message){
+        if(!message || message === '\n'){
             setError("Message cannot be empty")
         } else {
             props.sendMessage(message, props.dialogsPage.activeInterlocutor);

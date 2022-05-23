@@ -9,11 +9,6 @@ type MessagePropsType = {
 }
 
 export const Message = (props: MessagePropsType) => {
-    // const message = props.message.replace(
-    //     /\b(https?\:\/\/\S+)/mg,
-    //     '<a href="$1">$1</a>'
-    // );
-
 
     return (
         <div className={s.message}>

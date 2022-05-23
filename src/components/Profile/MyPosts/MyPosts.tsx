@@ -31,12 +31,15 @@ const MyPosts = React.memo((props: MyPostsPropsType) => {
                                                      likesCount={p.likesCount}/>);
 
     const onPostTextChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
-        debugger
         setError("")
+        if(e.currentTarget.value[e.currentTarget.value.length-1] === '\n') {
+            return addNewPost();
+        }
         setPostText(e.currentTarget.value)
     }
+
     const addNewPost = () => {
-        if (postText === ""){
+        if (postText === "" || postText === '\n'){
             setError("Post cannot be empty")
         } else {
             props.addPost(postText);
