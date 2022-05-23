@@ -4,8 +4,13 @@ import news1 from "./../../assets/news/imageNews1.jpg"
 import news2 from "./../../assets/news/imageNews2.jpg"
 import news3 from "./../../assets/news/imageNews3.jpg"
 import news4 from "./../../assets/news/imageNews4.jpg"
+import {useSelector} from 'react-redux';
+import {AppStateType} from '../../redux/redux-store';
+import { Navigate } from 'react-router-dom';
 
 export const News = () => {
+    const isAuth = useSelector<AppStateType, boolean>(state => state.auth.isAuth);
+
     const news = [
         {id: 1, image:news1,title:"Taco Bell is bringing back the Mexican pizza - and South Asians are rejoicing",
             news:"Taco Bell's Mexican Pizza was a staple comfort food for South Asians across the country. Now the" +
@@ -28,6 +33,8 @@ export const News = () => {
         </div>
         <img src={n.image} alt="" className={s.newsImage}/>
     </div>)
+
+    if (!isAuth) return <Navigate to="/login"/>
 
     return (
         <div className={s.newsTab}>

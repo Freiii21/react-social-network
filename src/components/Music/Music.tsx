@@ -4,6 +4,9 @@ import track2 from "../../assets/music/ATB_-_Ecstasy.mp3"
 import s from "./Music.module.css"
 import defaultCover from './../../assets/music/covers/defaultMusicCover.jpg'
 import {AudioPlayer} from './AudioPlayer/AudioPlayer';
+import {AppStateType} from '../../redux/redux-store';
+import {useSelector} from 'react-redux';
+import { Navigate } from 'react-router-dom';
 
 
 export type trackType = {
@@ -16,6 +19,8 @@ export type trackType = {
 export type tracksType = Array<trackType>
 
 export const Music = () => {
+    const isAuth = useSelector<AppStateType, boolean>(state => state.auth.isAuth);
+
     const tracks = [
         {
             title: "Intro",
@@ -32,6 +37,8 @@ export const Music = () => {
             color: "yellow"
         }
     ]
+
+    if (!isAuth) return <Navigate to="/login"/>
 
     return (
         <div className={s.musicTab}>
