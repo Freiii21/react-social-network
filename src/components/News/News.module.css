@@ -19,7 +19,7 @@
     align-items: center;
     flex-direction: column;
 }
-.singleNewsFiled{
+.singleNewsField{
     display: flex;
     height: 135px;
     width: 70%;
@@ -28,8 +28,8 @@
     background-color: #f1f1f1;
     margin-bottom: 15px;
 }
-.singleNewsFiled:hover {
-    box-shadow: 0 0 5px black;
+.singleNewsField:hover {
+    /*box-shadow: 0 0 5px black;*/
     cursor: default;
 }
 .newsImage{
@@ -37,7 +37,7 @@
     border-radius: 7px;
     margin-left: 10px;
 }
-.newsTextFiled{
+.newsTextField{
     width:100%;
 }
 .singleNewsTitle{

@@ -1,5 +1,5 @@
 import React from 'react';
-import s from "./New.module.css"
+import s from "./News.module.css"
 import news1 from "./../../assets/news/imageNews1.jpg"
 import news2 from "./../../assets/news/imageNews2.jpg"
 import news3 from "./../../assets/news/imageNews3.jpg"
@@ -26,8 +26,8 @@ export const News = () => {
                 "his cookies turned out to be extra fortunate."},
     ]
 
-    const newsList = news.map(n =>  <div key={n.id} className={s.singleNewsFiled}>
-        <div className={s.newsTextFiled}>
+    const newsList = news.map(n =>  <div key={n.id} className={s.singleNewsField}>
+        <div className={s.newsTextField}>
             <div className={s.singleNewsTitle}>{n.title}</div>
             <div className={s.singleNewsText}>{n.news}</div>
         </div>

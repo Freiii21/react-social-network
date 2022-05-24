@@ -12,7 +12,7 @@ import usersReducer, {
     ToggleIsFetchingAT,
     SetTotalUsersCountAT,
     SetUsersAT,
-    UnfollowAT, ToggleFollowingProgressAT
+    UnfollowAT, ToggleFollowingProgressAT, SetCurrentPortionNumberAT
 } from './users-reducer';
 import {authReducer, GetCaptchaUrlSuccessAT, SetUserDataAT} from './auth-reducer';
 import thunkMiddleware, {ThunkAction} from 'redux-thunk'
@@ -35,7 +35,7 @@ export type ActionsTypes = AddPostActionType
     | SendMessageActionType | FollowAT | UnfollowAT | SetUsersAT
     | SetCurrentPageAT | SetTotalUsersCountAT | ToggleIsFetchingAT | AddUserProfileAT | SetUserDataAT
     | ToggleFollowingProgressAT | SetStatusAT | SetInitializedAT | DeletePostAT | SavePhotoAT | GetCaptchaUrlSuccessAT
-    | HandleLikeAT | ChangeActiveCompanionAT
+    | HandleLikeAT | ChangeActiveCompanionAT | SetCurrentPortionNumberAT
 
 
 export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, ActionsTypes>

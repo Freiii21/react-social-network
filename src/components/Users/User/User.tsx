@@ -33,10 +33,6 @@ export const User = (props: UserPropsType) => {
                     : <button disabled={isButtonDisabled} onClick={followUser} className={s.button}>Follow</button>}
             </div>
             <div className={s.descriptionField}>
-                {/*<div>*/}
-                {/*    <span className={s.attributeName}>Name:</span>*/}
-                {/*    <span className={s.attributeValue}>{props.u.name}</span>*/}
-                {/*</div>*/}
                 <div>
                     <span className={s.attributeName}>Age:</span>
                     <span className={s.attributeValue}>...</span>

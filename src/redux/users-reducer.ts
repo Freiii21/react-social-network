@@ -23,6 +23,7 @@ export type InitialStateUsersType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    currentPortionNumber: number
     isFetching: boolean
     followingInProgress: Array<number>
 };
@@ -41,6 +42,7 @@ const initialState: InitialStateUsersType = {
     pageSize: 3,
     totalUsersCount: 0,
     currentPage: 1,
+    currentPortionNumber: 1,
     isFetching: true,
     followingInProgress: [],
 }
@@ -66,6 +68,11 @@ const usersReducer = (state: InitialStateUsersType = initialState, action: Actio
             return {
                 ...state,
                 currentPage: action.currentPage
+            }
+        case 'SET_CURRENT_PORTION_NUMBER':
+            return {
+                ...state,
+                currentPortionNumber: action.currentPortionNumber
             }
         case 'SET_TOTAL_USERS_COUNT':
             return {
@@ -105,6 +112,8 @@ export type SetCurrentPageAT = {
     type: 'SET_CURRENT_PAGE'
     currentPage: number
 }
+export type SetCurrentPortionNumberAT = ReturnType<typeof setCurrentPortionNumber>;
+
 export type SetTotalUsersCountAT = {
     type: 'SET_TOTAL_USERS_COUNT'
     totalUsersCount: number
@@ -142,6 +151,12 @@ export const setCurrentPage = (currentPage: number):SetCurrentPageAT => {
         type: 'SET_CURRENT_PAGE',
         currentPage
     }
+};
+export const setCurrentPortionNumber = (currentPortionNumber: number) => {
+    return {
+        type: 'SET_CURRENT_PORTION_NUMBER',
+        currentPortionNumber
+    } as const
 };
 export const setTotalUsersCount = (totalUsersCount: number):SetTotalUsersCountAT => {
     return {

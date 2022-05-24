@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import s from './Paginator.module.css';
 import {ReactComponent as First} from './../../../assets/paginator/first.svg';
 import {ReactComponent as Last} from './../../../assets/paginator/last.svg';
@@ -6,15 +6,22 @@ import {ReactComponent as Prev} from './../../../assets/paginator/prev.svg';
 import {ReactComponent as Next} from './../../../assets/paginator/next.svg';
 import {ReactComponent as PrevArray} from './../../../assets/paginator/prevArray.svg';
 import {ReactComponent as NextArray} from './../../../assets/paginator/nextArray.svg';
+import {useDispatch, useSelector} from 'react-redux';
+import {setCurrentPortionNumber} from '../../../redux/users-reducer';
+import {AppStateType} from '../../../redux/redux-store';
 
 type PaginatorPropsType = {
     totalItemssCount: number
     pageSize: number
     currentPage: number
+    isFetching: boolean
     onPageChanged: (pageNumber: number) => void
 }
 
 export const Paginator = (props: PaginatorPropsType) => {
+    const dispatch = useDispatch();
+    const portionNumberFromState = useSelector<AppStateType, number>(state => state.usersPage.currentPortionNumber)
+
     const portionSize = 15;
 
     const pagesCount = Math.ceil(props.totalItemssCount / props.pageSize);
@@ -37,32 +44,48 @@ export const Paginator = (props: PaginatorPropsType) => {
 
     const onFirstPage = () => {
         setPortionNumber(1);
+        // dispatch(setCurrentPortionNumber(1))
         props.onPageChanged(1);
     }
     const onLastPage = () => {
         setPortionNumber(portionCount);
+        // dispatch(setCurrentPortionNumber(portionCount))
         props.onPageChanged(pagesCount);
     }
     const onPreviousPage = () => {
         props.onPageChanged(props.currentPage - 1)
         if(props.currentPage - 1 < leftPortionPageNumber){
             setPortionNumber(portionNumber - 1)
+            // dispatch(setCurrentPortionNumber(portionNumber - 1))
         }
     }
     const onNextPage = () => {
         props.onPageChanged(props.currentPage + 1);
         if(props.currentPage+1 > rightPortionPageNumber){
             setPortionNumber(portionNumber + 1)
+            // dispatch(setCurrentPortionNumber(portionNumber + 1))
         }
     }
     const onPreviousArray = () => {
         setPortionNumber(portionNumber - 1)
+        // dispatch(setCurrentPortionNumber(portionNumber - 1))
         props.onPageChanged(rightPortionPageNumber - portionSize);
     }
     const onNextArray = () => {
         setPortionNumber(portionNumber + 1)
+        // dispatch(setCurrentPortionNumber(portionNumber + 1))
         props.onPageChanged(leftPortionPageNumber + portionSize);
     }
+
+    useEffect(()=>{
+        setPortionNumber(portionNumberFromState)
+        // eslint-disable-next-line
+    },[])
+
+    useEffect(()=>{
+        dispatch(setCurrentPortionNumber(portionNumber))
+        // eslint-disable-next-line
+    },[portionNumber])
 
     return (
         <div className={s.paginatorField}>
