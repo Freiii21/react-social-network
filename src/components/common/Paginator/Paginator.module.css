@@ -1,19 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+}
 .usual {
     margin: 3px;
+    cursor: pointer;
 }
 
 .selectedPage {
     margin: 3px;
     font-weight: bold;
+    color: orange;
+    cursor: pointer;
 }
 
-.button{
-    height: 25px;
-    width: 50px;
-    border-radius: 10px;
-    border: none;
-    font-weight: bold;
+.button {
+    display: flex;
+    margin-left: 2px;
+    margin-right: 2px;
     cursor: pointer;
+}
+.button:disabled {
+     cursor: default;
+ }
+
+.button svg{
+    height: 20px;
+    width: 20px;
 }
 .paginatorField{
     display: flex;
@@ -26,6 +39,6 @@
 .numbers{
     min-width: 360px;
     display: flex;
+    align-items: center;
     justify-content: space-evenly;
-    cursor: pointer;
 }
