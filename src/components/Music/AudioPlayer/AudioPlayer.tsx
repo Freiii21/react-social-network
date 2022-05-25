@@ -1,15 +1,17 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {tracksType} from '../Music';
-import s from "./AudioPlayer.module.css"
+import s from './AudioPlayer.module.css'
 import {AudioControls} from './AudioControls/AudioControls';
 import {TracksList} from '../TrackList/TrackList';
-
+import {IconDefinition} from '@fortawesome/free-solid-svg-icons';
+import {faVolumeUp} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type AudioPlayerPropsType = {
     tracks: tracksType
 }
 
-export const AudioPlayer = (props:AudioPlayerPropsType) => {
+export const AudioPlayer = (props: AudioPlayerPropsType) => {
     // State
     const [initialState, setInitialState] = useState(false);
     const [trackIndex, setTrackIndex] = useState(0);
@@ -17,7 +19,7 @@ export const AudioPlayer = (props:AudioPlayerPropsType) => {
     const [isPlaying, setIsPlaying] = useState(false);
 
     // Destructure for conciseness
-    const { title, artist, color, image, audioSrc } = props.tracks[trackIndex];
+    const {title, artist, color, image, audioSrc} = props.tracks[trackIndex];
 
     // Refs
     const audioRef = useRef(new Audio(audioSrc));
@@ -25,11 +27,11 @@ export const AudioPlayer = (props:AudioPlayerPropsType) => {
     const isReady = useRef(false);
 
     // Destructure for conciseness
-    const { duration } = audioRef.current;
+    const {duration, volume} = audioRef.current;
 
     const currentPercentage = duration ? `${(trackProgress / duration) * 100}%` : '0%';
     const trackStyling = `
-  -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #777))
+  -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #FFA500), color-stop(${currentPercentage}, #fff))
 `;
 
     const toPrevTrack = () => {
@@ -74,7 +76,7 @@ export const AudioPlayer = (props:AudioPlayerPropsType) => {
         }
         startTimer();
     }
-    const playTrackFromTheList = (id:number) => {
+    const playTrackFromTheList = (id: number) => {
         setTrackIndex(id)
         setIsPlaying(true)
         setInitialState(true)
@@ -113,8 +115,7 @@ export const AudioPlayer = (props:AudioPlayerPropsType) => {
     }, [trackIndex]);
 
 
-
-    const tracksList = props.tracks.map((t,index) => <div key={index}>
+    const tracksList = props.tracks.map((t, index) => <div key={index}>
         <TracksList track={t}
                     trackIndex={trackIndex}
                     index={index}
@@ -124,41 +125,47 @@ export const AudioPlayer = (props:AudioPlayerPropsType) => {
                     setIsPlaying={setIsPlaying}/>
     </div>)
 
-    const inputStyle = initialState ? {background: trackStyling,cursor:"pointer"} : {background: trackStyling}
+    const inputStyle = initialState ? {background: trackStyling, cursor: 'pointer'} : {background: trackStyling}
 
     return (
-        <div className={s.audioPlayer}>
-            <div className={s.trackInfo}>
-                <img
-                    className={s.artwork}
-                    src={image}
-                    alt={`track artwork for ${title} by ${artist}`}
-                />
-                {initialState && <div>
-                    <h2 className={s.title}>{title}</h2>
-                    <h3 className={s.artist}>{artist}</h3>
-                </div>
+        <div>
+            <div className={s.audioPlayer}>
+                <img className={s.trackCover} src={image} alt="" />
+                {!initialState
+                    ? <div>
+                        <h2 className={s.title}>-</h2>
+                        <h3 className={s.artist}>-</h3>
+                      </div>
+                    : <div>
+                        <h2 className={s.title}>{title}</h2>
+                        <h3 className={s.artist}>{artist}</h3>
+                      </div>
                 }
                 <AudioControls isPlaying={isPlaying}
                                onPrevClick={toPrevTrack}
                                onPlayPauseClick={setIsPlaying}
                                initialState={initialState}
                                onNextClick={toNextTrack}/>
-                <input
-                    disabled={!initialState}
-                    type="range"
-                    value={trackProgress}
-                    step="1"
-                    min="0"
-                    max={duration ? duration : `${duration}`}
-                    className={s.progress}
-                    onChange={(e) => onScrub(e.target.value)}
-                    onMouseUp={onScrubEnd}
-                    onKeyUp={onScrubEnd}
-                    style={inputStyle}
-                />
+                <div className={s.progressAndVolumeField}>
+                    <div>
+                        <input
+                        disabled={!initialState}
+                        type="range"
+                        value={trackProgress}
+                        step="1"
+                        min="0"
+                        max={duration ? duration : `${duration}`}
+                        className={s.progress}
+                        onChange={(e) => onScrub(e.target.value)}
+                        onMouseUp={onScrubEnd}
+                        onKeyUp={onScrubEnd}
+                        style={inputStyle}/>
+                    </div>
+                    <div>
+                        <FontAwesomeIcon icon={faVolumeUp} className={s.volumeIcon}/>
+                    </div>
+                </div>
             </div>
-            <br/>
             <div>
                 {tracksList}
             </div>

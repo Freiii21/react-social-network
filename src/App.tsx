@@ -26,6 +26,10 @@ const App = () => {
         dispatch(initializeApp())
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+    useEffect(() => {
+        dispatch(initializeApp())
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const initialized = useSelector<AppStateType, boolean>(store => store.app.initialized);
     const isAuth = useSelector<AppStateType, boolean>(store => store.auth.isAuth);

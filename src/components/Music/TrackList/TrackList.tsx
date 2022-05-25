@@ -13,10 +13,10 @@ type TracksListPropsType = {
 }
 
 export const TracksList = (props:TracksListPropsType)=> {
-    const activeTrackBackground = props.index === props.trackIndex && props.initialState ? `${s.main} ${s.activeTrack}` : s.main;
+    const singleTrackRow = props.index === props.trackIndex && props.initialState ? `${s.main} ${s.activeTrack}` : s.main;
 
     return (
-        <div className={activeTrackBackground}>
+        <div className={singleTrackRow}>
             <div style={{display:'inline-block',width:"70px"}}>{props.track.title}</div>
             {props.index === props.trackIndex
                 ? !props.isPlaying
