@@ -31,7 +31,7 @@ export const AudioPlayer = (props: AudioPlayerPropsType) => {
 
     const currentPercentage = duration ? `${(trackProgress / duration) * 100}%` : '0%';
     const trackStyling = `
-  -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #FFA500), color-stop(${currentPercentage}, #fff))
+  -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #228B22), color-stop(${currentPercentage}, #fff))
 `;
 
     const toPrevTrack = () => {
@@ -126,6 +126,7 @@ export const AudioPlayer = (props: AudioPlayerPropsType) => {
     </div>)
 
     const inputStyle = initialState ? {background: trackStyling, cursor: 'pointer'} : {background: trackStyling}
+    const volumerclass = initialState ? s.volumeIcon : `${s.volumeIcon} ${s.volumeIconDisabled}`
 
     return (
         <div>
@@ -162,7 +163,7 @@ export const AudioPlayer = (props: AudioPlayerPropsType) => {
                         style={inputStyle}/>
                     </div>
                     <div>
-                        <FontAwesomeIcon icon={faVolumeUp} className={s.volumeIcon}/>
+                        <FontAwesomeIcon icon={faVolumeUp} className={volumerclass}/>
                     </div>
                 </div>
             </div>

@@ -3,14 +3,16 @@
     border-radius: 20px;
     padding: 24px;
     text-align: center;
-    margin-top: 20px;
-    background-color: #a197e1;
+    margin-top: 15px;
+    background-image: linear-gradient(to bottom right, #8fe30b, rgba(236, 236, 10, 0.87));
+    /*background-color: #bee581;*/
+    box-shadow: 0 0 15px black;
 }
 .trackCover {
     border-radius: 120px;
     display: block;
-    height: 150px;
-    width: 150px;
+    height: 120px;
+    width: 120px;
     margin: auto auto 15px;
 }
 .title {
@@ -23,16 +25,18 @@
 }
 .progressAndVolumeField{
     width: 100%;
-    height: 50px;
+    height: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid green;
 }
 .volumeIcon{
     color: white;
     margin-bottom: 1px;
     cursor: pointer;
+}
+.volumeIconDisabled{
+    cursor: default;
 }
 .progress{
     height: 6px;
