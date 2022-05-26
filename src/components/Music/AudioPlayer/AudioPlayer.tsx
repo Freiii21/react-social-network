@@ -1,10 +1,10 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, MouseEventHandler, ChangeEvent} from 'react';
 import {tracksType} from '../Music';
 import s from './AudioPlayer.module.css'
 import {AudioControls} from './AudioControls/AudioControls';
 import {TracksList} from '../TrackList/TrackList';
-import {IconDefinition} from '@fortawesome/free-solid-svg-icons';
 import {faVolumeUp} from '@fortawesome/free-solid-svg-icons';
+import {faVolumeMute} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type AudioPlayerPropsType = {
@@ -12,11 +12,17 @@ type AudioPlayerPropsType = {
 }
 
 export const AudioPlayer = (props: AudioPlayerPropsType) => {
+    // Constants
+    const maxVolume = 1;
+    const initialVolume = 0.4;
+
     // State
     const [initialState, setInitialState] = useState(false);
     const [trackIndex, setTrackIndex] = useState(0);
     const [trackProgress, setTrackProgress] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
+    const [trackVolume, setTrackVolume] = useState(initialVolume);
+    const [showVolume, setShowVolume] = useState<boolean>(false)
 
     // Destructure for conciseness
     const {title, artist, color, image, audioSrc} = props.tracks[trackIndex];
@@ -27,13 +33,39 @@ export const AudioPlayer = (props: AudioPlayerPropsType) => {
     const isReady = useRef(false);
 
     // Destructure for conciseness
-    const {duration, volume} = audioRef.current;
+    const {duration} = audioRef.current;
 
+    // Set track volume
+    audioRef.current.volume = trackVolume;
+
+    // Duration and volume inputs styling
     const currentPercentage = duration ? `${(trackProgress / duration) * 100}%` : '0%';
-    const trackStyling = `
-  -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #228B22), color-stop(${currentPercentage}, #fff))
-`;
+    const currentVolumePercentage = initialVolume ? `${(trackVolume / maxVolume) * 100}%` : '0%';
+    const durationBackgroundColor = initialState ? "#fff" : "rgba(255,255,255,0.7)"
+    const trackStyling = `-webkit-gradient(linear, 0% 0%, 100% 0%, 
+    color-stop(${currentPercentage}, #228B22), color-stop(${currentPercentage}, ${durationBackgroundColor}))`;
+    const volumeStyling = `-webkit-gradient(linear, 0% 0%, 100% 0%,
+     color-stop(${currentVolumePercentage}, #FFA500), color-stop(${currentVolumePercentage}, #fff))`;
 
+    // Volume handling
+    //@ts-ignore
+    const onVolumeIcon = () => {
+        if(initialState){
+            setShowVolume(!showVolume)
+        }
+    }
+    const onBlurVolumeInput = () => {
+        if(initialState){
+            setTimeout(()=>{
+                setShowVolume(false)
+            },150)
+        }
+    }
+    const onVolumeScrub = (e: ChangeEvent<HTMLInputElement>) => {
+        setTrackVolume(Number(e.currentTarget.value));
+    }
+
+    // Other player actions
     const toPrevTrack = () => {
         if (trackIndex - 1 < 0) {
             setTrackIndex(props.tracks.length - 1);
@@ -81,6 +113,16 @@ export const AudioPlayer = (props: AudioPlayerPropsType) => {
         setIsPlaying(true)
         setInitialState(true)
     }
+    const playTrackBeforeInitializing = (state: boolean) => {
+        if(!initialState){
+            setTrackIndex(0)
+            setIsPlaying(true)
+            setInitialState(true)
+        } else {
+            setIsPlaying(state)
+        }
+    }
+
     useEffect(() => {
         if (isPlaying) {
             audioRef.current.play();
@@ -125,8 +167,9 @@ export const AudioPlayer = (props: AudioPlayerPropsType) => {
                     setIsPlaying={setIsPlaying}/>
     </div>)
 
-    const inputStyle = initialState ? {background: trackStyling, cursor: 'pointer'} : {background: trackStyling}
-    const volumerclass = initialState ? s.volumeIcon : `${s.volumeIcon} ${s.volumeIconDisabled}`
+    const inputDurationStyle = initialState ? {background: trackStyling, cursor: 'pointer'} : {background: trackStyling}
+    const inputVolumeStyle = {background: volumeStyling, cursor: 'pointer'}
+    const volumeClass = initialState ? s.volumeIcon : `${s.volumeIcon} ${s.volumeIconDisabled}`
 
     return (
         <div>
@@ -144,7 +187,7 @@ export const AudioPlayer = (props: AudioPlayerPropsType) => {
                 }
                 <AudioControls isPlaying={isPlaying}
                                onPrevClick={toPrevTrack}
-                               onPlayPauseClick={setIsPlaying}
+                               onPlayPauseClick={playTrackBeforeInitializing}
                                initialState={initialState}
                                onNextClick={toNextTrack}/>
                 <div className={s.progressAndVolumeField}>
@@ -160,14 +203,31 @@ export const AudioPlayer = (props: AudioPlayerPropsType) => {
                         onChange={(e) => onScrub(e.target.value)}
                         onMouseUp={onScrubEnd}
                         onKeyUp={onScrubEnd}
-                        style={inputStyle}/>
+                        style={inputDurationStyle}/>
                     </div>
-                    <div>
-                        <FontAwesomeIcon icon={faVolumeUp} className={volumerclass}/>
+                    <div className={s.volumeField}>
+                        {showVolume &&
+                            <input
+                                type="range"
+                                value={trackVolume}
+                                step="0.01"
+                                min="0"
+                                max={maxVolume}
+                                className={s.volumeInput}
+                                style={inputVolumeStyle}
+                                autoFocus
+                                onBlur={onBlurVolumeInput}
+                                onChange={onVolumeScrub}
+                            />
+                        }
+                        <FontAwesomeIcon icon={trackVolume===0 ? faVolumeMute : faVolumeUp}
+                                         className={volumeClass}
+                                         onClick={onVolumeIcon}/>
                     </div>
                 </div>
             </div>
             <div>
+                <br/><br/><br/>
                 {tracksList}
             </div>
         </div>

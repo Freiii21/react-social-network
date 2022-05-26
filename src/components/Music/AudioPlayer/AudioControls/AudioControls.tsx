@@ -34,8 +34,7 @@ export const AudioControls = (props: AudioControlsPropsType) => {
                         className={s.pause}
                         onClick={() => props.onPlayPauseClick(false)}
                         aria-label="Pause"
-                        disabled={disabledButtons}
-                        style={buttonsStyle}
+                        style={{cursor:"pointer"}}
                     >
                         <Pause />
                     </button>
@@ -45,8 +44,7 @@ export const AudioControls = (props: AudioControlsPropsType) => {
                         className={s.play}
                         onClick={() => props.onPlayPauseClick(true)}
                         aria-label="Play"
-                        disabled={disabledButtons}
-                        style={buttonsStyle}
+                        style={{cursor:"pointer"}}
                     >
                         <Play />
                     </button>

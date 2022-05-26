@@ -1,3 +1,4 @@
+
 .audioPlayer {
     width: 300px;
     border-radius: 20px;
@@ -5,8 +6,7 @@
     text-align: center;
     margin-top: 15px;
     background-image: linear-gradient(to bottom right, #8fe30b, rgba(236, 236, 10, 0.87));
-    /*background-color: #bee581;*/
-    box-shadow: 0 0 15px black;
+    box-shadow: 0 0 10px green;
 }
 .trackCover {
     border-radius: 120px;
@@ -29,6 +29,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: -8px;
+}
+.volumeField{
+    position: relative;
+    width: 20px;
+    text-align: left;
 }
 .volumeIcon{
     color: white;
@@ -37,17 +43,30 @@
 }
 .volumeIconDisabled{
     cursor: default;
+    opacity: 0.7;
+}
+.volumeInput{
+    position: absolute;
+    height: 8px;
+    width: 100px;
+    -webkit-appearance: none;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+    top:-55px;
+    left: -40px;
+    transform: rotate(270deg);
+    outline: none;
 }
 .progress{
     height: 6px;
     -webkit-appearance: none;
     width: 220px;
     border-radius: 8px;
-    background: #3b7677;
     transition: background 0.2s ease;
     cursor: default;
     margin-bottom: 12px;
 }
+.volumeInput::-webkit-slider-thumb,
 .progress::-webkit-slider-thumb{
     opacity:0;
 }
