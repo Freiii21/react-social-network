@@ -6,6 +6,7 @@ import {TracksList} from '../TrackList/TrackList';
 import {faVolumeUp} from '@fortawesome/free-solid-svg-icons';
 import {faVolumeMute} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import defaultCover from './../../../assets/music/covers/defaultMusicCover.jpg'
 
 type AudioPlayerPropsType = {
     tracks: tracksType
@@ -25,7 +26,7 @@ export const AudioPlayer = (props: AudioPlayerPropsType) => {
     const [showVolume, setShowVolume] = useState<boolean>(false)
 
     // Destructure for conciseness
-    const {title, artist, color, image, audioSrc} = props.tracks[trackIndex];
+    const {title, artist, durationTime, image, audioSrc} = props.tracks[trackIndex];
 
     // Refs
     const audioRef = useRef(new Audio(audioSrc));
@@ -170,11 +171,12 @@ export const AudioPlayer = (props: AudioPlayerPropsType) => {
     const inputDurationStyle = initialState ? {background: trackStyling, cursor: 'pointer'} : {background: trackStyling}
     const inputVolumeStyle = {background: volumeStyling, cursor: 'pointer'}
     const volumeClass = initialState ? s.volumeIcon : `${s.volumeIcon} ${s.volumeIconDisabled}`
+    const trackCover = initialState ? image : defaultCover;
 
     return (
-        <div>
+        <div className={s.audioPlayerAndTracksField}>
             <div className={s.audioPlayer}>
-                <img className={s.trackCover} src={image} alt="" />
+                <img className={s.trackCover} src={trackCover} alt="" />
                 {!initialState
                     ? <div>
                         <h2 className={s.title}>-</h2>
@@ -226,8 +228,7 @@ export const AudioPlayer = (props: AudioPlayerPropsType) => {
                     </div>
                 </div>
             </div>
-            <div>
-                <br/><br/><br/>
+            <div className={s.trackListField}>
                 {tracksList}
             </div>
         </div>

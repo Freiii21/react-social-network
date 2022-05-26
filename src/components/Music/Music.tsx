@@ -2,6 +2,7 @@ import React from 'react';
 import track1 from "../../assets/music/intro.mp3"
 import track2 from "../../assets/music/ATB_-_Ecstasy.mp3"
 import track3 from "../../assets/music/Sting - Desert Rose (feat. Cheb Mami).mp3"
+import cover1 from "../../assets/music/covers/cover1.jpg"
 import s from "./Music.module.css"
 import defaultCover from './../../assets/music/covers/defaultMusicCover.jpg'
 import {AudioPlayer} from './AudioPlayer/AudioPlayer';
@@ -15,8 +16,7 @@ export type trackType = {
     artist: string
     audioSrc: string
     image: string
-    color: string
-    //durationTime: string
+    durationTime: string
 }
 export type tracksType = Array<trackType>
 
@@ -28,25 +28,22 @@ export const Music = () => {
             title: "Intro",
             artist: "The XX",
             audioSrc: track1,
-            image: defaultCover,
-            color: "green",
-            // durationTime: "02:07"
+            image: cover1,
+            durationTime: "02:07"
         },
         {
             title: "Ecstasy",
             artist: "ATB",
             audioSrc: track2,
             image: defaultCover,
-            color: "yellow"
-            // durationTime: "04:08"
+            durationTime: "04:08"
         },
         {
             title: "Desert Rose",
             artist: "Sting",
             audioSrc: track3,
             image: defaultCover,
-            color: "yellow"
-            // durationTime: "04:08"
+            durationTime: "04:08"
         }
     ]
 
@@ -55,7 +52,6 @@ export const Music = () => {
     return (
         <div className={s.musicTab}>
             <AudioPlayer tracks={tracks}/>
-
         </div>
     )
 }

@@ -1,4 +1,10 @@
-
+.audioPlayerAndTracksField{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
 .audioPlayer {
     width: 300px;
     border-radius: 20px;
@@ -69,4 +75,12 @@
 .volumeInput::-webkit-slider-thumb,
 .progress::-webkit-slider-thumb{
     opacity:0;
+}
+.trackListField{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-top: 50px;
 }
