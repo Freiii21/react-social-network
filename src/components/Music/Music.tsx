@@ -1,12 +1,16 @@
 import React from 'react';
-import track1 from "../../assets/music/intro.mp3"
-import track2 from "../../assets/music/ATB_-_Ecstasy.mp3"
-import track3 from "../../assets/music/Sting - Desert Rose (feat. Cheb Mami).mp3"
+import track1 from "../../assets/music/tracks/intro.mp3"
+import track2 from "../../assets/music/tracks/ATB_-_Ecstasy.mp3"
+import track3 from "../../assets/music/tracks/Sting - Desert Rose (feat. Cheb Mami).mp3"
+import track4 from "../../assets/music/tracks/Shouse - Love Tonight.mp3"
+import track5 from "../../assets/music/tracks/paris-else.mp3"
 import cover1 from "../../assets/music/covers/cover1.jpg"
 import cover2 from "../../assets/music/covers/cover2.jpg"
 import cover3 from "../../assets/music/covers/cover3.jpg"
+import cover4 from "../../assets/music/covers/cover4.jpg"
+import cover5 from "../../assets/music/covers/cover5.jpg"
 import s from "./Music.module.css"
-import defaultCover from './../../assets/music/covers/defaultMusicCover.jpg'
+// import defaultCover from './../../assets/music/covers/defaultMusicCover.jpg'
 import {AudioPlayer} from './AudioPlayer/AudioPlayer';
 import {AppStateType} from '../../redux/redux-store';
 import {useSelector} from 'react-redux';
@@ -46,7 +50,21 @@ export const Music = () => {
             audioSrc: track3,
             image: cover3,
             durationTime: "04:46"
-        }
+        },
+        {
+            title: "Love Tonight",
+            artist: "Shouse",
+            audioSrc: track4,
+            image: cover4,
+            durationTime: "04:01"
+        },
+        {
+            title: "Paris",
+            artist: "Else",
+            audioSrc: track5,
+            image: cover5,
+            durationTime: "03:29"
+        },
     ]
 
     if (!isAuth) return <Navigate to="/login"/>
