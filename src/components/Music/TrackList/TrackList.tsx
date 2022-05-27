@@ -17,6 +17,7 @@ type TracksListPropsType = {
 
 export const TracksList = (props:TracksListPropsType)=> {
     const singleTrackRow = props.index === props.trackIndex && props.initialState ? `${s.main} ${s.activeTrack}` : s.main;
+    const singleTrackPlayPauseIcon = props.initialState ? s.playPauseIcons : s.playPassiveIcons;
 
 
 
@@ -27,7 +28,7 @@ export const TracksList = (props:TracksListPropsType)=> {
         <div className={singleTrackRow}>
             <div className={s.trackInfoField}>
                 <div className={s.trackTitleAndArtist}>
-                    {props.track.artist}
+                    <span className={s.artist}>{props.track.artist}</span>
                     <span> / </span>
                     {props.track.title}
                 </div>
@@ -37,12 +38,12 @@ export const TracksList = (props:TracksListPropsType)=> {
             </div>
             {props.index === props.trackIndex
                 ? !props.isPlaying
-                    ? <FontAwesomeIcon icon={faPlay} className={s.playPauseIcons} onClick={onPlay}/>
-                    : <FontAwesomeIcon icon={faPause} className={s.playPauseIcons} onClick={onPause}/>
+                    ? <FontAwesomeIcon icon={faPlay} className={singleTrackPlayPauseIcon} onClick={onPlay}/>
+                    : <FontAwesomeIcon icon={faPause} className={singleTrackPlayPauseIcon} onClick={onPause}/>
                 : null
             }
             {props.index !== props.trackIndex &&
-            <FontAwesomeIcon icon={faPlay} className={s.playPauseIcons} onClick={onPlay}/>
+            <FontAwesomeIcon icon={faPlay} className={s.playPassiveIcons} onClick={onPlay}/>
             }
         </div>
     )

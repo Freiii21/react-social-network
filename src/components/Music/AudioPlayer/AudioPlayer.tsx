@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef, MouseEventHandler, ChangeEvent} from 'react';
+import React, {useState, useEffect, useRef, ChangeEvent} from 'react';
 import {tracksType} from '../Music';
 import s from './AudioPlayer.module.css'
 import {AudioControls} from './AudioControls/AudioControls';
@@ -15,7 +15,7 @@ type AudioPlayerPropsType = {
 export const AudioPlayer = (props: AudioPlayerPropsType) => {
     // Constants
     const maxVolume = 1;
-    const initialVolume = 0.4;
+    const initialVolume = 0.5;
 
     // State
     const [initialState, setInitialState] = useState(false);
@@ -26,7 +26,7 @@ export const AudioPlayer = (props: AudioPlayerPropsType) => {
     const [showVolume, setShowVolume] = useState<boolean>(false)
 
     // Destructure for conciseness
-    const {title, artist, durationTime, image, audioSrc} = props.tracks[trackIndex];
+    const {title, artist, image, audioSrc} = props.tracks[trackIndex];
 
     // Refs
     const audioRef = useRef(new Audio(audioSrc));
@@ -35,9 +35,6 @@ export const AudioPlayer = (props: AudioPlayerPropsType) => {
 
     // Destructure for conciseness
     const {duration} = audioRef.current;
-
-    // Set track volume
-    audioRef.current.volume = trackVolume;
 
     // Duration and volume inputs styling
     const currentPercentage = duration ? `${(trackProgress / duration) * 100}%` : '0%';
@@ -132,15 +129,25 @@ export const AudioPlayer = (props: AudioPlayerPropsType) => {
             clearInterval(intervalRef.current);
             audioRef.current.pause();
         }
+        // eslint-disable-next-line
     }, [isPlaying]);
 
     useEffect(() => {
+        // Set initial track volume
+        audioRef.current.volume = trackVolume;
+
         // Pause and clean up on unmount
         return () => {
             audioRef.current.pause();
             clearInterval(intervalRef.current);
         }
+        // eslint-disable-next-line
     }, []);
+
+    useEffect(() => {
+        // Update track volume
+        audioRef.current.volume = trackVolume;
+    }, [trackVolume]);
 
     useEffect(() => {
         audioRef.current.pause();
@@ -155,6 +162,7 @@ export const AudioPlayer = (props: AudioPlayerPropsType) => {
             // Set the isReady ref as true for the next pass
             isReady.current = true;
         }
+        // eslint-disable-next-line
     }, [trackIndex]);
 
 
@@ -176,7 +184,7 @@ export const AudioPlayer = (props: AudioPlayerPropsType) => {
     return (
         <div className={s.audioPlayerAndTracksField}>
             <div className={s.audioPlayer}>
-                <img className={s.trackCover} src={trackCover} alt="" />
+                <img className={s.trackCover} src={trackCover} alt=""/>
                 {!initialState
                     ? <div>
                         <h2 className={s.title}>-</h2>

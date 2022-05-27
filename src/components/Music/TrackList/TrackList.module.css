@@ -3,28 +3,34 @@
     justify-content: space-between;
     align-items: center;
     padding: 5px;
-    margin: 5px 0;
+    margin: 3px 0;
     border-radius: 7px;
     width: 400px;
     height: 40px;
     border: none;
-    background-color: #f8f6d9;
-    box-shadow: 1px 1px 5px white;
+    background-color: #f5fae4;
 }
 .activeTrack{
     background-color: #cff1ea;
-    box-shadow: 3px 3px 10px green;
+    box-shadow: 0 0 5px green;
 }
 .playPauseIcons{
     margin-left: 10px;
     width: 20px;
     height: 20px;
-    color: black;
+    color: #24d309;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.playPassiveIcons{
+    margin-left: 10px;
+    width: 20px;
+    height: 20px;
+    color: #707070;
     margin-right: 10px;
     cursor: pointer;
 }
 .trackInfoField{
-    /*border: 1px solid green;*/
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -34,4 +40,6 @@
     margin-left: 10px;
     font-size: 20px;
     font-style: italic;
+}
+.artist{
 }

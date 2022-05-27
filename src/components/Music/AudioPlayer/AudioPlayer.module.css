@@ -10,12 +10,13 @@
     border-radius: 20px;
     padding: 24px;
     text-align: center;
-    margin-top: 15px;
+    margin-top: 35px;
     background-image: linear-gradient(to bottom right, #8fe30b, rgba(236, 236, 10, 0.87));
     box-shadow: 0 0 10px green;
 }
 .trackCover {
     border-radius: 120px;
+    object-fit: cover;
     display: block;
     height: 120px;
     width: 120px;
@@ -82,5 +83,5 @@
     flex-direction: column;
     align-items: center;
     position: relative;
-    margin-top: 50px;
+    margin-top: 35px;
 }

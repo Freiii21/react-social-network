@@ -3,6 +3,8 @@ import track1 from "../../assets/music/intro.mp3"
 import track2 from "../../assets/music/ATB_-_Ecstasy.mp3"
 import track3 from "../../assets/music/Sting - Desert Rose (feat. Cheb Mami).mp3"
 import cover1 from "../../assets/music/covers/cover1.jpg"
+import cover2 from "../../assets/music/covers/cover2.jpg"
+import cover3 from "../../assets/music/covers/cover3.jpg"
 import s from "./Music.module.css"
 import defaultCover from './../../assets/music/covers/defaultMusicCover.jpg'
 import {AudioPlayer} from './AudioPlayer/AudioPlayer';
@@ -35,15 +37,15 @@ export const Music = () => {
             title: "Ecstasy",
             artist: "ATB",
             audioSrc: track2,
-            image: defaultCover,
+            image: cover2,
             durationTime: "04:08"
         },
         {
             title: "Desert Rose",
             artist: "Sting",
             audioSrc: track3,
-            image: defaultCover,
-            durationTime: "04:08"
+            image: cover3,
+            durationTime: "04:46"
         }
     ]
 
