@@ -1,8 +1,8 @@
-import React, {ChangeEvent, FormEvent, MouseEventHandler, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { AppStateType } from '../../redux/redux-store';
-import {backgroundModeType, setBackgroundModeTC} from '../../redux/app-reducer';
+import {backgroundModeType, setAppSettingsTC} from '../../redux/app-reducer';
 
 export const Settings = () => {
     const dispatch = useDispatch();
@@ -14,7 +14,7 @@ export const Settings = () => {
     const onBackgroundModeChange = (e:ChangeEvent<HTMLInputElement>) => {
         const mode = e.currentTarget.value;
         //@ts-ignore
-        dispatch(setBackgroundModeTC(mode))
+        dispatch(setAppSettingsTC({backgroundMode:mode}))
     }
 
     if (!isAuth) return <Navigate to="/login"/>

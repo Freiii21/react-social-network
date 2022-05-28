@@ -63,6 +63,7 @@ export const AudioPlayer = (props: AudioPlayerPropsType) => {
         setTrackVolume(Number(e.currentTarget.value));
     }
 
+
     // Other player actions
     const toPrevTrack = () => {
         if (trackIndex - 1 < 0) {

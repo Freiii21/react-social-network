@@ -113,9 +113,9 @@ const App = () => {
     return (
         <div className="appGlobal">
             {backgroundMode === "dark" &&
-                <Particles init={particlesInit} className="particles"
-                        // @ts-ignore
-                        options={particlesOptions}/>
+            <Particles init={particlesInit} className="particles"
+                // @ts-ignore
+                       options={particlesOptions}/>
             }
             <div className={appWrapperClass} >
                 <HeaderContainer/>
