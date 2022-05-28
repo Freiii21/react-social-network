@@ -3,11 +3,17 @@ import {getAuthUserData} from './auth-reducer';
 
 const SET_INITIALIZED = 'SET_INITIALIZED';
 
-const initialState = {
-    initialized: false,
-}
+export type backgroundModeType = "white" | "dark";
 
-type initialStateType = typeof initialState;
+type initialStateType = {
+    initialized: boolean
+    backgroundMode: backgroundModeType
+}
+const initialState:initialStateType = {
+    initialized: false,
+    backgroundMode: "dark"
+}
+// type initialStateType = typeof initialState;
 
 export const appReducer = (state = initialState, action:ActionsTypes):initialStateType => {
     switch (action.type) {
