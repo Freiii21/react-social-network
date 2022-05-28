@@ -50,5 +50,24 @@ export const initializeApp = () => (dispatch: any) => {
 }
 export const setAppSettingsTC = (payload:{backgroundMode?:backgroundModeType, appLogo?:appLogoType}) =>
     (dispatch: any) => {
+        if(payload.backgroundMode){
+            localStorage.setItem('socialNetworkBackgroundMode', JSON.stringify(payload))
+        }
+        if(payload.appLogo){
+            localStorage.setItem('socialNetworkLogoMode', JSON.stringify(payload))
+        }
         dispatch(setAppSettingsAC(payload))
 }
+export const getAppSettingsTC = () =>
+    (dispatch: any) => {
+        const backgroundMode = localStorage.getItem('socialNetworkBackgroundMode');
+        const appLogo = localStorage.getItem('socialNetworkLogoMode');
+        if(backgroundMode){
+            const initialAppBackgroundMode = JSON.parse(backgroundMode);
+            dispatch(setAppSettingsAC(initialAppBackgroundMode));
+        }
+        if(appLogo){
+            const initialAppLogo = JSON.parse(appLogo);
+            dispatch(setAppSettingsAC(initialAppLogo));
+        }
+    }

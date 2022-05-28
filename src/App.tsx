@@ -11,7 +11,7 @@ import UsersContainer from './components/Users/UsersContainer';
 import Login from './components/Login/Login';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppStateType} from './redux/redux-store';
-import {backgroundModeType, initializeApp} from './redux/app-reducer';
+import {backgroundModeType, getAppSettingsTC, initializeApp} from './redux/app-reducer';
 import {Preloader} from './components/common/Preloader/Preloader';
 import {PageNotFound} from './components/NotFound/PageNotFound';
 import Particles from "react-tsparticles";
@@ -24,6 +24,7 @@ const App = () => {
 
     useEffect(() => {
         dispatch(initializeApp())
+        dispatch(getAppSettingsTC())
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -113,9 +114,9 @@ const App = () => {
     return (
         <div className="appGlobal">
             {backgroundMode === "dark" &&
-            <Particles init={particlesInit} className="particles"
-                // @ts-ignore
-                       options={particlesOptions}/>
+                <Particles init={particlesInit} className="particles"
+                           // @ts-ignore
+                           options={particlesOptions}/>
             }
             <div className={appWrapperClass} >
                 <HeaderContainer/>

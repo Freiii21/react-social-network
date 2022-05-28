@@ -1,7 +1,11 @@
 import React from 'react';
 import s from './Header.module.css';
-import logo from './../../assets/header/logo.png'
+import reactLogo from './../../assets/header/logo.png'
+import underwaterLogo1 from './../../assets/header/underwater1.png'
 import {NavLink} from 'react-router-dom';
+import {appLogoType} from '../../redux/app-reducer';
+import {useSelector} from 'react-redux';
+import {AppStateType} from '../../redux/redux-store';
 
 type HeaderPropsType = {
     isAuth: boolean
@@ -10,10 +14,13 @@ type HeaderPropsType = {
 }
 
 const Header = (props: HeaderPropsType) => {
+    const appLogo = useSelector<AppStateType, appLogoType>(state => state.app.appLogo)
+
     return (
         <header className={s.header}>
             <NavLink to={'/profile'}>
-                <img src={logo} alt="logo"/>
+                {appLogo === "react" && <img src={reactLogo} alt="logo" className={s.reactLogo}/>}
+                {appLogo === "underwater" && <img src={underwaterLogo1} alt="logo" className={s.underwaterLogo}/>}
             </NavLink>
             <div className={s.loginBlock}>
                 {props.isAuth ?
@@ -23,10 +30,7 @@ const Header = (props: HeaderPropsType) => {
                             <span onClick={props.logout}>Sign out</span>
                         </div>
                     </div>
-                    : <></>
-                    // <div className={s.login}>
-                    //     <NavLink to={'/login'}>Sign in</NavLink>
-                    //   </div>
+                    : null
                 }
             </div>
         </header>
