@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/react-social-network/static/css/main.e592202d.chunk.css",
-    "main.js": "/react-social-network/static/js/main.65da5263.chunk.js",
-    "main.js.map": "/react-social-network/static/js/main.65da5263.chunk.js.map",
-    "runtime-main.js": "/react-social-network/static/js/runtime-main.020628dd.js",
-    "runtime-main.js.map": "/react-social-network/static/js/runtime-main.020628dd.js.map",
-    "static/js/2.5b30b869.chunk.js": "/react-social-network/static/js/2.5b30b869.chunk.js",
-    "static/js/2.5b30b869.chunk.js.map": "/react-social-network/static/js/2.5b30b869.chunk.js.map",
+    "main.js": "/react-social-network/static/js/main.2f835b65.chunk.js",
+    "main.js.map": "/react-social-network/static/js/main.2f835b65.chunk.js.map",
+    "runtime-main.js": "/react-social-network/static/js/runtime-main.a9827de1.js",
+    "runtime-main.js.map": "/react-social-network/static/js/runtime-main.a9827de1.js.map",
+    "static/js/2.1efa0b59.chunk.js": "/react-social-network/static/js/2.1efa0b59.chunk.js",
+    "static/js/2.1efa0b59.chunk.js.map": "/react-social-network/static/js/2.1efa0b59.chunk.js.map",
     "static/css/3.c784c20b.chunk.css": "/react-social-network/static/css/3.c784c20b.chunk.css",
-    "static/js/3.cde24e5e.chunk.js": "/react-social-network/static/js/3.cde24e5e.chunk.js",
-    "static/js/3.cde24e5e.chunk.js.map": "/react-social-network/static/js/3.cde24e5e.chunk.js.map",
+    "static/js/3.599c7a45.chunk.js": "/react-social-network/static/js/3.599c7a45.chunk.js",
+    "static/js/3.599c7a45.chunk.js.map": "/react-social-network/static/js/3.599c7a45.chunk.js.map",
     "static/js/4.6fd52bcc.chunk.js": "/react-social-network/static/js/4.6fd52bcc.chunk.js",
     "static/js/4.6fd52bcc.chunk.js.map": "/react-social-network/static/js/4.6fd52bcc.chunk.js.map",
     "static/js/5.94b3c811.chunk.js": "/react-social-network/static/js/5.94b3c811.chunk.js",
@@ -17,7 +17,7 @@
     "index.html": "/react-social-network/index.html",
     "static/css/3.c784c20b.chunk.css.map": "/react-social-network/static/css/3.c784c20b.chunk.css.map",
     "static/css/main.e592202d.chunk.css.map": "/react-social-network/static/css/main.e592202d.chunk.css.map",
-    "static/js/2.5b30b869.chunk.js.LICENSE.txt": "/react-social-network/static/js/2.5b30b869.chunk.js.LICENSE.txt",
+    "static/js/2.1efa0b59.chunk.js.LICENSE.txt": "/react-social-network/static/js/2.1efa0b59.chunk.js.LICENSE.txt",
     "static/media/ATB_-_Ecstasy.d66ed6dc.mp3": "/react-social-network/static/media/ATB_-_Ecstasy.d66ed6dc.mp3",
     "static/media/Shouse - Love Tonight.25287fcb.mp3": "/react-social-network/static/media/Shouse - Love Tonight.25287fcb.mp3",
     "static/media/Sting - Desert Rose (feat. Cheb Mami).a62bb011.mp3": "/react-social-network/static/media/Sting - Desert Rose (feat. Cheb Mami).a62bb011.mp3",
@@ -48,9 +48,9 @@
     "static/media/user1.jpg": "/react-social-network/static/media/user1.dbee240a.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.020628dd.js",
-    "static/js/2.5b30b869.chunk.js",
+    "static/js/runtime-main.a9827de1.js",
+    "static/js/2.1efa0b59.chunk.js",
     "static/css/main.e592202d.chunk.css",
-    "static/js/main.65da5263.chunk.js"
+    "static/js/main.2f835b65.chunk.js"
   ]
 }
