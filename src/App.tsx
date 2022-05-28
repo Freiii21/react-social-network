@@ -78,7 +78,8 @@ const App = () => {
                 direction: "none",
                 enable: true,
                 outModes: {
-                    default: "out",
+                    default: "bounce",
+                    // default: "out",
                 },
                 random: false,
                 speed: 1,
