@@ -15,7 +15,7 @@ type AudioPlayerPropsType = {
 export const AudioPlayer = (props: AudioPlayerPropsType) => {
     // Constants
     const maxVolume = 1;
-    const initialVolume = 0.5;
+    const initialVolume = 0.3;
 
     // State
     const [initialState, setInitialState] = useState(false);
@@ -136,7 +136,7 @@ export const AudioPlayer = (props: AudioPlayerPropsType) => {
     useEffect(() => {
         // Set initial track volume
         audioRef.current.volume = trackVolume;
-
+        console.log(audioRef.current.volume)
         // Pause and clean up on unmount
         return () => {
             audioRef.current.pause();
@@ -148,6 +148,7 @@ export const AudioPlayer = (props: AudioPlayerPropsType) => {
     useEffect(() => {
         // Update track volume
         audioRef.current.volume = trackVolume;
+        console.log(audioRef.current.volume)
     }, [trackVolume]);
 
     useEffect(() => {
