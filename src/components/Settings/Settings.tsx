@@ -38,6 +38,7 @@ export const Settings = () => {
                            onChange={onBackgroundModeChange}/>
                     White (default)
                 </label>
+                <br/>
                 <label>
                     <input type="radio"
                            name="backgroundMode"
@@ -47,6 +48,7 @@ export const Settings = () => {
                     Dark
                 </label>
             </div>
+            <br/>
             <div>
                 <span>Logo mode:</span><br/>
                 <label>
@@ -57,6 +59,7 @@ export const Settings = () => {
                            onChange={onLogoModeChange}/>
                     React (default)
                 </label>
+                <br/>
                 <label>
                     <input type="radio"
                            name="logoMode"
