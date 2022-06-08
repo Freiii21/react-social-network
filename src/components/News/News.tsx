@@ -41,6 +41,7 @@ export const News = () => {
             <div className={s.newsTitle}>
                 <div>Daily news</div>
             </div>
+            <div className={s.line}/>
             <div className={s.newsRows}>
                 {newsList}
             </div>

@@ -31,7 +31,8 @@ export const Users = (props: UsersPropsType2) => {
                 <div className={s.usersTitle}>
                     <div>Followers of the Way of the Samurai...</div>
                 </div>
-                {props.isFetching && <Preloader marginTop={'31px'}/>}
+                <div className={s.line}/>
+                {props.isFetching && <Preloader marginTop={'0px'}/>}
                 <div className={s.usersField}>
                     {usersList}
                 </div>

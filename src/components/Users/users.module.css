@@ -19,10 +19,15 @@
     align-items: flex-start;
 }
 .usersTitle{
-    height: 68px;
+    height: 100px;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     font-size: 30px;
     font-weight: bold;
+}
+.line{
+    width: 65%;
+    margin: 0px auto 0;
+    border-bottom: 1px solid darkslategrey;
 }

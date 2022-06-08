@@ -30,6 +30,7 @@ export const Settings = () => {
     return (
         <div className={s.settingsTab}>
             <div className={s.title}>Global settings</div>
+            <div className={s.line}/>
             <div className={s.singleSetting}>
                 <span className={s.singleSettingTitle}>Background mode:</span>
                 <div className={s.singleSettingOptionsFiled}>
