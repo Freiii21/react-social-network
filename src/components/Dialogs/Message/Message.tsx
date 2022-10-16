@@ -1,5 +1,6 @@
 import React from 'react';
 import s from './Message.module.css';
+import defaultAva from "../../../assets/users/user1.jpg"
 
 type MessagePropsType = {
     message: string
@@ -9,6 +10,7 @@ type MessagePropsType = {
 }
 
 export const Message = (props: MessagePropsType) => {
+    const meAva = props.myAvatar ?? defaultAva;
 
     return (
         <div className={s.message}>
@@ -17,7 +19,7 @@ export const Message = (props: MessagePropsType) => {
                 <div className={s.messageTextFiled}>
                     {props.message}
                 </div>
-                {props.owner === "me" ? <img src={props.myAvatar} alt='ava'/> : false}
+                {props.owner === "me" ? <img src={meAva} alt='ava'/> : false}
             </div>
         </div>
     )
